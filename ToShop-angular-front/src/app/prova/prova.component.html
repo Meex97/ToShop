@@ -1,3 +1,12 @@
-<p>{{string.toString()}}</p>
+<h1>Customers</h1>
+
+<div *ngFor="let user of users | async" style="width: 300px;">
+  <user-details [user]='user'></user-details>
+</div>
+
+<div>
+  <button type="button" class="button btn-danger" >Delete All</button>
+</div>
+<!--<p>{{string.toString()}}</p>-->
 
 
