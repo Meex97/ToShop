@@ -17,9 +17,9 @@ public class Admin extends User {
     public Admin() {
     }
 
-    public Admin(String name, String surname, String username, String password, String address, String phone, Integer matricola, String reparto) {
+    public Admin(String name, String surname, String username, String password, String address, String phone, Integer type, Integer matricola, String reparto) {
 
-        super(name, surname, username, password, address, phone);
+        super(name, surname, username, password, address, phone,type);
         this.matricola = matricola;
         this.reparto = reparto;
     }

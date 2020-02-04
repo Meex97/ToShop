@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from '../user';
+import { Cliente } from '../cliente';
 import { UserController } from '../user.service';
 import {Observable} from 'rxjs';
 
@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
   styleUrls: ['./prova.component.css']
 })
 export class ProvaComponent implements OnInit {
-  users: Observable<User[]>;
+  clients: Observable<Cliente[]>;
   constructor(private userController: UserController) { }
 
   ngOnInit() {
@@ -18,7 +18,7 @@ export class ProvaComponent implements OnInit {
   }
 
   reloadData() {
-    this.users = this.userController.getCustomersList();
+    this.clients = this.userController.getClientiList();
   }
 
 }

@@ -20,8 +20,9 @@ public class Cliente extends User {
     @Column(name = "crediti")
     private Integer crediti;
 
-    public Cliente(String name, String surname, String username, String password, String address, String phone, Boolean studente, Boolean premium, Integer crediti) {
-        super(name, surname, username, password, address, phone);
+    public Cliente(String name, String surname, String username, String password, String address, String phone, Integer type,Boolean studente, Boolean premium, Integer crediti) {
+
+        super(name, surname, username, password, address, phone,type);
         this.premium = premium;
         this.studente = studente;
         this.crediti = crediti;

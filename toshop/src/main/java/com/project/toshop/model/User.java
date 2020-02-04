@@ -36,18 +36,23 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
+
+    @Column(name = "Type")
+    private Integer type;
+
     /*   @ManyToMany
        private Set<Role> roles;
    */
     public User() {}
 
-    public User(String name, String surname, String username, String password, String address, String phone){
+    public User(String name, String surname, String username, String password, String address, String phone, Integer type){
         this.name = name;
         this.surname= surname;
         this.username = username;
         this.password = password;
         this.address= address;
         this.phone = phone;
+        this.type= type;
     }
 
     public long getId() {
@@ -113,6 +118,14 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 /*
     public Set<Role> getRoles() {

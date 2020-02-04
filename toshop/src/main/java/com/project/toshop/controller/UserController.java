@@ -28,29 +28,46 @@ public class UserController {
         return users;
     }
 
+
+    @GetMapping("/users/getclienti")
+    public List<User> getClienti(){
+
+       List<User> clienti = new ArrayList<>();
+        for(User c : repository.findAll()){
+            if (c.getType()==1){
+                clienti.add(c);
+           }
+        }
+
+        return clienti;
+
+    }
+
+
+
     //Creazioni
     @PostMapping(value = "/users/createUser")
     public User postCreateUser(@RequestBody User user){
-        User _user = repository.save(new User(user.getName(), user.getSurname(),user.getUsername(),user.getPassword(),user.getAddress(),user.getPhone()));
+        User _user = repository.save(new User(user.getName(), user.getSurname(),user.getUsername(),user.getPassword(),user.getAddress(),user.getPhone(),user.getType()));
         return _user;
     }
 
     @PostMapping(value = "/users/createFornitore")
     public Fornitore postCreateFornitore(@RequestBody Fornitore fornitore){
-        Fornitore _fornitore = repository.save(new Fornitore(fornitore.getName(), fornitore.getSurname(),fornitore.getUsername(),fornitore.getPassword(),fornitore.getAddress(),fornitore.getPhone(),fornitore.getNegozio(),fornitore.getP_IVA()));
+        Fornitore _fornitore = repository.save(new Fornitore(fornitore.getName(), fornitore.getSurname(),fornitore.getUsername(),fornitore.getPassword(),fornitore.getAddress(),fornitore.getPhone(),fornitore.getType(),fornitore.getNegozio(),fornitore.getP_IVA()));
         return _fornitore;
     }
 
     @PostMapping(value = "/users/createCliente")
     public Cliente postCreateCliente(@RequestBody Cliente cliente){
-        Cliente _cliente = repository.save(new Cliente(cliente.getName(), cliente.getSurname(),cliente.getUsername(),cliente.getPassword(),cliente.getAddress(),cliente.getPhone(),cliente.getStudente(),cliente.getPremium(),cliente.getCrediti()));
+        Cliente _cliente = repository.save(new Cliente(cliente.getName(), cliente.getSurname(),cliente.getUsername(),cliente.getPassword(),cliente.getAddress(),cliente.getPhone(), cliente.getType(),cliente.getStudente(),cliente.getPremium(),cliente.getCrediti()));
 
         return _cliente;
     }
 
     @PostMapping(value = "/users/createAdmin")
     public Admin postCreateAdmin(@RequestBody Admin admin){
-        Admin _admin = repository.save(new Admin(admin.getName(), admin.getSurname(), admin.getUsername(),admin.getPassword(),admin.getAddress(),admin.getPhone(),admin.getMatricola(),admin.getReparto()));
+        Admin _admin = repository.save(new Admin(admin.getName(), admin.getSurname(), admin.getUsername(),admin.getPassword(),admin.getAddress(),admin.getPhone(), admin.getType(),admin.getMatricola(),admin.getReparto()));
 
         return _admin;
     }

@@ -1,4 +1,4 @@
-export class User {
+export class Cliente {
   id: number;
   name: string;
   surname: string;
@@ -7,4 +7,7 @@ export class User {
   address: string;
   phone: string;
   type: number;
+  premium: boolean;
+  studente: boolean;
+  crediti: number;
 }

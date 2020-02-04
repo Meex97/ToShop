@@ -17,8 +17,8 @@ public class Fornitore extends User {
     public Fornitore() {
     }
 
-    public Fornitore(String name, String surname, String username, String password, String address, String phone, String negozio, String p_IVA) {
-        super(name, surname, username, password, address, phone);
+    public Fornitore(String name, String surname, String username, String password, String address, String phone, Integer type,String negozio, String p_IVA) {
+        super(name, surname, username, password, address, phone,type);
         this.p_IVA = p_IVA;
         this.negozio = negozio;
     }

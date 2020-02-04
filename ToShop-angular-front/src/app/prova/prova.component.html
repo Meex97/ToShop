@@ -1,7 +1,7 @@
-<h1>Customers</h1>
+<h1>Clienti</h1>
 
-<div *ngFor="let user of users | async" style="width: 300px;">
-  <user-details [user]='user'></user-details>
+<div *ngFor="let client of clients | async" style="width: 300px;">
+  {{client.name}}
 </div>
 
 <div>
