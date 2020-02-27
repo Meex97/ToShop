@@ -11,6 +11,9 @@ import { HomeComponent } from './home/home.component';
 import { AccountComponent } from './account/account.component';
 import { ChartComponent } from './chart/chart.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     AccountComponent,
     ChartComponent,
     TopBarComponent,
+    LoginComponent,
+    RegisterComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,

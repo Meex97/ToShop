@@ -7,4 +7,7 @@ export class User {
   address: string;
   phone: string;
   type: number;
+  email: string;
+  enabled: boolean;
+  confirmationToken: string;
 }

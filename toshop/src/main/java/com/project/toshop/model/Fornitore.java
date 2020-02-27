@@ -39,5 +39,7 @@ public class Fornitore extends User {
         this.negozio = negozio;
     }
 
+
+
     public void inserisci_prodotto(){}
 }

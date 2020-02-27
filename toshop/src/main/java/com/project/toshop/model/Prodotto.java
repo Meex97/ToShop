@@ -72,5 +72,9 @@ public class Prodotto {
         this.categoria = categoria;
     }
 
+
+
+
+
     public void vendi(){}
 }

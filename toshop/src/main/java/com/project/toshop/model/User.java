@@ -1,7 +1,10 @@
 package com.project.toshop.model;
 
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="users")
@@ -14,9 +17,11 @@ public class User {
     private long id;
 
     @Column(name = "name")
+    @NotEmpty(message = "Please provide your first name")
     private String name;
 
     @Column(name = "surname")
+    @NotEmpty(message = "Please provide your surname")
     private  String surname;
 
     @Column(name = "username")
@@ -36,6 +41,20 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "email")
+    @Email(message = "Please provide a valid e-mail")
+    @NotEmpty(message = "Please provide an e-mail")
+    private String email;
+
+   /////////////////////////////
+    @Column(name = "enabled")
+    private boolean enabled;
+
+
+
+    @Column(name = "confirmation_token")
+    private String confirmationToken;
+    ///////////////////////
 
     @Column(name = "Type")
     private Integer type;
@@ -127,13 +146,35 @@ public class User {
     public void setType(Integer type) {
         this.type = type;
     }
-/*
-    public Set<Role> getRoles() {
-        return roles;
+
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setEmail(String email) {
+        this.email = email;
     }
-*/
+
+
+    ////////////////////////////////////
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
+    }
+
+
+
 }

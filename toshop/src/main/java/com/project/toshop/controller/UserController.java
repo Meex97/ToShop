@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
@@ -40,7 +41,6 @@ public class UserController {
         }
 
         return clienti;
-
     }
 
 
@@ -72,5 +72,93 @@ public class UserController {
         return _admin;
     }
 
+
+
+/*
+    //Registration
+
+    @GetMapping("/users/registration")
+   // @RequestMapping(value = "/user/registration", method = RequestMethod.GET)
+    public String showRegistrationForm(WebRequest request, Model model) {
+        UserDto userDto = new UserDto();
+        model.addAttribute("user", userDto);
+        return "registration";
+    }
+
+
+
+    @PostMapping(value = "/users/registration")
+    public ModelAndView registerUserAccount
+            (@ModelAttribute("user") @Valid UserDto accountDto,
+             BindingResult result, WebRequest request, Errors errors) {
+        User registered = new User();
+        if (!result.hasErrors()) {
+            registered = createUserAccount(accountDto, result);
+        }
+        if (registered == null) {
+            result.rejectValue("email", "message.regError");
+        }
+        // rest of the implementation
+        try {
+            final String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+            eventPublisher.publishEvent(new OnRegistrationCompleteEvent(registered, request.getLocale(), appUrl));
+        } catch (final Exception ex) {
+            LOGGER.warn("Unable to register user", ex);
+            return new ModelAndView("emailError", "user", UserDto);
+        }
+        return new ModelAndView("successRegister", "user", userDto);
+    }
+
+    private User createUserAccount(UserDto accountDto, BindingResult result) {
+        User registered = null;
+        try {
+            registered = service.registerNewUserAccount(accountDto);
+        } catch (EmailExistsException e) {
+            return null;
+        }
+        return registered;
+    }
+
+*/
+
+
+
+/*
+
+
+
+    @PostMapping(value = "/users/registration")
+    public ModelAndView registerUserAccount(
+            @ModelAttribute("user") @Valid UserDto accountDto,
+            BindingResult result,
+            WebRequest request,
+            Errors errors) {
+
+        User registered = new User();
+        if (!result.hasErrors()) {
+            registered = createUserAccount(accountDto, result);
+        }
+        if (registered == null) {
+            result.rejectValue("email", "message.regError");
+        }
+        if (result.hasErrors()) {
+            return new ModelAndView("registration", "user", accountDto);
+        }
+        else {
+            return new ModelAndView("successRegister", "user", accountDto);
+        }
+    }
+    private User createUserAccount(UserDto accountDto, BindingResult result) {
+        User registered = null;
+        try {
+            registered = service.registerNewUserAccount(accountDto);
+        } catch (EmailExistsException e) {
+            return null;
+        }
+        return registered;
+    }
+
+
+ */
 
 }

@@ -6,14 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 
-export class UserController {
+export class RegisterService {
 
   private baseUrl = 'http://localhost:8080/api/users';
 
   constructor(private http: HttpClient) { }
 
-  getClientiList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/getclienti`);
+  // tslint:disable-next-line:ban-types
+  registerUser(user: Object): Observable<Object> {
+    return this.http.post(`${this.baseUrl}` + `/register`, user);
   }
+
 
 }
