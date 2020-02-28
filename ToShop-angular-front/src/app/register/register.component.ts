@@ -19,6 +19,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() { }
 
+/*
+
   newUser(): void {
     this.user = new User();
   }
@@ -34,6 +36,7 @@ export class RegisterComponent implements OnInit {
     this.save();
   }
 
+*/
 
 
 

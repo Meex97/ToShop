@@ -1,10 +1,9 @@
 package com.project.toshop.model;
 
 
-import org.hibernate.validator.constraints.Email;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -42,8 +41,8 @@ public class User {
     private String phone;
 
     @Column(name = "email")
-    @Email(message = "Please provide a valid e-mail")
-    @NotEmpty(message = "Please provide an e-mail")
+    //@Email(message = "Please provide a valid e-mail")
+    //@NotEmpty(message = "Please provide an e-mail")
     private String email;
 
    /////////////////////////////
@@ -58,6 +57,16 @@ public class User {
 
     @Column(name = "Type")
     private Integer type;
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    private Set<Role> roles;
 
     /*   @ManyToMany
        private Set<Role> roles;
