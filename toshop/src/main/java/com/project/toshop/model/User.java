@@ -13,6 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private long id;
 
     @Column(name = "name")
@@ -46,13 +47,13 @@ public class User {
     private String email;
 
    /////////////////////////////
-    @Column(name = "enabled")
+   /* @Column(name = "enabled")
     private boolean enabled;
 
 
 
     @Column(name = "confirmation_token")
-    private String confirmationToken;
+    private String confirmationToken;*/
     ///////////////////////
 
     @Column(name = "Type")
@@ -66,11 +67,15 @@ public class User {
         this.roles = roles;
     }
 
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    /*   @ManyToMany
-       private Set<Role> roles;
-   */
+    @Column(name = "active")
+    private Boolean active;
+
+
+
     public User() {}
 
     public User(String name, String surname, String username, String password, String address, String phone, Integer type){
@@ -167,6 +172,15 @@ public class User {
 
 
     ////////////////////////////////////
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+/*
 
     public boolean isEnabled() {
         return enabled;
@@ -183,6 +197,7 @@ public class User {
     public void setConfirmationToken(String confirmationToken) {
         this.confirmationToken = confirmationToken;
     }
+*/
 
 
 

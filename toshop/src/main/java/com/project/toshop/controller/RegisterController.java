@@ -1,22 +1,8 @@
 package com.project.toshop.controller;
 
-import com.nulabinc.zxcvbn.Strength;
-import com.nulabinc.zxcvbn.Zxcvbn;
-import com.project.toshop.model.User;
-import com.project.toshop.utils.EmailService;
-import com.project.toshop.utils.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.util.Map;
-import java.util.UUID;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /*
 
@@ -30,7 +16,7 @@ controller class annotated with @Controller so Spring knows what it is.
 @RestController
 @RequestMapping("/api")
 public class RegisterController {
-
+/*
 
     //Implementation of PasswordEncoder that uses the BCrypt strong hashing function.
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -164,7 +150,7 @@ public class RegisterController {
 
 
 
-
+*/
 
 
 
