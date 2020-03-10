@@ -1,19 +1,17 @@
 package com.unito.toshop_back_v3.controllers;
 
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import com.unito.toshop_back_v3.models.ERole;
-import com.unito.toshop_back_v3.models.Role;
-import com.unito.toshop_back_v3.models.User;
+import com.unito.toshop_back_v3.models.*;
 
 import com.unito.toshop_back_v3.payload.request.LoginRequest;
 import com.unito.toshop_back_v3.payload.request.SignupRequest;
+import com.unito.toshop_back_v3.payload.request.SignupRequestClient;
+import com.unito.toshop_back_v3.payload.request.SignupRequestSupplier;
 import com.unito.toshop_back_v3.payload.response.JwtResponse;
 import com.unito.toshop_back_v3.payload.response.MessageResponse;
 import com.unito.toshop_back_v3.repository.RoleRepository;
@@ -27,12 +25,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -75,6 +68,7 @@ public class AuthController {
                 roles));
     }
 
+    /*
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -111,7 +105,7 @@ public class AuthController {
 
                         break;
                     case "mod":
-                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+                        Role modRole = roleRepository.findByName(ERole.ROLE_SUPPLIER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(modRole);
 
@@ -129,4 +123,72 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+   */
+
+
+    @PostMapping("/signupClient")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequestClient signupRequestClient) {
+        if (userRepository.existsByUsername(signupRequestClient.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Username is already taken!"));
+        }
+
+        if (userRepository.existsByEmail(signupRequestClient.getEmail())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Email is already in use!"));
+        }
+
+        // Create new user's account
+        Client client = new Client(signupRequestClient.getUsername(), signupRequestClient.getEmail(), encoder.encode(signupRequestClient.getPassword()), signupRequestClient.getName(),signupRequestClient.getSurname(),signupRequestClient.getPhone(),signupRequestClient.getAddress());
+
+        Set<String> strRoles = signupRequestClient.getRole();
+        Set<Role> roles = new HashSet<>();
+
+
+        Role clientRole = roleRepository.findByName(ERole.ROLE_CLIENT)
+                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+        roles.add(clientRole);
+
+        client.setRoles(roles);
+        userRepository.save(client);
+
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+
+
+    @PostMapping("/signupSupplier")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequestSupplier signupRequestSupplier) {
+        if (userRepository.existsByUsername(signupRequestSupplier.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Username is already taken!"));
+        }
+
+        if (userRepository.existsByEmail(signupRequestSupplier.getEmail())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Email is already in use!"));
+        }
+
+        // Create new user's account
+        Supplier supplier = new Supplier(signupRequestSupplier.getUsername(), signupRequestSupplier.getEmail(), encoder.encode(signupRequestSupplier.getPassword()), signupRequestSupplier.getName(),signupRequestSupplier.getSurname(),signupRequestSupplier.getPhone(), signupRequestSupplier.getpIVA(),signupRequestSupplier.getAddress(), signupRequestSupplier.getShopName());
+
+        Set<String> strRoles = signupRequestSupplier.getRole();
+        Set<Role> roles = new HashSet<>();
+
+        Role supplierRole = roleRepository.findByName(ERole.ROLE_SUPPLIER)
+                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+        roles.add(supplierRole);
+
+        supplier.setRoles(roles);
+        userRepository.save(supplier);
+
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+
+
 }

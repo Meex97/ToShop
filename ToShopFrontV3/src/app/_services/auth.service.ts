@@ -24,11 +24,39 @@ export class AuthService {
     }, httpOptions);
   }
 
-  register(user): Observable<any> {
+  /*register(user): Observable<any> {
     return this.http.post(AUTH_API + 'signup', {
       username: user.username,
       email: user.email,
       password: user.password
     }, httpOptions);
+  }*/
+
+  registerClient(client): Observable<any> {
+    return this.http.post(AUTH_API + 'signupClient', {
+      name: client.name,
+      surname: client.surname,
+      username: client.username,
+      email: client.email,
+      password: client.password,
+      phone: client.phoneNumber,
+      address: client.address
+    }, httpOptions);
   }
+
+  registerSupplier(supplier): Observable<any> {
+    return this.http.post(AUTH_API + 'signupSupplier', {
+      name: supplier.name,
+      surname: supplier.surname,
+      username: supplier.username,
+      email: supplier.email,
+      password: supplier.password,
+      phone: supplier.phoneNumber,
+      pIVA: supplier.pIVA,
+      address: supplier.address,
+      shopName: supplier.shopName
+    }, httpOptions);
+  }
+
+
 }

@@ -1,15 +1,13 @@
-// This component binds form data (username, email, password) from template to AuthService.register() method
-// that returns an Observable object.
-
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
+import {AuthService} from '../_services/auth.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-signup-supplier',
+  templateUrl: './signup-supplier.component.html',
+  styleUrls: ['./signup-supplier.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class SignupSupplierComponent implements OnInit {
+
   form: any = {};
   isSuccessful = false;
   isSignUpFailed = false;
@@ -17,11 +15,12 @@ export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
+
   ngOnInit() {
   }
 
   onSubmit() {
-    this.authService.registerClient(this.form).subscribe(
+    this.authService.registerSupplier(this.form).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;

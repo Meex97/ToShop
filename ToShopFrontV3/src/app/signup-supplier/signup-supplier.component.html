@@ -143,6 +143,28 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <label for="pIVA">VAT Number</label>
+        <input
+          type="text"
+          class="form-control"
+          name="pIVA"
+          [(ngModel)]="form.pIVA"
+          required
+          minlength="11"
+          maxlength="11"
+          #pIVA="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && pIVA.invalid">
+          <div *ngIf="pIVA.errors.required">VAT number is required</div>
+          <div *ngIf="pIVA.errors.minlength">
+            VAT number must be at least 11 characters
+          </div>
+          <div *ngIf="pIVA.errors.maxlength">
+            VAT number must be at most 11 characters
+          </div>
+        </div>
+      </div>
 
       <div class="form-group">
         <label for="address">Address</label>
@@ -168,17 +190,35 @@
       </div>
 
       <div class="form-group">
+        <label for="shopName">Shop Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="shopName"
+          [(ngModel)]="form.shopName"
+          required
+          minlength="3"
+          maxlength="20"
+          #shopName="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && shopName.invalid">
+          <div *ngIf="shopName.errors.required">Shop Name is required</div>
+          <div *ngIf="shopName.errors.minlength">
+            Shop Name must be at least 3 characters
+          </div>
+          <div *ngIf="shopName.errors.maxlength">
+            Shop Name must be at most 20 characters
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
         <button class="btn btn-primary btn-block">Sign Up</button>
       </div>
 
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
         Signup failed!<br />{{ errorMessage }}
       </div>
-
-      <div>
-        <a [routerLink]="['/signup-supplier']" class="button fancy-button">Are you a Supplier?</a>
-      </div>
-
     </form>
 
     <div class="alert alert-success" *ngIf="isSuccessful">
@@ -186,3 +226,4 @@
     </div>
   </div>
 </div>
+

@@ -16,6 +16,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
 
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { SignupSupplierComponent } from './signup-supplier/signup-supplier.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     ProfileComponent,
     BoardAdminComponent,
     BoardModeratorComponent,
-    BoardUserComponent
+    BoardUserComponent,
+    SignupSupplierComponent
   ],
   imports: [
     BrowserModule,
