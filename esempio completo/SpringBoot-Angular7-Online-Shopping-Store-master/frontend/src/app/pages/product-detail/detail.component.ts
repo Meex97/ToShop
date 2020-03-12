@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CartService} from '../../services/cart.service';
+// @ts-ignore
 import {CookieService} from 'ngx-cookie-service';
 import {ProductInOrder} from '../../models/ProductInOrder';
 import {ProductInfo} from '../../models/productInfo';

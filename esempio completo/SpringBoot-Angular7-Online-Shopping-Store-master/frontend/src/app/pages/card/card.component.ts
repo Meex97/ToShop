@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 // import {prod, products} from '../shared/mockData';
 import {ProductService} from '../../services/product.service';
 import {ActivatedRoute} from '@angular/router';
-import {Subscription} from "rxjs";
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-card',
@@ -49,8 +49,9 @@ export class CardComponent implements OnInit, OnDestroy {
     }
   }
   getProds(page: number = 1, size: number = 3) {
-    if (this.route.snapshot.url.length == 1) {
+    if (this.route.snapshot.url.length === 1) {
       this.productService.getAllInPage(+page, +size)
+        // tslint:disable-next-line:no-shadowed-variable
         .subscribe(page => {
           this.page = page;
           this.title = 'Get Whatever You Want!';

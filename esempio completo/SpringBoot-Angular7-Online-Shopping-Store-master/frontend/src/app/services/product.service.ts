@@ -35,7 +35,7 @@ export class ProductService {
         const url = `${this.productUrl}/${id}`;
         return this.http.get<ProductInfo>(url).pipe(
             catchError(_ => {
-                console.log("Get Detail Failed");
+                console.log('Get Detail Failed');
                 return of(new ProductInfo());
             })
         );

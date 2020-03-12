@@ -4,8 +4,9 @@ import {apiUrl} from '../../environments/environment';
 import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {JwtResponse} from '../response/JwtResponse';
+// @ts-ignore
 import {CookieService} from 'ngx-cookie-service';
-import {User} from "../models/User";
+import {User} from '../models/User';
 
 @Injectable({
     providedIn: 'root'
