@@ -34,6 +34,8 @@ public class User implements Serializable {
     @NotEmpty
     private String name;
     @NotEmpty
+    private String surname;
+    @NotEmpty
     private String phone;
    /* @NotEmpty
     private String address;*/
@@ -82,6 +84,14 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getPhone() {

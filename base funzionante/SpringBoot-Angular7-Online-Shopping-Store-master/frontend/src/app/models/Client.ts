@@ -1,6 +1,6 @@
 import {Role} from "../enum/Role";
 
-export class User {
+export class Client {
 
     email: string;
 
@@ -8,16 +8,19 @@ export class User {
 
     name: string;
 
+    surname: string;
+
     phone: string;
 
     address: string;
 
-    active: boolean;
 
     role: string;
 
+    credits: number;
+
     constructor(){
-        this.active = true;
-        this.role = Role.Customer;
+        this.role = 'ROLE_CLIENT';
+        this.credits = 0;
     }
 }

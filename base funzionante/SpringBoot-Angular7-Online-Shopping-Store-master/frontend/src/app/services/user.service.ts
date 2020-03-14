@@ -6,7 +6,8 @@ import {catchError, tap} from 'rxjs/operators';
 import {JwtResponse} from '../response/JwtResponse';
 // @ts-ignore
 import {CookieService} from 'ngx-cookie-service';
-import {User} from '../models/User';
+
+import {Client} from '../models/Client';
 
 @Injectable({
     providedIn: 'root'
@@ -33,16 +34,16 @@ export class UserService {
     login(loginForm): Observable<JwtResponse> {
         const url = `${apiUrl}/login`;
         return this.http.post<JwtResponse>(url, loginForm).pipe(
-            tap(user => {
-                if (user && user.token) {
-                    this.cookieService.set('currentUser', JSON.stringify(user));
+            tap(client => {
+                if (client && client.token) {
+                    this.cookieService.set('currentUser', JSON.stringify(client));
                     if (loginForm.remembered) {
-                        localStorage.setItem('currentUser', JSON.stringify(user));
+                        localStorage.setItem('currentUser', JSON.stringify(client));
                     }
-                    console.log((user.name));
-                    this.nameTerms.next(user.name);
-                    this.currentUserSubject.next(user);
-                    return user;
+                    console.log((client.name));
+                    this.nameTerms.next(client.name);
+                    this.currentUserSubject.next(client);
+                    return client;
                 }
             }),
             catchError(this.handleError('Login Failed', null))
@@ -55,18 +56,18 @@ export class UserService {
         this.cookieService.delete('currentUser');
     }
 
-    signUp(user: User): Observable<User> {
-        const url = `${apiUrl}/register`;
-        return this.http.post<User>(url, user);
+    signUpClient(client: Client): Observable<Client> {
+        const url = `${apiUrl}/registerClient`;
+        return this.http.post<Client>(url, client);
     }
 
-    update(user: User): Observable<User> {
+    updateClient(client: Client): Observable<Client> {
         const url = `${apiUrl}/profile`;
-        return this.http.put<User>(url, user);    }
+        return this.http.put<Client>(url, client);    }
 
-    get(email: string): Observable<User> {
+    getClient(email: string): Observable<Client> {
         const url = `${apiUrl}/profile/${email}`;
-        return this.http.get<User>(url);
+        return this.http.get<Client>(url);
     }
 
     /**

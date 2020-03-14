@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../services/user.service";
-import {User} from "../../models/User";
-import {Router} from "@angular/router";
+import {UserService} from '../../services/user.service';
+import {Client} from '../../models/Client';
+import {Router} from '@angular/router';
 import {Observable, Subject} from "rxjs";
-import {Role} from "../../enum/Role";
+import {Role} from '../../enum/Role';
 
 @Component({
     selector: 'app-user-detail',
@@ -19,25 +19,25 @@ export class UserDetailComponent implements OnInit {
                 private router: Router) {
     }
 
-    user= new User();
+    client = new Client();
 
 
     ngOnInit() {
         const account = this.userService.currentUserValue.account;
 
-        this.userService.get(account).subscribe( u => {
-            this.user = u;
-            this.user.password = '';
+        this.userService.getClient(account).subscribe( u => {
+            this.client = u;
+            this.client.password = '';
         }, e => {
 
         });
     }
 
     onSubmit() {
-        this.userService.update(this.user).subscribe(u => {
+        this.userService.updateClient(this.client).subscribe(u => {
             this.userService.nameTerms.next(u.name);
             let url = '/';
-            if (this.user.role != Role.Customer) {
+            if (this.client.role != Role.Customer) {
                 url = '/seller';
             }
             this.router.navigateByUrl(url);
