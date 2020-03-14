@@ -12,6 +12,7 @@ import {ProductListComponent} from './pages/product-list/product.list.component'
 import {UserDetailComponent} from './pages/user-edit/user-detail.component';
 import {ProductEditComponent} from './pages/product-edit/product-edit.component';
 import {Role} from './enum/Role';
+import {SignupSupplierComponent} from './pages/signup-supplier/signup-supplier.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/product', pathMatch: 'full'},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LoginComponent},
   {path: 'register', component: SignupComponent},
+  {path: 'registerSupplier', component: SignupSupplierComponent},
   {path: 'cart', component: CartComponent},
   {path: 'success', component: SignupComponent},
   {path: 'order/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},

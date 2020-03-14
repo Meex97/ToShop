@@ -8,6 +8,7 @@ import {JwtResponse} from '../response/JwtResponse';
 import {CookieService} from 'ngx-cookie-service';
 
 import {Client} from '../models/Client';
+import {Supplier} from '../models/Supplier';
 
 @Injectable({
     providedIn: 'root'
@@ -62,13 +63,27 @@ export class UserService {
     }
 
     updateClient(client: Client): Observable<Client> {
-        const url = `${apiUrl}/profile`;
+        const url = `${apiUrl}/profileClient`;
         return this.http.put<Client>(url, client);    }
 
     getClient(email: string): Observable<Client> {
-        const url = `${apiUrl}/profile/${email}`;
+        const url = `${apiUrl}/profileClient/${email}`;
         return this.http.get<Client>(url);
     }
+
+  signUpSupplier(supplier: Supplier): Observable<Supplier> {
+    const url = `${apiUrl}/registerSupplier`;
+    return this.http.post<Supplier>(url, supplier);
+  }
+
+  updateSupplier(supplier: Supplier): Observable<Supplier> {
+    const url = `${apiUrl}/profileSupplier`;
+    return this.http.put<Supplier>(url, supplier);    }
+
+  getSupplier(email: string): Observable<Supplier> {
+    const url = `${apiUrl}/profileSupplier/${email}`;
+    return this.http.get<Supplier>(url);
+  }
 
     /**
      * Handle Http operation that failed.

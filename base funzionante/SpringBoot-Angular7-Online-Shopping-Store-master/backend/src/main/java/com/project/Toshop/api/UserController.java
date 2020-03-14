@@ -1,6 +1,7 @@
 package com.project.Toshop.api;
 
 import com.project.Toshop.entity.Client;
+import com.project.Toshop.entity.Supplier;
 import com.project.Toshop.service.UserService;
 import com.project.Toshop.entity.User;
 import com.project.Toshop.security.JWT.JwtProvider;
@@ -67,6 +68,15 @@ public class UserController {
     public ResponseEntity<?> save(@RequestBody Client client) {
         try {
             return ResponseEntity.ok(userService.save(client));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PostMapping("/registerSupplier")
+    public ResponseEntity<?> save(@RequestBody Supplier supplier) {
+        try {
+            return ResponseEntity.ok(userService.save(supplier));
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
