@@ -36,13 +36,13 @@ export class LoginComponent implements OnInit {
         this.submitted = true;
         this.userService.login(this.model).subscribe(
             client => {
-                if (client) {
-                    if (client.role !== Role.Customer) {
+              if (client) {
+                if (client.role !== Role.Client) {
 
-                        this.returnUrl = '/seller';
-                    }
+                    this.returnUrl = '/seller';
+                }
 
-                    this.router.navigateByUrl(this.returnUrl);
+                this.router.navigateByUrl(this.returnUrl);
                 } else {
                     this.isLogout = false;
                     this.isInvalid = true;

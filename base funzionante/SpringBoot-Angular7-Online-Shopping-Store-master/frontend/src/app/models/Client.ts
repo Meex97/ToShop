@@ -14,12 +14,14 @@ export class Client {
 
     address: string;
 
+    active: boolean;
 
     role: string;
 
     credits: number;
 
     constructor(){
+        this.active = true;
         this.role = 'ROLE_CLIENT';
         this.credits = 0;
     }

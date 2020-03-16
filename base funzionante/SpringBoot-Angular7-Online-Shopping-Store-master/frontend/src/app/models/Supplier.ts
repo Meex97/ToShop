@@ -13,6 +13,7 @@ export class Supplier {
 
   address: string;
 
+  active: boolean;
 
   role: string;
 
@@ -21,6 +22,7 @@ export class Supplier {
   shopName: string;
 
   constructor(){
+    this.active = true;
     this.role = 'ROLE_SUPPLIER';
 
   }
