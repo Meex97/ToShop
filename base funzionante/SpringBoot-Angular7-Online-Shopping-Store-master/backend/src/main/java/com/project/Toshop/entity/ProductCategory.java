@@ -10,9 +10,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created By Zhu Lin on 3/9/2018.
- */
+
 @Entity
 @Data
 @DynamicUpdate
