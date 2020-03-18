@@ -2,12 +2,11 @@ package com.project.Toshop.service;
 
 
 import com.project.Toshop.entity.ProductInfo;
+import com.project.Toshop.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-/**
- * Created By Zhu Lin on 3/10/2018.
- */
+
 public interface ProductService {
 
     ProductInfo findOne(String productId);
@@ -30,7 +29,11 @@ public interface ProductService {
     ProductInfo onSale(String productId);
 
     ProductInfo update(ProductInfo productInfo);
+
     ProductInfo save(ProductInfo productInfo);
+
+    // AGGIUNTO
+   // ProductInfo saveProductSupplier(ProductInfo productInfo);
 
     void delete(String productId);
 

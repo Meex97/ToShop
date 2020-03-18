@@ -26,6 +26,7 @@ public class ProductInfo implements Serializable {
     private String productId;
 
 
+
     @NotNull
     private String productName;
 
@@ -61,6 +62,9 @@ public class ProductInfo implements Serializable {
 
     public ProductInfo() {
     }
+
+
+
 
     public String getProductId() {
         return productId;

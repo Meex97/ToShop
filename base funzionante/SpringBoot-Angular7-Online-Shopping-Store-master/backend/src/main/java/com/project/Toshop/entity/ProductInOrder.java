@@ -11,9 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-/**
- * Created By Zhu Lin on 3/14/2018.
- */
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -33,7 +31,7 @@ public class ProductInOrder {
     private OrderMain orderMain;
 
 
-    @NotEmpty
+    //private String productId;
     private String productId;
 
     /**

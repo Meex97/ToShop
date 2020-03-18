@@ -34,6 +34,12 @@ public class ProductServiceImpl implements ProductService {
         ProductInfo productInfo = productInfoRepository.findByProductId(productId);
         return productInfo;
     }
+   /* @Override
+    public ProductInfo findOne(String productId) {
+
+        ProductInfo productInfo = productInfoRepository.findByProductId(productId);
+        return productInfo;
+    }*/
 
     @Override
     public Page<ProductInfo> findUpAll(Pageable pageable) {
@@ -117,24 +123,42 @@ public class ProductServiceImpl implements ProductService {
         return productInfoRepository.save(productInfo);
     }
 
-   @Override
+    //Rimettere
+
+   /*@Override
     public ProductInfo save(ProductInfo productInfo) {
         return update(productInfo);
-    }
+    }*/
 
     @Override
-    @Transactional
     public ProductInfo save(ProductInfo productInfo) {
-        try {
-            ProductInfo productInfosaved = productInfoRepository.save(productInfo);
+        return create(productInfo);
+    }
 
-            return productInfoRepository.save(productInfosaved);
+    @Transactional
+    public ProductInfo create(ProductInfo productInfo) {
+
+            //ProductInfo savedSupplier = productInfoRepository.save(productInfo);
+            return productInfoRepository.save(productInfo);
+
+
+    }
+
+    /*@Override
+    @Transactional
+    public ProductInfo saveProductSupplier(ProductInfo productInfo) {
+
+        try {
+            ProductInfo savedSupplier = productInfoRepository.save(productInfo);
+            return productInfoRepository.save(savedSupplier);
 
         } catch (Exception e) {
             throw new MyException(ResultEnum.VALID_ERROR);
         }
 
-    }
+    }*/
+
+
 
     @Override
     public void delete(String productId) {

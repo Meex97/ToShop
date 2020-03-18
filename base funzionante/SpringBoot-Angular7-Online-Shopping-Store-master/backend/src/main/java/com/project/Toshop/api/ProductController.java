@@ -72,6 +72,25 @@ public class ProductController {
         return ResponseEntity.ok(productService.save(product));
     }
 
+
+    @PostMapping("/seller/productSupplier/new")
+    public ResponseEntity createSupplier(@Valid @RequestBody ProductInfo product) {
+        //ProductInfo productIdExists = productService.findOne(product.getProductId());
+
+        return ResponseEntity.ok(productService.save(product));
+    }
+
+
+
+   /* @PostMapping("/seller/productSupplier/new")
+    public ResponseEntity createSupplier(@Valid @RequestBody ProductInfo product) {
+        try {
+            return ResponseEntity.ok(productService.saveProductSupplier(product));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }*/
+
     @PutMapping("/seller/product/{id}/edit")
     public ResponseEntity edit(@PathVariable("id") String productId,
                                @Valid @RequestBody ProductInfo product,
