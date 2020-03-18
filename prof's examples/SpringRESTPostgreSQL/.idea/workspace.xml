@@ -2,19 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2780668c-3136-4e10-a57f-8c57bda0df8e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular6SpringBoot-Client" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular6SpringBoot-Client" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2fc893a3-3750-4c07-88b5-5a34adf3d6b1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2fc893a3-3750-4c07-88b5-5a34adf3d6b1/storage_v2/_src_/database/postgres.edMnLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2fc893a3-3750-4c07-88b5-5a34adf3d6b1/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2fc893a3-3750-4c07-88b5-5a34adf3d6b1/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2fc893a3-3750-4c07-88b5-5a34adf3d6b1/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2fc893a3-3750-4c07-88b5-5a34adf3d6b1/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2fc893a3-3750-4c07-88b5-5a34adf3d6b1/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToShop-angular-front/src/app/prova/prova.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../ToShop-angular-front/src/app/prova/prova.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToShop-angular-front/src/app/prova/prova.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ToShop-angular-front/src/app/prova/prova.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToShop-angular-front/src/app/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ToShop-angular-front/src/app/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/api/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/api/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/entity/ProductInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/entity/ProductInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/form/ItemForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/form/ItemForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/repository/ProductInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/repository/ProductInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/service/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/resources/import.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend(1)/src/app/pages/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend(1)/src/app/pages/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/enum/Role.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/enum/Role.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/models/Client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/models/Client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/models/Supplier.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/models/Supplier.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/parts/navigation/navigation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/parts/navigation/navigation.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/parts/navigation/navigation.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/parts/navigation/navigation.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../presentazione/.~lock.2° Review.pptx#" beforeDir="false" afterPath="$PROJECT_DIR$/../../presentazione/.~lock.2° Review.pptx#" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +40,7 @@
     <select />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -111,6 +115,7 @@
       <workItem from="1575902659697" duration="2049000" />
       <workItem from="1575973237615" duration="3138000" />
       <workItem from="1579477005659" duration="1274000" />
+      <workItem from="1584555999001" duration="486000" />
     </task>
     <servers />
   </component>

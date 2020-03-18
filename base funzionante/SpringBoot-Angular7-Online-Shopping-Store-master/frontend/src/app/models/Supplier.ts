@@ -1,3 +1,4 @@
+import {Role} from "../enum/Role";
 
 export class Supplier {
 
@@ -23,7 +24,8 @@ export class Supplier {
 
   constructor(){
     this.active = true;
-    this.role = 'ROLE_SUPPLIER';
+    // this.role = 'ROLE_SUPPLIER';
+    this.role = Role.Employee;
 
   }
 }

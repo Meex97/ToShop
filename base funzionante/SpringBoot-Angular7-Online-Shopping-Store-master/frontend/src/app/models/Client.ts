@@ -22,7 +22,8 @@ export class Client {
 
     constructor(){
         this.active = true;
-        this.role = 'ROLE_CLIENT';
+        // this.role = 'ROLE_CLIENT';
+        this.role = Role.Customer;
         this.credits = 0;
     }
 }

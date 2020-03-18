@@ -5,9 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- * Created By Zhu Lin on 3/10/2018.
- */
+
 public interface ProductInfoRepository extends JpaRepository<ProductInfo, String> {
     ProductInfo findByProductId(String id);
     // onsale product

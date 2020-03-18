@@ -1,5 +1,6 @@
 package com.project.Toshop.api;
 
+import com.project.Toshop.entity.Client;
 import com.project.Toshop.service.CategoryService;
 import com.project.Toshop.service.ProductService;
 import com.project.Toshop.entity.ProductInfo;
@@ -47,12 +48,21 @@ public class ProductController {
         return productInfo;
     }
 
+  /*  @PostMapping("/registerClient")
+    public ResponseEntity<?> save(@RequestBody Client client) {
+        try {
+            return ResponseEntity.ok(userService.save(client));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }*/
+
     @PostMapping("/seller/product/new")
     public ResponseEntity create(@Valid @RequestBody ProductInfo product,
                                  BindingResult bindingResult) {
         ProductInfo productIdExists = productService.findOne(product.getProductId());
         if (productIdExists != null) {
-            bindingResult
+           bindingResult
                     .rejectValue("productId", "error.product",
                             "There is already a product with the code provided");
         }

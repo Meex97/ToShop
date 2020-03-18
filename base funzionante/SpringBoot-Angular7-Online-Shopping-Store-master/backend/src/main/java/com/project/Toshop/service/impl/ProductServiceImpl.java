@@ -1,6 +1,8 @@
 package com.project.Toshop.service.impl;
 
 
+import com.project.Toshop.entity.Cart;
+import com.project.Toshop.entity.User;
 import com.project.Toshop.service.CategoryService;
 import com.project.Toshop.service.ProductService;
 import com.project.Toshop.entity.ProductInfo;
@@ -115,9 +117,23 @@ public class ProductServiceImpl implements ProductService {
         return productInfoRepository.save(productInfo);
     }
 
-    @Override
+   @Override
     public ProductInfo save(ProductInfo productInfo) {
         return update(productInfo);
+    }
+
+    @Override
+    @Transactional
+    public ProductInfo save(ProductInfo productInfo) {
+        try {
+            ProductInfo productInfosaved = productInfoRepository.save(productInfo);
+
+            return productInfoRepository.save(productInfosaved);
+
+        } catch (Exception e) {
+            throw new MyException(ResultEnum.VALID_ERROR);
+        }
+
     }
 
     @Override

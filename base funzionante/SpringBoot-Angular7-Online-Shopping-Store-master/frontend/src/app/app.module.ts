@@ -21,6 +21,7 @@ import {ProductListComponent} from './pages/product-list/product.list.component'
 import {UserDetailComponent} from './pages/user-edit/user-detail.component';
 import {ProductEditComponent} from './pages/product-edit/product-edit.component';
 import { SignupSupplierComponent } from './pages/signup-supplier/signup-supplier.component';
+import { CreateProductsComponent } from './pages/create-products/create-products.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { SignupSupplierComponent } from './pages/signup-supplier/signup-supplier
     UserDetailComponent,
     ProductEditComponent,
     SignupSupplierComponent,
+    CreateProductsComponent,
 
   ],
   imports: [

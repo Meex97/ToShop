@@ -27,18 +27,30 @@ export class NavigationComponent implements OnInit, OnDestroy {
     }
 
 
-    ngOnInit() {
+  ngOnInit() {
+    this.name$ = this.userService.name$.subscribe(aName => this.name = aName);
+    this.currentUserSubscription = this.userService.currentUser.subscribe(client => {
+      this.currentUser = client;
+
+      if (!client || client.role === Role.Customer) {
+        this.root = '/';
+      } else {
+        this.root = '/seller';
+      }
+    });
+  }
+   /* ngOnInit() {
         this.name$ = this.userService.name$.subscribe(aName => this.name = aName);
         this.currentUserSubscription = this.userService.currentUser.subscribe(user => {
             this.currentUser = user;
 
-            if (!user || user.role == Role.Customer) {
+            if (!user || user.role == Role.Customer || user.role == Role.Client) {
                 this.root = '/';
             } else {
                 this.root = '/seller';
             }
         });
-    }
+    }*/
 
     ngOnDestroy(): void {
         this.currentUserSubscription.unsubscribe();
