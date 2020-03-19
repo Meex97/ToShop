@@ -3,15 +3,10 @@
   <form #form="ngForm" (ngSubmit)="onSubmit()">
 
     <div class="form-group">
-      <label for="productId">Code</label>
-      <input [readOnly]="isEdit" [disabled]="isEdit" [(ngModel)]="product.productId" type="text"
-             class="form-control form-control-lg" #productIdInput
-             id="productId" name="productId" required #productId="ngModel">
-      <div *ngIf="productIdInput.invalid && (productIdInput.dirty ||productIdInput.touched)">
-        <div *ngIf="productIdInput.errors.required">
-          Name is required.
-        </div>
-      </div>
+      <label>Code</label>
+      <input [(ngModel)]="product.productId" type="text" class="form-control form-control-lg" id="productId"
+             #productIdInput="ngModel"
+             name="productId" placeholder="Name" required>
     </div>
 
     <!--Photo-->
