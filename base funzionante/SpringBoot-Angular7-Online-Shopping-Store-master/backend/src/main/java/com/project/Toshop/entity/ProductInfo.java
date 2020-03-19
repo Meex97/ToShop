@@ -22,7 +22,7 @@ import java.util.Date;
 @DynamicUpdate
 public class ProductInfo implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    // @GeneratedValue(strategy = GenerationType.AUTO)
     private String productId;
 
 

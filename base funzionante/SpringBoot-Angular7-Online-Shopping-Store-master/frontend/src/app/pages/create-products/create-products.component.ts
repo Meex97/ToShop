@@ -24,64 +24,18 @@ export class CreateProductsComponent implements OnInit {
   }
 
   productId: string;
-  isEdit = false;
-
-
-
-
- /* constructor( private location: Location,
-               private productService: ProductService,
-               private router: Router) {
-    this.product = new ProductInfo();
-
-  }*/
-
-
 
   ngOnInit() {
-
-
   }
 
   onSubmit() {
-    if (this.productId) {
-      this.update();
-    } else {
       this.add();
-    }
-  }
-
-  update() {
-    this.productService.update(this.product).subscribe(prod => {
-        if (!prod) throw new Error();
-        this.router.navigate(['/seller']);
-      },
-      err => {
-      });
-
   }
 
   add() {
-    this.productService.createProductSupplier(this.product).subscribe(prod => {
+    this.productService.create/*ProductSupplier*/(this.product).subscribe(prod => {
         this.router.navigate(['/']);
-        // this.router.navigate(['/login']);
       },
       e => {});
   }
-  /*add() {
-    this.productService.create(this.product).subscribe(prod => {
-        if (!prod) throw new Error;
-        this.router.navigate(['/']);
-      },
-      e => {
-      });
-  }*/
-
-  /*onSubmit() {
-    this.productService.createProductSupplier(this.product).subscribe(u => {
-        this.router.navigate(['/login']);
-      },
-      e => {});
-  }*/
-
 }
