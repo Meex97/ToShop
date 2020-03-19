@@ -47,22 +47,15 @@ export class ProductService {
     }
 
     create(productInfo: ProductInfo): Observable<ProductInfo> {
-       // const url = `${apiUrl}/seller/product/new`;
-        const url = '${apiUrl}/seller/productSupplier/new';
-        console.log('sono nel back');
+
+
+        const url = `${apiUrl}/seller/producto/new`;
         return this.http.post<ProductInfo>(url, productInfo);
 
     }
 
-    createProductSupplier(productInfo: ProductInfo): Observable<ProductInfo> {
-    const url = `${apiUrl}/seller/productSupplier/new`;
-    return this.http.post<ProductInfo>(url, productInfo);
 
-    }
-
-
-
-  delelte(productInfo: ProductInfo): Observable<any> {
+    delelte(productInfo: ProductInfo): Observable<any> {
         const url = `${apiUrl}/seller/product/${productInfo.productId}/delete`;
         return this.http.delete(url);
     }

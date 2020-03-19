@@ -38,28 +38,16 @@ public class ProductController {
 
         ProductInfo productInfo = productService.findOne(productId);
 
-//        // Product is not available
-//        if (productInfo.getProductStatus().equals(ProductStatusEnum.DOWN.getCode())) {
-//            productInfo = null;
-//        }
-
         return productInfo;
     }
 
-  /*  @PostMapping("/registerClient")
-    public ResponseEntity<?> save(@RequestBody Client client) {
-        try {
-            return ResponseEntity.ok(userService.save(client));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }*/
 
-    @PostMapping("/seller/product/new")
-    public ResponseEntity create(@Valid @RequestBody ProductInfo product,
-                                 BindingResult bindingResult) {
-        System.out.println("minchia");
-        ProductInfo productIdExists = productService.findOne(product.getProductId());
+    @PostMapping("/seller/producto/new")
+    public ResponseEntity create(@Valid @RequestBody ProductInfo product/*, BindingResult bindingResult*/) {
+        // System.out.println("salvo scemo");
+        /*ProductInfo productIdExists = productService.findOne(product.getProductId());
+
+
         if (productIdExists != null) {
            bindingResult
                     .rejectValue("productId", "error.product",
@@ -67,7 +55,7 @@ public class ProductController {
         }
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(bindingResult);
-        }
+        }*/
         return ResponseEntity.ok(productService.save(product));
     }
 
@@ -79,16 +67,6 @@ public class ProductController {
         return ResponseEntity.ok(productService.save(product));
     }
 
-
-
-   /* @PostMapping("/seller/productSupplier/new")
-    public ResponseEntity createSupplier(@Valid @RequestBody ProductInfo product) {
-        try {
-            return ResponseEntity.ok(productService.saveProductSupplier(product));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }*/
 
     @PutMapping("/seller/product/{id}/edit")
     public ResponseEntity edit(@PathVariable("id") String productId,

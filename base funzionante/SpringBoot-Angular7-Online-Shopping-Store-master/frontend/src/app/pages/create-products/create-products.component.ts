@@ -24,23 +24,8 @@ export class CreateProductsComponent implements OnInit {
   }
 
   productId: string;
-  isEdit = false;
-
-
-
-
- /* constructor( private location: Location,
-               private productService: ProductService,
-               private router: Router) {
-    this.product = new ProductInfo();
-
-  }*/
-
-
 
   ngOnInit() {
-
-
   }
 
   onSubmit() {
@@ -48,29 +33,11 @@ export class CreateProductsComponent implements OnInit {
   }
 
 
-/*  add() {
-    this.productService.createProductSupplier(this.product).subscribe(prod => {
-        this.router.navigate(['/']);
-        // this.router.navigate(['/login']);
-      },
-      e => {});
-  }
-  */
   add() {
-    this.productService.create(this.product).subscribe(prod => {
-        // if (!prod) throw new Error;
+    this.productService.create/*ProductSupplier*/(this.product).subscribe(prod => {
+
         this.router.navigate(['/']);
       },
-      e => {
-      console.log('sono esploso');
-      });
-  }
-
-  /*onSubmit() {
-    this.productService.createProductSupplier(this.product).subscribe(u => {
-        this.router.navigate(['/login']);
-      },
       e => {});
-  }*/
-
+  }
 }
