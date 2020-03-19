@@ -44,38 +44,27 @@ export class CreateProductsComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.productId) {
-      this.update();
-    } else {
       this.add();
-    }
   }
 
-  update() {
-    this.productService.update(this.product).subscribe(prod => {
-        if (!prod) throw new Error();
-        this.router.navigate(['/seller']);
-      },
-      err => {
-      });
 
-  }
-
-  add() {
+/*  add() {
     this.productService.createProductSupplier(this.product).subscribe(prod => {
         this.router.navigate(['/']);
         // this.router.navigate(['/login']);
       },
       e => {});
   }
-  /*add() {
+  */
+  add() {
     this.productService.create(this.product).subscribe(prod => {
-        if (!prod) throw new Error;
+        // if (!prod) throw new Error;
         this.router.navigate(['/']);
       },
       e => {
+      console.log('sono esploso');
       });
-  }*/
+  }
 
   /*onSubmit() {
     this.productService.createProductSupplier(this.product).subscribe(u => {

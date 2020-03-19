@@ -47,8 +47,11 @@ export class ProductService {
     }
 
     create(productInfo: ProductInfo): Observable<ProductInfo> {
-        const url = `${apiUrl}/seller/product/new`;
+       // const url = `${apiUrl}/seller/product/new`;
+        const url = '${apiUrl}/seller/productSupplier/new';
+        console.log('sono nel back');
         return this.http.post<ProductInfo>(url, productInfo);
+
     }
 
     createProductSupplier(productInfo: ProductInfo): Observable<ProductInfo> {

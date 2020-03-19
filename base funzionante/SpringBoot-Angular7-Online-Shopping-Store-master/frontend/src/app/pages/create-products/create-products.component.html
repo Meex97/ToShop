@@ -2,12 +2,16 @@
 <div style="width:40%; margin: 25px auto">
   <form #form="ngForm" (ngSubmit)="onSubmit()">
 
-    <!--Id-->
     <div class="form-group">
-      <label>Name</label>
-      <input [(ngModel)]="product.productId" type="text" class="form-control form-control-lg" id="productId"
-             #productIdInput="ngModel"
-             name="productId" placeholder="Name" required>
+      <label for="productId">Code</label>
+      <input [readOnly]="isEdit" [disabled]="isEdit" [(ngModel)]="product.productId" type="text"
+             class="form-control form-control-lg" #productIdInput
+             id="productId" name="productId" required #productId="ngModel">
+      <div *ngIf="productIdInput.invalid && (productIdInput.dirty ||productIdInput.touched)">
+        <div *ngIf="productIdInput.errors.required">
+          Name is required.
+        </div>
+      </div>
     </div>
 
     <!--Photo-->

@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-/**
- * Created By Zhu Lin on 3/10/2018.
- */
+
 @CrossOrigin
 @RestController
 public class ProductController {
@@ -60,6 +58,7 @@ public class ProductController {
     @PostMapping("/seller/product/new")
     public ResponseEntity create(@Valid @RequestBody ProductInfo product,
                                  BindingResult bindingResult) {
+        System.out.println("minchia");
         ProductInfo productIdExists = productService.findOne(product.getProductId());
         if (productIdExists != null) {
            bindingResult
@@ -74,7 +73,7 @@ public class ProductController {
 
 
     @PostMapping("/seller/productSupplier/new")
-    public ResponseEntity createSupplier(@Valid @RequestBody ProductInfo product) {
+    public ResponseEntity createSupplier(@RequestBody ProductInfo product) {
         //ProductInfo productIdExists = productService.findOne(product.getProductId());
 
         return ResponseEntity.ok(productService.save(product));

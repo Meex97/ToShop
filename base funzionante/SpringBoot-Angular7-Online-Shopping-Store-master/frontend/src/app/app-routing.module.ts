@@ -27,7 +27,7 @@ const routes: Routes = [
   {path: 'registerSupplier', component: SignupSupplierComponent},
   {path: 'cart', component: CartComponent},
   {path: 'success', component: SignupComponent},
-  {path: 'insertProduct', component: CreateProductsComponent},
+  // {path: 'insertProduct', component: CreateProductsComponent},
   {path: 'order/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
   {path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
   {path: 'seller', redirectTo: 'seller/product', pathMatch: 'full'},
@@ -53,6 +53,12 @@ const routes: Routes = [
     component: ProductEditComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.Employee]}
+  },
+  {
+    path: 'insertProduct',
+    component: CreateProductsComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.Manager, Role.Employee]}
   },
 
 ];
