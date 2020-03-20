@@ -60,6 +60,14 @@ public class ProductInfo implements Serializable {
 
     private Long idUtente;
 
+    public Long getIdUtente() {
+        return idUtente;
+    }
+
+    public void setIdUtente(Long idUtente) {
+        this.idUtente = idUtente;
+    }
+
     public ProductInfo() {
     }
 

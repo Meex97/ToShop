@@ -38,9 +38,11 @@ export class ProductInfo {
     }
 
 
+
   get userId(): number {
     return this._userId;
   }
+
 
   set userId(value: number) {
     this._userId = value;

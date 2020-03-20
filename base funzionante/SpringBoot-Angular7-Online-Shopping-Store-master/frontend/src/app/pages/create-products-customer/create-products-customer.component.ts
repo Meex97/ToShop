@@ -30,8 +30,10 @@ export class CreateProductsCustomerComponent implements OnInit {
 
   ngOnInit() {
       this.userService.currentUser.subscribe(client => {
-      this.currentUser = client;
-    });
+        this.currentUser = client;
+      });
+      this.product.userId = this.currentUser.id;
+      console.log(this.product.userId);
   }
 
   onSubmit() {
@@ -40,6 +42,7 @@ export class CreateProductsCustomerComponent implements OnInit {
 
 
   add() {
+
 
     this.product.userId = this.currentUser.id;
     this.productService.createProductCustomer(this.product).subscribe(prod => {
