@@ -33,10 +33,15 @@
 
         <div class="navbar-nav ml-auto">
             <a *ngIf="!currentUser || currentUser.role == Role.Customer "
-                    class="nav-item nav-link " routerLink="/cart">
-                <i class="fas fa-shopping-cart"></i>
-                Cart
+                    class="nav-item nav-link " routerLink="/customer/insertProduct">
+                Exchange
             </a>
+
+          <a *ngIf="!currentUser || currentUser.role == Role.Customer "
+            class="nav-item nav-link " routerLink="/cart">
+            <i class="fas fa-shopping-cart"></i>
+            Cart
+          </a>
 
             <ng-container *ngIf="currentUser; else noUser">
                 <a class="nav-item nav-link " routerLink="/order">

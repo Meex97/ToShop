@@ -11,6 +11,8 @@ export class ProductInfo {
     categoryType: number;
     createTime: string;
     updateTime: string;
+    private _userId: number;
+
 
 
     constructor(productInOrder?: ProductInOrder) {
@@ -34,5 +36,14 @@ export class ProductInfo {
             this.productStatus = 0;
         }
     }
+
+
+  get userId(): number {
+    return this._userId;
+  }
+
+  set userId(value: number) {
+    this._userId = value;
+  }
 }
 

@@ -34,12 +34,7 @@ public class ProductServiceImpl implements ProductService {
         ProductInfo productInfo = productInfoRepository.findByProductId(productId);
         return productInfo;
     }
-   /* @Override
-    public ProductInfo findOne(String productId) {
 
-        ProductInfo productInfo = productInfoRepository.findByProductId(productId);
-        return productInfo;
-    }*/
 
     @Override
     public Page<ProductInfo> findUpAll(Pageable pageable) {
@@ -105,7 +100,7 @@ public class ProductServiceImpl implements ProductService {
             throw new MyException(ResultEnum.PRODUCT_STATUS_ERROR);
         }
 
-        //更新
+
         productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
         return productInfoRepository.save(productInfo);
     }
@@ -144,19 +139,7 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
-    /*@Override
-    @Transactional
-    public ProductInfo saveProductSupplier(ProductInfo productInfo) {
 
-        try {
-            ProductInfo savedSupplier = productInfoRepository.save(productInfo);
-            return productInfoRepository.save(savedSupplier);
-
-        } catch (Exception e) {
-            throw new MyException(ResultEnum.VALID_ERROR);
-        }
-
-    }*/
 
 
 

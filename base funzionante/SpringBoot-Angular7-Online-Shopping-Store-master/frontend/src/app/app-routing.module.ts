@@ -14,6 +14,7 @@ import {ProductEditComponent} from './pages/product-edit/product-edit.component'
 import {Role} from './enum/Role';
 import {SignupSupplierComponent} from './pages/signup-supplier/signup-supplier.component';
 import {CreateProductsComponent} from './pages/create-products/create-products.component';
+import {CreateProductsCustomerComponent} from "./pages/create-products-customer/create-products-customer.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/product', pathMatch: 'full'},
@@ -27,7 +28,6 @@ const routes: Routes = [
   {path: 'registerSupplier', component: SignupSupplierComponent},
   {path: 'cart', component: CartComponent},
   {path: 'success', component: SignupComponent},
-  // {path: 'insertProduct', component: CreateProductsComponent},
   {path: 'order/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
   {path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
   {path: 'seller', redirectTo: 'seller/product', pathMatch: 'full'},
@@ -55,10 +55,16 @@ const routes: Routes = [
     data: {roles: [Role.Employee]}
   },
   {
-    path: 'insertProduct',
+    path: 'seller/insertProduct',
     component: CreateProductsComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.Manager, Role.Employee]}
+  },
+  {
+    path: 'customer/insertProduct',
+    component: CreateProductsCustomerComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.Manager, Role.Customer]}
   },
 
 ];

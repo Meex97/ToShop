@@ -1,6 +1,7 @@
 package com.project.Toshop.api;
 
 import com.project.Toshop.entity.Client;
+import com.project.Toshop.entity.ProductClient;
 import com.project.Toshop.service.CategoryService;
 import com.project.Toshop.service.ProductService;
 import com.project.Toshop.entity.ProductInfo;
@@ -60,13 +61,12 @@ public class ProductController {
     }
 
 
-    @PostMapping("/seller/productSupplier/new")
-    public ResponseEntity createSupplier(@RequestBody ProductInfo product) {
-        //ProductInfo productIdExists = productService.findOne(product.getProductId());
+    @PostMapping("/client/producto/new")
+    public ResponseEntity createBaratto(@Valid @RequestBody ProductClient product) {
 
+       // ProductClient productClient = new ProductClient(product);
         return ResponseEntity.ok(productService.save(product));
     }
-
 
     @PutMapping("/seller/product/{id}/edit")
     public ResponseEntity edit(@PathVariable("id") String productId,

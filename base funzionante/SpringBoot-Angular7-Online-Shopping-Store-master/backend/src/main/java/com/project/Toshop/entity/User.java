@@ -11,9 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-/**
- * Created By Zhu Lin on 3/12/2018.
- */
+
 @Entity
 @Data
 @Table(name = "users")

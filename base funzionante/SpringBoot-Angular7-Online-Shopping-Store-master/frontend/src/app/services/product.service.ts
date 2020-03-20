@@ -54,6 +54,13 @@ export class ProductService {
 
     }
 
+    createProductCustomer(productInfo: ProductInfo): Observable<ProductInfo> {
+
+      const url = `${apiUrl}/client/producto/new`;
+      return this.http.post<ProductInfo>(url, productInfo);
+
+   }
+
 
     delelte(productInfo: ProductInfo): Observable<any> {
         const url = `${apiUrl}/seller/product/${productInfo.productId}/delete`;
