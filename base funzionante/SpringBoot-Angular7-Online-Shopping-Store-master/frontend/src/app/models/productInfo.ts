@@ -11,7 +11,7 @@ export class ProductInfo {
     categoryType: number;
     createTime: string;
     updateTime: string;
-    private _userId: number;
+    idUtente: number;
 
 
 
@@ -37,15 +37,5 @@ export class ProductInfo {
         }
     }
 
-
-
-  get userId(): number {
-    return this._userId;
-  }
-
-
-  set userId(value: number) {
-    this._userId = value;
-  }
 }
 

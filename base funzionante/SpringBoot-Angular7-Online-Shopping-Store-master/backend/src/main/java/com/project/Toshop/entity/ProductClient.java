@@ -26,6 +26,7 @@ public class ProductClient extends ProductInfo {
         this.setProductDescription(getProductDescription());
         this.setProductIcon(getProductIcon());
         this.setProductPrice(getProductPrice());
+        this.setIdUtente(productInfo.getIdUtente());
     }
 
 

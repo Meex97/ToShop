@@ -32,8 +32,8 @@ export class CreateProductsCustomerComponent implements OnInit {
       this.userService.currentUser.subscribe(client => {
         this.currentUser = client;
       });
-      this.product.userId = this.currentUser.id;
-      console.log(this.product.userId);
+      this.product.idUtente = this.currentUser.id;
+      console.log(this.product.idUtente);
   }
 
   onSubmit() {
@@ -44,7 +44,7 @@ export class CreateProductsCustomerComponent implements OnInit {
   add() {
 
 
-    this.product.userId = this.currentUser.id;
+    this.product.idUtente = this.currentUser.id;
     this.productService.createProductCustomer(this.product).subscribe(prod => {
 
 
