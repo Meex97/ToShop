@@ -45,4 +45,27 @@ public class Cart implements Serializable {
         this.user  = user;
     }
 
+    public long getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(long cartId) {
+        this.cartId = cartId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<ProductInOrder> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<ProductInOrder> products) {
+        this.products = products;
+    }
 }

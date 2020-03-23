@@ -16,6 +16,8 @@ import {Role} from '../../enum/Role';
 })
 export class ProductListComponent implements OnInit, OnDestroy {
 
+    product: ProductInfo;
+
     constructor(private userService: UserService,
                 private productService: ProductService,
                 private route: ActivatedRoute) {
@@ -32,6 +34,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.querySub = this.route.queryParams.subscribe(() => {
             this.update();
         });
+
+        this.userService.currentUser.subscribe(supplier => {
+        this.currentUser = supplier;
+      });
+        this.product.idUtente = this.currentUser.id;
+        console.log(this.product.idUtente);
     }
 
     ngOnDestroy(): void {
@@ -43,6 +51,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             const currentPage = +this.route.snapshot.queryParamMap.get('page');
             const size = +this.route.snapshot.queryParamMap.get('size');
             this.getProds(currentPage, size);
+            //this.getProdsSupplier();
         } else {
             this.getProds();
         }
@@ -53,6 +62,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
             .subscribe(page => {
                 this.page = page;
             });
+
+    }
+
+    getProdsSupplier(page: number = 1, size: number = 5) {
+      this.productService.getAllInPageSupplier(+page, +size, this.product.idUtente)
+        .subscribe(page => {
+          this.page = page;
+        });
 
     }
 

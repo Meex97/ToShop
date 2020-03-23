@@ -34,6 +34,13 @@ public class ProductController {
         return productService.findAll(request);
     }
 
+   /* @GetMapping("/product/Supplier")
+    public Page<ProductInfo> findAllByIdUtente(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                     @RequestParam(value = "size", defaultValue = "3") Integer size, Long idUtente) {
+        PageRequest request = PageRequest.of(page - 1, size);
+        return productService.findByIdUtente(request, idUtente);
+    }
+*/
     @GetMapping("/product/{productId}")
     public ProductInfo showOne(@PathVariable("productId") String productId) {
 

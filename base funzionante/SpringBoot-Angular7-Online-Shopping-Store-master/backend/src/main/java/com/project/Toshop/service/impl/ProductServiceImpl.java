@@ -16,6 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+
 /**
  * Created By Zhu Lin on 3/10/2018.
  */
@@ -27,6 +29,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     CategoryService categoryService;
+
+    ProductInfo productInfo;
 
     @Override
     public ProductInfo findOne(String productId) {
@@ -45,6 +49,19 @@ public class ProductServiceImpl implements ProductService {
     public Page<ProductInfo> findAll(Pageable pageable) {
         return productInfoRepository.findAllByOrderByProductId(pageable);
     }
+
+   /* @Override
+    public Page<ProductInfo> findByIdUtente(Pageable pageable, Long idUtente) {
+
+        if (idUtente== productInfo.getIdUtente()){
+            //return productInfoRepository.findAllByOrderByProductIdByIdUtente(pageable,idUtente);
+        }
+        return productInfoRepository.findAllByOrderByProductId(pageable);
+
+
+    }*/
+
+
 
     @Override
     public Page<ProductInfo> findAllInCategory(Integer categoryType, Pageable pageable) {

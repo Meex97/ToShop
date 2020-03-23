@@ -13,8 +13,11 @@ export class ProductService {
     private productUrl = `${apiUrl}/product`;
     private categoryUrl = `${apiUrl}/category`;
 
+    private productUrlSupplier = `${apiUrl}/product/supplier`;
     constructor(private http: HttpClient) {
     }
+
+
 
     getAllInPage(page: number, size: number): Observable<any> {
         const url = `${this.productUrl}?page=${page}&size=${size}`;
@@ -22,6 +25,14 @@ export class ProductService {
             .pipe(
                 // tap(_ => console.log(_)),
             )
+    }
+
+    getAllInPageSupplier(page: number, size: number, currentUser: number): Observable<any> {
+      const url = `${this.productUrlSupplier}?page=${page}&size=${size}`;
+      return this.http.get(url)
+        .pipe(
+          // tap(_ => console.log(_)),
+        )
     }
 
     getCategoryInPage(categoryType: number, page: number, size: number): Observable<any> {

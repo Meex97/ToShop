@@ -6,6 +6,8 @@ import com.project.Toshop.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Collection;
+
 
 public interface ProductService {
 
@@ -15,6 +17,9 @@ public interface ProductService {
     Page<ProductInfo> findUpAll(Pageable pageable);
     // All products
     Page<ProductInfo> findAll(Pageable pageable);
+
+    //Page<ProductInfo> findByIdUtente(Pageable pageable, Long idUtente);
+
     // All products in a category
     Page<ProductInfo> findAllInCategory(Integer categoryType, Pageable pageable);
 
