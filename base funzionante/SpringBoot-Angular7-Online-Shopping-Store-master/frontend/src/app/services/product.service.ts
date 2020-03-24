@@ -13,7 +13,7 @@ export class ProductService {
     private productUrl = `${apiUrl}/product`;
     private categoryUrl = `${apiUrl}/category`;
 
-    private productUrlSupplier = `${apiUrl}/product/supplier`;
+    private productUrlSupplier = `${apiUrl}/product/Supplier`;
     constructor(private http: HttpClient) {
     }
 
@@ -27,8 +27,9 @@ export class ProductService {
             )
     }
 
-    getAllInPageSupplier(page: number, size: number, currentUser: number): Observable<any> {
-      const url = `${this.productUrlSupplier}?page=${page}&size=${size}`;
+    getAllInPageSupplier(/*page: number, size: number, */idUtente: number): Observable<any> {
+      const url = `${this.productUrlSupplier}/${idUtente}`;
+      console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: ' + idUtente);
       return this.http.get(url)
         .pipe(
           // tap(_ => console.log(_)),

@@ -8,7 +8,7 @@ import com.javasampleapproach.springrest.postgresql.model.Customer;
 
 
 //permette tutte le operazioni che possono essere fatte sul repository in protezione
-// deglio oggetti persistenti
+// degli ggetti persistenti
 
 //@Repository
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
