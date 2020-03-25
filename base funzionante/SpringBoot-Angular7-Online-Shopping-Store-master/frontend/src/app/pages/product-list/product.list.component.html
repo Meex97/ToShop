@@ -1,7 +1,5 @@
 <h1 align="center" class="display-4 ">Products</h1>
-<a *ngIf="currentUser?.role == Role.Customer" style="color: inherit"
-   routerLink="/seller/product/new" class="float-right mb-3"><i class="fas fa-plus fa-2x">Add</i>
-</a>
+
 <table id="table" class="table table-striped text-center" style="width:100%;">
     <thead>
     <tr>
@@ -29,7 +27,7 @@
         <td class="align-middle">{{productInfo.productStock}}</td>
         <td class="align-middle">{{ProductStatus[productInfo.productStatus]}}</td>
         <td class="align-middle">
-            <a style="display: block" routerLink="/seller/product/{{productInfo.productId}}/edit">
+            <a style="display: block" routerLink="/user/product/{{productInfo.productId}}/edit">
                 Edit</a>
 
             <a *ngIf="currentUser?.role == Role.Customer" style="display: block"

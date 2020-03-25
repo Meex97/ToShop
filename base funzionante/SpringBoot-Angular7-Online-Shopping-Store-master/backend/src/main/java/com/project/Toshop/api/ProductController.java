@@ -46,18 +46,20 @@ public class ProductController {
         return productService.findByIdUtente(request, idUtente);
     }
 */
+
    @GetMapping(value = "product/Supplier/{idUtente}")
    //@PathVariable permette di recuperare i valori inclusi nel URL associato alla richiesta
    public List<ProductInfo> findByIdUtente(@PathVariable("idUtente") Long idUtente) {
-        System.out.println(idUtente);
-       Page<ProductInfo> prod = this.findAll(1,4);
+
+       // size definita da utente
+       Page<ProductInfo> prod =this.findAll(1,50);
        List<ProductInfo> prodSupplier = new ArrayList<>();
 
        prod.forEach(product ->{
-           System.out.println("idUtente spero funzioni: " + product.getIdUtente());
+           // System.out.println("idUtente " + product.getIdUtente());
            if(product.getIdUtente().equals(idUtente)){
                prodSupplier.add(product);
-               System.out.println("F U N Z I O N A A A A A A A A: " + product.getIdUtente());
+              // System.out.println("prodotto: "+ product.getProductId()+ " idUtente: "+ product.getIdUtente());
            }
        });
        return prodSupplier;
@@ -102,6 +104,7 @@ public class ProductController {
     public ResponseEntity edit(@PathVariable("id") String productId,
                                @Valid @RequestBody ProductInfo product,
                                BindingResult bindingResult) {
+       System.out.println("prova");
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(bindingResult);
         }

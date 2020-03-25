@@ -34,8 +34,8 @@ export class ProductEditComponent implements OnInit, AfterContentChecked {
 
     update() {
         this.productService.update(this.product).subscribe(prod => {
-                if (!prod) throw new Error();
-                this.router.navigate(['/seller']);
+              if (!prod) throw new Error();
+              this.router.navigate(['/']);
             },
             err => {
             });
@@ -43,11 +43,12 @@ export class ProductEditComponent implements OnInit, AfterContentChecked {
     }
 
     onSubmit() {
-        if (this.productId) {
-            this.update();
-        } else {
-            this.add();
-        }
+      /*  if (this.productId) {
+           this.update();
+           } else {
+           this.add();
+       }*/
+      this.update();
     }
 
     add() {
