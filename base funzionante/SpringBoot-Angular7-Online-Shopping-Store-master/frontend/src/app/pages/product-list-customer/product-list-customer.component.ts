@@ -32,11 +32,11 @@ export class ProductListCustomerComponent implements OnInit {
   private querySub: Subscription;
 
   ngOnInit() {
-    this.userService.currentUser.subscribe(supplier => {
-      this.currentUser = supplier;
+    this.userService.currentUser.subscribe(client => {
+      this.currentUser = client;
     });
     this.productId = this.currentUser.id;
-    console.log(this.productId);
+    // console.log(this.productId);
 
     this.querySub = this.route.queryParams.subscribe(() => {
       this.update();
