@@ -36,8 +36,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
         });
 
         this.userService.currentUser.subscribe(supplier => {
-        this.currentUser = supplier;
-      });
+          this.currentUser = supplier;
+        });
         this.product.idUtente = this.currentUser.id;
         console.log(this.product.idUtente);
     }
@@ -51,7 +51,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             const currentPage = +this.route.snapshot.queryParamMap.get('page');
             const size = +this.route.snapshot.queryParamMap.get('size');
             this.getProds(currentPage, size);
-            //this.getProdsSupplier();
+            // this.getProdsSupplier();
         } else {
             this.getProds();
         }
@@ -62,6 +62,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
             .subscribe(page => {
                 this.page = page;
             });
+
+        /*this.page.content.forEach(function(value) {
+            console.log(value.idUtente);
+        });*/
 
     }
 
