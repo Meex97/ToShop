@@ -16,7 +16,7 @@ import {Role} from '../../enum/Role';
 })
 export class ProductListComponent implements OnInit, OnDestroy {
 
-    product: ProductInfo;
+    productId: number;
 
     constructor(private userService: UserService,
                 private productService: ProductService,
@@ -31,15 +31,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
     private querySub: Subscription;
 
     ngOnInit() {
-        this.querySub = this.route.queryParams.subscribe(() => {
-            this.update();
-        });
-
         this.userService.currentUser.subscribe(supplier => {
-          this.currentUser = supplier;
-        });
-        this.product.idUtente = this.currentUser.id;
-        console.log(this.product.idUtente);
+        this.currentUser = supplier;
+      });
+        this.productId = this.currentUser.id;
+        console.log(this.productId);
+
+        this.querySub = this.route.queryParams.subscribe(() => {
+        this.update();
+      });
     }
 
     ngOnDestroy(): void {
@@ -50,10 +50,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
         if (this.route.snapshot.queryParamMap.get('page')) {
             const currentPage = +this.route.snapshot.queryParamMap.get('page');
             const size = +this.route.snapshot.queryParamMap.get('size');
-            this.getProds(currentPage, size);
-            // this.getProdsSupplier();
+            // this.getProds(currentPage, size);
+            this.getProdsSupplier(/*currentPage, size*/);
         } else {
-            this.getProds();
+            // this.getProds();
+            this.getProdsSupplier();
         }
     }
 
@@ -69,8 +70,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
     }
 
-    getProdsSupplier(page: number = 1, size: number = 5) {
-      this.productService.getAllInPageSupplier(+page, +size, this.product.idUtente)
+    getProdsSupplier(/*page: number = 1, size: number = 5*/) {
+      this.productService.getAllInPageSupplier(/*+page, +size, */this.productId)
         .subscribe(page => {
           this.page = page;
         });
@@ -80,7 +81,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
     remove(productInfos: ProductInfo[], productInfo) {
         this.productService.delelte(productInfo).subscribe(_ => {
-                productInfos = productInfos.filter(e => e.productId != productInfo);
+                productInfos = productInfos.filter(e => e.productId !== productInfo);
             },
             err => {
             });

@@ -2,6 +2,7 @@ package com.project.Toshop.api;
 
 import com.project.Toshop.entity.Client;
 import com.project.Toshop.entity.ProductClient;
+import com.project.Toshop.repository.ProductInfoRepository;
 import com.project.Toshop.service.CategoryService;
 import com.project.Toshop.service.ProductService;
 import com.project.Toshop.entity.ProductInfo;
@@ -13,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @CrossOrigin
@@ -22,6 +25,8 @@ public class ProductController {
     CategoryService categoryService;
     @Autowired
     ProductService productService;
+
+    ProductInfoRepository productInfoRepository;
 
     /**
      * Show All Categories
@@ -41,6 +46,26 @@ public class ProductController {
         return productService.findByIdUtente(request, idUtente);
     }
 */
+
+   @GetMapping(value = "product/Supplier/{idUtente}")
+   //@PathVariable permette di recuperare i valori inclusi nel URL associato alla richiesta
+   public List<ProductInfo> findByIdUtente(@PathVariable("idUtente") Long idUtente) {
+
+       // size definita da utente
+       Page<ProductInfo> prod =this.findAll(1,50);
+       List<ProductInfo> prodSupplier = new ArrayList<>();
+
+       prod.forEach(product ->{
+           // System.out.println("idUtente " + product.getIdUtente());
+           if(product.getIdUtente().equals(idUtente)){
+               prodSupplier.add(product);
+              // System.out.println("prodotto: "+ product.getProductId()+ " idUtente: "+ product.getIdUtente());
+           }
+       });
+       return prodSupplier;
+   }
+
+
     @GetMapping("/product/{productId}")
     public ProductInfo showOne(@PathVariable("productId") String productId) {
 
@@ -79,6 +104,7 @@ public class ProductController {
     public ResponseEntity edit(@PathVariable("id") String productId,
                                @Valid @RequestBody ProductInfo product,
                                BindingResult bindingResult) {
+       System.out.println("prova");
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(bindingResult);
         }
