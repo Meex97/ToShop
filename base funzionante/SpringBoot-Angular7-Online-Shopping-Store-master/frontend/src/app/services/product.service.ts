@@ -24,7 +24,7 @@ export class ProductService {
         return this.http.get(url)
             .pipe(
                 // tap(_ => console.log(_)),
-            )
+            );
     }
 
     getAllInPageSupplier(/*page: number, size: number, */idUtente: number): Observable<any> {
@@ -32,7 +32,7 @@ export class ProductService {
       return this.http.get(url)
         .pipe(
           // tap(_ => console.log(_)),
-        )
+        );
     }
 
     getCategoryInPage(categoryType: number, page: number, size: number): Observable<any> {
@@ -53,7 +53,9 @@ export class ProductService {
     }
 
     update(productInfo: ProductInfo): Observable<ProductInfo> {
-        const url = `${apiUrl}/seller/product/${productInfo.productId}/edit`;
+        const url = `${apiUrl}/product/${productInfo.productId}/edit`;
+        console.log('sparing');
+        console.log(url);
         return this.http.put<ProductInfo>(url, productInfo);
     }
 
