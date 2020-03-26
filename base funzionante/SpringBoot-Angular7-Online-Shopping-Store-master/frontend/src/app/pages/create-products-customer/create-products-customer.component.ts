@@ -48,7 +48,7 @@ export class CreateProductsCustomerComponent implements OnInit {
     this.productService.createProductCustomer(this.product).subscribe(prod => {
 
 
-        this.router.navigate(['/']);
+        this.router.navigate(['/customer/product']);
       },
       e => {});
   }

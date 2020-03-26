@@ -46,7 +46,7 @@ export class CreateProductsComponent implements OnInit {
   add() {
     this.productService.create/*ProductSupplier*/(this.product).subscribe(prod => {
 
-        this.router.navigate(['/']);
+        this.router.navigate(['/seller']);
       },
       e => {});
   }
