@@ -75,6 +75,8 @@ export class ProductService {
 
     delelte(productInfo: ProductInfo): Observable<any> {
         const url = `${apiUrl}/seller/product/${productInfo.productId}/delete`;
+        console.log(productInfo.productId);
+        // return this.http.delete(url);
         return this.http.delete(url);
     }
 
@@ -85,6 +87,7 @@ export class ProductService {
      * @param operation - name of the operation that failed
      * @param result - optional value to return as the observable result
      */
+
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
 

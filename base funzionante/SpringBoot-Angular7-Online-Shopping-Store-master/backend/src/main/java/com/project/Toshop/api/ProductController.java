@@ -9,6 +9,7 @@ import com.project.Toshop.entity.ProductInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -115,8 +116,11 @@ public class ProductController {
         return ResponseEntity.ok(productService.update(product));
     }
 
+
+    //////////
     @DeleteMapping("/seller/product/{id}/delete")
     public ResponseEntity delete(@PathVariable("id") String productId) {
+       System.out.println("prodotto da cancellare: " + productId);
         productService.delete(productId);
         return ResponseEntity.ok().build();
     }

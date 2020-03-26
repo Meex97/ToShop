@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2780668c-3136-4e10-a57f-8c57bda0df8e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/api/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/api/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/repository/ProductInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/backend/src/main/java/com/project/Toshop/repository/ProductInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/pages/product-list/product.list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/pages/product-list/product.list.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/pages/product-list/product.list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/pages/product-list/product.list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../base funzionante/SpringBoot-Angular7-Online-Shopping-Store-master/frontend/src/app/services/product.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +104,7 @@
       <workItem from="1579477005659" duration="1274000" />
       <workItem from="1584555999001" duration="604000" />
       <workItem from="1585071763455" duration="1422000" />
+      <workItem from="1585239337590" duration="860000" />
     </task>
     <servers />
   </component>

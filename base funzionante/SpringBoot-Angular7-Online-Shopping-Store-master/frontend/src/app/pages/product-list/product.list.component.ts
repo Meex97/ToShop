@@ -75,7 +75,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
 
-    remove(productInfos: ProductInfo[], productInfo: ProductInfo) {
+    remove(productInfos: ProductInfo[], productInfo) {
       console.log(productInfos);
       console.log(productInfo);
       this.productService.delelte(productInfo).subscribe(_ => {

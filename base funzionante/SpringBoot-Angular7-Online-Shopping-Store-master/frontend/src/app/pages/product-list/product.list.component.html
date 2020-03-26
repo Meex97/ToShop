@@ -31,9 +31,11 @@
                 Edit
             </a>
 
-            <a  style="display: block" (click)="remove(page.content, productInfo)" routerLink="./">
+            <a  *ngIf="currentUser?.role == Role.Employee"
+                 style="display: block" (click)="remove(page, productInfo)"routerLink="./">
                 Remove
             </a>
+
         </td>
 
     </tbody>
