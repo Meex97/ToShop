@@ -13,14 +13,12 @@ import java.util.List;
 
 public interface ProductInfoRepository extends JpaRepository<ProductInfo, String> {
 
-    /*static List<ProductInfo> findByIdUtente(Long idUtente) {
-        List<ProductInfo> prodotti = this.findAll();
-    }*/
+
 
     Collection<ProductInfo> findAllByIdUtente(Long idUtente);
 
     ProductInfo findByProductId(String id);
-    //ProductInfo findByProductId(Long id);
+
     // onsale product
     Page<ProductInfo> findAllByProductStatusOrderByProductIdAsc(Integer productStatus, Pageable pageable);
 
@@ -29,9 +27,9 @@ public interface ProductInfoRepository extends JpaRepository<ProductInfo, String
 
     Page<ProductInfo> findAllByOrderByProductId(Pageable pageable);
 
-//    Page<ProductInfo> findByIdUtente(Long IdUtente)
+
     List<ProductInfo> findByIdUtente(Long idUtente);
 
-    //Page<ProductInfo> findAllByOrderByProductIdByIdUtente(Pageable pageable, Long idUtente);
+
 
 }
