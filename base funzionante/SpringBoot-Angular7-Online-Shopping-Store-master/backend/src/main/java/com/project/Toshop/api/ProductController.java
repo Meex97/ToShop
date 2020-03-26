@@ -100,7 +100,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.save(product));
     }
 
-    @PutMapping("/seller/product/{id}/edit")
+    @PutMapping("/product/{id}/edit")
     public ResponseEntity edit(@PathVariable("id") String productId,
                                @Valid @RequestBody ProductInfo product,
                                BindingResult bindingResult) {
