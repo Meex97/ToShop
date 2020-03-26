@@ -2,8 +2,8 @@ import {AfterContentChecked, Component, OnInit} from '@angular/core';
 import {ProductInfo} from '../../models/productInfo';
 import {ProductService} from '../../services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {JwtResponse} from "../../response/JwtResponse";
-import {UserService} from "../../services/user.service";
+import {JwtResponse} from '../../response/JwtResponse';
+import {UserService} from '../../services/user.service';
 
 @Component({
     selector: 'app-product-edit',
@@ -35,7 +35,7 @@ export class ProductEditComponent implements OnInit, AfterContentChecked {
     update() {
         this.productService.update(this.product).subscribe(prod => {
               if (!prod) throw new Error();
-              this.router.navigate(['/']);
+              this.router.navigate(['/seller']);
             },
             err => {
             });

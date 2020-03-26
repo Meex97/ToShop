@@ -104,7 +104,7 @@ public class ProductController {
     public ResponseEntity edit(@PathVariable("id") String productId,
                                @Valid @RequestBody ProductInfo product,
                                BindingResult bindingResult) {
-       System.out.println("prova");
+       //System.out.println("prova");
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(bindingResult);
         }

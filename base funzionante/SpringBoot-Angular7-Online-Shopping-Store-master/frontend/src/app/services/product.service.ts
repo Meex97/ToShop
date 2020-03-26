@@ -29,7 +29,6 @@ export class ProductService {
 
     getAllInPageSupplier(/*page: number, size: number, */idUtente: number): Observable<any> {
       const url = `${this.productUrlSupplier}/${idUtente}`;
-      console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: ' + idUtente);
       return this.http.get(url)
         .pipe(
           // tap(_ => console.log(_)),
