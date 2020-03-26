@@ -28,8 +28,8 @@ export class ProductInfo {
         } else {
             this.productId = '';
             this.productName = '';
-            this.productPrice = 20;
-            this.productStock = 100;
+            this.productPrice = 0;
+            this.productStock = 0;
             this.productDescription = '';
             this.productIcon = '';
             this.categoryType = 0;
