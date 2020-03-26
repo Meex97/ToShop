@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
     Role = Role;
     currentUser: JwtResponse;
-    page: any;
+    page: Array<ProductInfo>;
     CategoryType = CategoryType;
     ProductStatus = ProductStatus;
     private querySub: Subscription;
@@ -79,14 +79,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
 
-    remove(productInfos: ProductInfo[], productInfo: ProductInfo) {
-      console.log(productInfos);
-      console.log(productInfo);
+    remove(productInfo: ProductInfo) {
+
+      this.page = this.page.filter(e => e.productId !== productInfo.productId);
+
       this.productService.delelte(productInfo).subscribe(_ => {
-                productInfos = productInfos.filter(e => e.productId !== productInfo.productId);
-            },
-            err => {
-            });
+      },
+        err => {
+      });
     }
 
 
