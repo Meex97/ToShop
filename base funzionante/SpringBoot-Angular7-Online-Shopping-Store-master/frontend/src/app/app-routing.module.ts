@@ -46,6 +46,12 @@ const routes: Routes = [
     data: {roles: [Role.Manager, Role.Customer]}
   },
   {
+    path: 'admin/product',
+    component: ProductListComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.Manager]}
+  },
+  {
     path: 'profile',
     component: UserDetailComponent,
     canActivate: [AuthGuard]
