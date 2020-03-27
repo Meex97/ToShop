@@ -14,8 +14,9 @@ import {ProductEditComponent} from './pages/product-edit/product-edit.component'
 import {Role} from './enum/Role';
 import {SignupSupplierComponent} from './pages/signup-supplier/signup-supplier.component';
 import {CreateProductsComponent} from './pages/create-products/create-products.component';
-import {CreateProductsCustomerComponent} from "./pages/create-products-customer/create-products-customer.component";
+import {CreateProductsCustomerComponent} from './pages/create-products-customer/create-products-customer.component';
 import {ProductListCustomerComponent} from './pages/product-list-customer/product-list-customer.component';
+import {AdminListComponent} from './pages/admin-list/admin-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/product', pathMatch: 'full'},
@@ -72,6 +73,12 @@ const routes: Routes = [
     component: CreateProductsCustomerComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.Manager, Role.Customer]}
+  },
+  {
+    path: 'admin/list',
+    component: AdminListComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.Manager]}
   },
 
 ];

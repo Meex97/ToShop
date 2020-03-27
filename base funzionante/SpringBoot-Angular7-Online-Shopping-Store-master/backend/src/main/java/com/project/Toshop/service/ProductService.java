@@ -1,6 +1,7 @@
 package com.project.Toshop.service;
 
 
+import com.project.Toshop.entity.ProductClient;
 import com.project.Toshop.entity.ProductInfo;
 import com.project.Toshop.entity.User;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,8 @@ public interface ProductService {
     Page<ProductInfo> findUpAll(Pageable pageable);
     // All products
     Page<ProductInfo> findAll(Pageable pageable);
+
+    Page<ProductClient> findAllAdmin(Pageable pageable);
 
     //Page<ProductInfo> findByIdUtente(Pageable pageable, Long idUtente);
 

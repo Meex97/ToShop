@@ -1,5 +1,6 @@
 package com.project.Toshop.repository;
 
+import com.project.Toshop.entity.ProductClient;
 import com.project.Toshop.entity.ProductInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

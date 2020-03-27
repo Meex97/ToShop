@@ -40,6 +40,13 @@ public class ProductController {
         return productService.findAll(request);
     }
 
+    @GetMapping("/product/client")
+    public Page<ProductClient> findAllAdmin(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                            @RequestParam(value = "size", defaultValue = "3") Integer size) {
+        PageRequest request = PageRequest.of(page - 1, size);
+        return productService.findAllAdmin(request);
+    }
+
    /* @GetMapping("/product/Supplier")
     public Page<ProductInfo> findAllByIdUtente(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                      @RequestParam(value = "size", defaultValue = "3") Integer size, Long idUtente) {
@@ -123,6 +130,25 @@ public class ProductController {
        System.out.println("prodotto da cancellare: " + productId);
         productService.delete(productId);
         return ResponseEntity.ok().build();
+    }
+
+
+    @GetMapping(value = "product/adminlist")
+    //@PathVariable permette di recuperare i valori inclusi nel URL associato alla richiesta
+    public List<ProductClient> findByAdmin() {
+
+        // size definita da utente
+        Page<ProductClient> prod =this.findAllAdmin(1,50);
+        List<ProductClient> prodAdmin = new ArrayList<>();
+
+        prod.forEach(product ->{
+            // System.out.println("idUtente " + product.getIdUtente());
+            if(product.getStatus() == 0){
+                prodAdmin.add(product);
+                // System.out.println("prodotto: "+ product.getProductId()+ " idUtente: "+ product.getIdUtente());
+            }
+        });
+        return prodAdmin;
     }
 
 }

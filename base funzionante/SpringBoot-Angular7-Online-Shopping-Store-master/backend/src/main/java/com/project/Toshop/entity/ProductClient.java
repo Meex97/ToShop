@@ -12,13 +12,13 @@ import java.math.BigDecimal;
 @Entity
 public class ProductClient extends ProductInfo {
 
-    private boolean approved;
+    private int status;
 
     public ProductClient() {
     }
 
     public ProductClient(ProductInfo productInfo){
-        this.setApproved(false);
+        this.setStatus(0);
         this.setProductName(productInfo.getProductName());
        // this.setProductId(getProductId());
         this.setProductStatus(getProductStatus());
@@ -30,11 +30,11 @@ public class ProductClient extends ProductInfo {
     }
 
 
-    public boolean isApproved() {
-        return approved;
+    public int getStatus() {
+        return status;
     }
 
-    public void setApproved(boolean approved) {
-        this.approved = approved;
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

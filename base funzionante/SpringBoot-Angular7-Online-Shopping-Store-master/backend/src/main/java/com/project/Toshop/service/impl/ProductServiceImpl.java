@@ -2,7 +2,9 @@ package com.project.Toshop.service.impl;
 
 
 import com.project.Toshop.entity.Cart;
+import com.project.Toshop.entity.ProductClient;
 import com.project.Toshop.entity.User;
+import com.project.Toshop.repository.ProductClientRepository;
 import com.project.Toshop.service.CategoryService;
 import com.project.Toshop.service.ProductService;
 import com.project.Toshop.entity.ProductInfo;
@@ -28,6 +30,9 @@ public class ProductServiceImpl implements ProductService {
     ProductInfoRepository productInfoRepository;
 
     @Autowired
+    ProductClientRepository productClientRepository;
+
+    @Autowired
     CategoryService categoryService;
 
     ProductInfo productInfo;
@@ -48,6 +53,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Page<ProductInfo> findAll(Pageable pageable) {
         return productInfoRepository.findAllByOrderByProductId(pageable);
+    }
+
+    @Override
+    public Page<ProductClient> findAllAdmin(Pageable pageable) {
+        return productClientRepository.findAllByOrderByCreateTime(pageable);
     }
 
    /* @Override
@@ -155,9 +165,6 @@ public class ProductServiceImpl implements ProductService {
 
 
     }
-
-
-
 
 
     @Override

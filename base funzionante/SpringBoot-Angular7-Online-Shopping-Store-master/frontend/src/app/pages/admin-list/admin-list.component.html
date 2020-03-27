@@ -1,4 +1,4 @@
-<h1 align="center" class="display-4 ">My exchange</h1>
+<h1 align="center" class="display-4 ">Products</h1>
 
 <table id="table" class="table table-striped text-center" style="width:100%;">
   <thead>
@@ -10,7 +10,10 @@
     <th scope="col">Description</th>
     <th scope="col">Price</th>
     <th scope="col">Stock</th>
+    <th scope="col">Customer</th>
     <th scope="col">Action</th>
+
+
   </tr>
   </thead>
   <tbody>
@@ -24,11 +27,19 @@
     <td class="align-middle">{{productInfo.productDescription}}</td>
     <td class="align-middle">{{productInfo.productPrice | currency}}</td>
     <td class="align-middle">{{productInfo.productStock}}</td>
+    <td class="align-middle">{{productInfo.idUtente}}</td>
     <td class="align-middle">
-      <a  style="display: block" (click)="remove(productInfo)" routerLink="./">
-        Remove
+      <a style="display: block"(click)="accept(productInfo)" routerLink="./">
+        Accept
       </a>
+
+
+      <a  style="display: block" (click)="decline(productInfo)" routerLink="./">
+        Decline
+      </a>
+
     </td>
+
   </tbody>
 </table>
 
@@ -36,5 +47,6 @@
 <app-pagination [currentPage]="page"></app-pagination>
 
 <div>
-  <a [routerLink]="['/customer/insertProduct']" class="button fancy-button"> Exchange new item</a>
+  <a [routerLink]="['/seller/insertProduct']" class="button fancy-button"> Insert Product</a>
 </div>
+

@@ -27,8 +27,16 @@ export class ProductService {
             );
     }
 
-    getAllInPageSupplier(/*page: number, size: number, */idUtente: number): Observable<any> {
+    getAllInPageSupplier(idUtente: number): Observable<any> {
       const url = `${this.productUrlSupplier}/${idUtente}`;
+      return this.http.get(url)
+        .pipe(
+          // tap(_ => console.log(_)),
+        );
+    }
+
+    getAllInPageAdmin() {
+      const url = `${this.productUrl}/adminlist`;
       return this.http.get(url)
         .pipe(
           // tap(_ => console.log(_)),
@@ -99,4 +107,6 @@ export class ProductService {
             return of(result as T);
         };
     }
+
+
 }

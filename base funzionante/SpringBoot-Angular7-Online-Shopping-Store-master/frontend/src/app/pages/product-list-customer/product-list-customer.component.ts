@@ -76,12 +76,16 @@ export class ProductListCustomerComponent implements OnInit {
   }
 
 
-  remove(productInfos: ProductInfo[], productInfo) {
+
+  remove(productInfo: ProductInfo) {
+
+    this.page = this.page.filter(e => e.productId !== productInfo.productId);
+
     this.productService.delelte(productInfo).subscribe(_ => {
-        productInfos = productInfos.filter(e => e.productId !== productInfo);
       },
       err => {
       });
   }
+
 
 }
