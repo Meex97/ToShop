@@ -17,24 +17,24 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let productInfo of page">
+  <tr *ngFor="let productClient of page">
     <th class="align-middle" scope="row">
-      <img height="100px" src="{{productInfo.productIcon}}" alt="{{productInfo.productName}}">
+      <img height="100px" src="{{productClient.productIcon}}" alt="{{productClient.productName}}">
     </th>
-    <td class="align-middle">{{productInfo.productId}}</td>
-    <td class="align-middle">{{productInfo.productName}}</td>
-    <td class="align-middle">{{CategoryType[productInfo.categoryType]}}</td>
-    <td class="align-middle">{{productInfo.productDescription}}</td>
-    <td class="align-middle">{{productInfo.productPrice | currency}}</td>
-    <td class="align-middle">{{productInfo.productStock}}</td>
-    <td class="align-middle">{{productInfo.idUtente}}</td>
+    <td class="align-middle">{{productClient.productId}}</td>
+    <td class="align-middle">{{productClient.productName}}</td>
+    <td class="align-middle">{{CategoryType[productClient.categoryType]}}</td>
+    <td class="align-middle">{{productClient.productDescription}}</td>
+    <td class="align-middle">{{productClient.productPrice | currency}}</td>
+    <td class="align-middle">{{productClient.productStock}}</td>
+    <td class="align-middle">{{productClient.idUtente}}</td>
     <td class="align-middle">
-      <a style="display: block"(click)="accept(productInfo)" routerLink="./">
+      <a style="display: block"(click)="accept(productClient)" routerLink="./">
         Accept
       </a>
 
 
-      <a  style="display: block" (click)="decline(productInfo)" routerLink="./">
+      <a  style="display: block" (click)="decline(productClient)" routerLink="./">
         Decline
       </a>
 

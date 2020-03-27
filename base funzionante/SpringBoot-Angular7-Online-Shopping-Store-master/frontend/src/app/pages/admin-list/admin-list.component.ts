@@ -8,7 +8,7 @@ import {Subscription} from "rxjs";
 import {Role} from '../../enum/Role';
 import {CategoryType} from '../../enum/CategoryType';
 import {ProductStatus} from '../../enum/ProductStatus';
-import {ProductClient} from "../../models/ProductClient";
+import {ProductClient} from '../../models/ProductClient';
 
 @Component({
   selector: 'app-admin-list',

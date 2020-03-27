@@ -53,7 +53,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             // this.getProds(currentPage, size);
             this.getProdsSupplier(/*currentPage, size*/);
         } else {
-            // this.getProds();
+            //this.getProds();
             this.getProdsSupplier();
         }
     }
