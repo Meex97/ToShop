@@ -1,14 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {UserService} from "../../services/user.service";
-import {ProductService} from "../../services/product.service";
-import {ActivatedRoute} from "@angular/router";
-import {JwtResponse} from "../../response/JwtResponse";
-import {ProductInfo} from "../../models/productInfo";
-import {Subscription} from "rxjs";
+import {UserService} from '../../services/user.service';
+import {ProductService} from '../../services/product.service';
+import {ActivatedRoute} from '@angular/router';
+import {JwtResponse} from '../../response/JwtResponse';
+import {Subscription} from 'rxjs';
 import {Role} from '../../enum/Role';
 import {CategoryType} from '../../enum/CategoryType';
 import {ProductStatus} from '../../enum/ProductStatus';
-import {ProductClient} from "../../models/ProductClient";
+import {ProductClient} from '../../models/ProductClient';
 
 @Component({
   selector: 'app-admin-list',
@@ -40,12 +39,16 @@ export class AdminListComponent implements OnInit, OnDestroy {
     console.log(this.productId);
 
     this.querySub = this.route.queryParams.subscribe(() => {
-      this.getProds();
+      this.update();
     });
   }
 
   ngOnDestroy(): void {
     this.querySub.unsubscribe();
+  }
+
+  update() {
+    this.getProds();
   }
 
   getProds() {

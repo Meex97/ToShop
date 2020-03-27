@@ -35,7 +35,7 @@ export class ProductService {
         );
     }
 
-    getAllInPageAdmin() {
+    getAllInPageAdmin(): Observable<any> {
       const url = `${this.productUrl}/adminlist`;
       return this.http.get(url)
         .pipe(
