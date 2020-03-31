@@ -20,9 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
-/**
- * Created By Zhu Lin on 3/10/2018.
- */
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -59,17 +57,6 @@ public class ProductServiceImpl implements ProductService {
     public Page<ProductClient> findAllAdmin(Pageable pageable) {
         return productClientRepository.findAllByOrderByCreateTime(pageable);
     }
-
-   /* @Override
-    public Page<ProductInfo> findByIdUtente(Pageable pageable, Long idUtente) {
-
-        if (idUtente== productInfo.getIdUtente()){
-            //return productInfoRepository.findAllByOrderByProductIdByIdUtente(pageable,idUtente);
-        }
-        return productInfoRepository.findAllByOrderByProductId(pageable);
-
-
-    }*/
 
 
 
@@ -144,6 +131,16 @@ public class ProductServiceImpl implements ProductService {
 
         return productInfoRepository.save(productInfo);
     }
+
+    @Override
+    public ProductClient updateProductAdmin(ProductClient productClient) {
+
+        // if null throw exception
+        // categoryService.findByCategoryType(productClient.getCategoryType());
+        return productClientRepository.save(productClient);
+    }
+
+
 
     //Rimettere
 

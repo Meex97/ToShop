@@ -32,7 +32,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.userService.currentUser.subscribe(client => {
       this.currentUser = client;
 
-      if (!client || client.role === Role.Customer) {
+      if (!client || client.role === Role.Customer || client.role === Role.Manager) {
         this.root = '/';
       } else {
         this.root = '/seller';

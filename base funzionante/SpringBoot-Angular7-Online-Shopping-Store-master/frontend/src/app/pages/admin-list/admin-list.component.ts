@@ -59,11 +59,14 @@ export class AdminListComponent implements OnInit, OnDestroy {
 
   }
 
-  accept(productInfo: ProductClient) {
+  accept(productClient: ProductClient) {
+    this.page = this.page.filter(e => e.productId !== productClient.productId);
+
 
   }
 
-  decline(productInfo: ProductClient) {
-
+  decline(productClient: ProductClient) {
+    this.page = this.page.filter(e => e.productId !== productClient.productId);
+    this.productService.declineProd(productClient);
   }
 }

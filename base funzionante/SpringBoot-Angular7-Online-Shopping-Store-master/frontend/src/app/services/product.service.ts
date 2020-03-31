@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {ProductInfo} from '../models/productInfo';
 import {apiUrl} from '../../environments/environment';
+import {ProductClient} from '../models/ProductClient';
 
 @Injectable({
     providedIn: 'root'
@@ -109,4 +110,15 @@ export class ProductService {
     }
 
 
+    /*
+      Methods for Admin
+     */
+
+  declineProd(productClient: ProductClient) {
+    const url = `${apiUrl}/product/decline`;
+    console.log(productClient.productId);
+    // return this.http.delete(url);
+    return this.http.put<ProductClient>(url, productClient);
+
+  }
 }

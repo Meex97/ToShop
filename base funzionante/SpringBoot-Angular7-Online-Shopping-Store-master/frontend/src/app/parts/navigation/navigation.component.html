@@ -37,7 +37,7 @@
                 Exchange
           </a>
 
-          <a *ngIf="!currentUser || currentUser.role == Role.Manager "
+          <a *ngIf="currentUser && currentUser.role == Role.Manager "
             class="nav-item nav-link " routerLink="/admin/list">
             Evaluate
           </a>

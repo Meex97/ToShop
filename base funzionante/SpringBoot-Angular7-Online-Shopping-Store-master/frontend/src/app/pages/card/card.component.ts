@@ -3,6 +3,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {JwtResponse} from '../../response/JwtResponse';
+import {Role} from '../../enum/Role';
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-card',
@@ -16,15 +19,30 @@ export class CardComponent implements OnInit, OnDestroy {
   page: any;
   private paramSub: Subscription;
   private querySub: Subscription;
-
+  currentUserSubscription: Subscription;
+  currentUser: JwtResponse;
+  root = '/';
+  Role = Role;
 
   constructor(private productService: ProductService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private userService: UserService) {
 
   }
 
 
   ngOnInit() {
+    this.currentUserSubscription = this.userService.currentUser.subscribe(client => {
+      this.currentUser = client;
+
+      if (!client || client.role === Role.Customer ) {
+        this.root = '/';
+      } else {
+        this.root = '/seller';
+      }
+    });
+
+
     this.querySub = this.route.queryParams.subscribe(() => {
       this.update();
     });
@@ -54,7 +72,11 @@ export class CardComponent implements OnInit, OnDestroy {
         // tslint:disable-next-line:no-shadowed-variable
         .subscribe(page => {
           this.page = page;
-          this.title = 'Get Whatever You Want!';
+          if(this.currentUser && this.currentUser.role === Role.Manager){
+            this.title = 'ToShop\'s Items';
+          } else {
+            this.title = 'Get Whatever You Want!';
+          }
         });
     } else { //  /category/:id
       const type = this.route.snapshot.url[1].path;

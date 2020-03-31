@@ -11,9 +11,11 @@
           <p class="card-text"><strong>Stock: </strong>{{productInfo.productStock}}</p>
         </div>
         <br>
-        <a routerLink="/product/{{productInfo.productId}}" *ngIf="productInfo.productStatus == 0; else offBlock"
-           class="btn btn-primary btn-lg"
-        >Get It!</a>
+        <div *ngIf="!(currentUser && currentUser.role == Role.Manager)">
+          <a routerLink="/product/{{productInfo.productId}}" *ngIf="productInfo.productStatus == 0;  else offBlock"
+             class="btn btn-primary btn-lg"
+          >Get It!</a>
+        </div>
         <ng-template #offBlock><a class="btn btn-secondary btn-lg disabled">Unavailable</a></ng-template>
       </div>
     </div>

@@ -133,6 +133,10 @@ public class ProductController {
     }
 
 
+    /*
+     ADMIN's Methods
+     */
+
     @GetMapping(value = "product/adminlist")
     //@PathVariable permette di recuperare i valori inclusi nel URL associato alla richiesta
     public List<ProductClient> findByAdmin() {
@@ -149,6 +153,20 @@ public class ProductController {
             }
         });
         return prodAdmin;
+    }
+
+
+
+    @PutMapping("/product/decline")
+    public ResponseEntity decline(@Valid @RequestBody ProductClient product,
+                               BindingResult bindingResult) {
+
+        System.out.println("PROVOLONAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult);
+        }
+        product.setStatus(2);
+        return ResponseEntity.ok(productService.updateProductAdmin(product));
     }
 
 }

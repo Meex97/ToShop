@@ -25,7 +25,7 @@ import { CreateProductsComponent } from './pages/create-products/create-products
 import { CreateProductsCustomerComponent } from './pages/create-products-customer/create-products-customer.component';
 import { ProductListCustomerComponent } from './pages/product-list-customer/product-list-customer.component';
 import { AdminListComponent } from './pages/admin-list/admin-list.component';
-import { ProductListAdminComponent } from './pages/product-list-admin/product-list-admin.component';
+
 
 
 @NgModule({
@@ -48,7 +48,6 @@ import { ProductListAdminComponent } from './pages/product-list-admin/product-li
     CreateProductsCustomerComponent,
     ProductListCustomerComponent,
     AdminListComponent,
-    ProductListAdminComponent,
 
   ],
   imports: [

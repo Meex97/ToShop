@@ -38,6 +38,8 @@ public interface ProductService {
 
     ProductInfo update(ProductInfo productInfo);
 
+    ProductClient updateProductAdmin(ProductClient productClient);
+
     ProductInfo save(ProductInfo productInfo);
 
     // AGGIUNTO
