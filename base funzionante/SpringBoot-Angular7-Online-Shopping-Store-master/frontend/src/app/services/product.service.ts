@@ -114,11 +114,11 @@ export class ProductService {
       Methods for Admin
      */
 
-  declineProd(productClient: ProductClient) {
+  declineProd(productClient: ProductClient): Observable<ProductClient> {
     const url = `${apiUrl}/product/decline`;
-    console.log(productClient.productId);
     // return this.http.delete(url);
     return this.http.put<ProductClient>(url, productClient);
-
   }
+
+
 }

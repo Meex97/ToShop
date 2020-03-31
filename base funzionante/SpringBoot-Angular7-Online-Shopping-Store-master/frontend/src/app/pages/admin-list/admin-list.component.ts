@@ -32,11 +32,11 @@ export class AdminListComponent implements OnInit, OnDestroy {
   private querySub: Subscription;
 
   ngOnInit() {
-    this.userService.currentUser.subscribe(supplier => {
-      this.currentUser = supplier;
+    this.userService.currentUser.subscribe(admin => {
+      this.currentUser = admin;
     });
     this.productId = this.currentUser.id;
-    console.log(this.productId);
+    console.log('AIOOOOOOOOO' + this.productId);
 
     this.querySub = this.route.queryParams.subscribe(() => {
       this.update();
@@ -67,6 +67,9 @@ export class AdminListComponent implements OnInit, OnDestroy {
 
   decline(productClient: ProductClient) {
     this.page = this.page.filter(e => e.productId !== productClient.productId);
-    this.productService.declineProd(productClient);
+    this.productService.declineProd(productClient).subscribe(_ => {
+      },
+      err => {
+      });
   }
 }

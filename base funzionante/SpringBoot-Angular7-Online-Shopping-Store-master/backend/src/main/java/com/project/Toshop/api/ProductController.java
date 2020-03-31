@@ -157,14 +157,12 @@ public class ProductController {
 
 
 
+
     @PutMapping("/product/decline")
     public ResponseEntity decline(@Valid @RequestBody ProductClient product,
-                               BindingResult bindingResult) {
+                                  BindingResult bindingResult) {
 
-        System.out.println("PROVOLONAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body(bindingResult);
-        }
+        System.out.println("PROVOLONEEEEEEEEEEEEEE NON CI SONO CASCATO NELLA TUA TRUFFA");
         product.setStatus(2);
         return ResponseEntity.ok(productService.updateProductAdmin(product));
     }
