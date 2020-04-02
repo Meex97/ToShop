@@ -84,7 +84,7 @@ export class ProductService {
    }
 
 
-    delelte(productInfo: ProductInfo): Observable<any> {
+    delelte(productInfo: any): Observable<any> {
         const url = `${apiUrl}/seller/product/${productInfo.productId}/delete`;
         console.log(productInfo.productId);
         // return this.http.delete(url);
@@ -116,9 +116,12 @@ export class ProductService {
 
   declineProd(productClient: ProductClient): Observable<ProductClient> {
     const url = `${apiUrl}/product/decline`;
-    // return this.http.delete(url);
     return this.http.put<ProductClient>(url, productClient);
   }
 
 
+  acceptProd(productClient: ProductClient) {
+    const url = `${apiUrl}/product/accept`;
+    return this.http.put<ProductClient>(url, productClient);
+  }
 }

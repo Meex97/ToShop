@@ -167,4 +167,13 @@ public class ProductController {
         return ResponseEntity.ok(productService.updateProductAdmin(product));
     }
 
+    @PutMapping("/product/accept")
+    public ResponseEntity accept(@Valid @RequestBody ProductClient product,
+                                  BindingResult bindingResult) {
+
+        System.out.println("I LIKE IT");
+        product.setStatus(1);
+        return ResponseEntity.ok(productService.updateProductAdmin(product));
+    }
+
 }
