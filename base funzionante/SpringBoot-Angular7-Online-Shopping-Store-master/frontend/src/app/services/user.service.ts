@@ -64,7 +64,7 @@ export class UserService {
     }
 
     updateClient(client: Client): Observable<Client> {
-        const url = `${apiUrl}/profile`;
+        const url = `${apiUrl}/profileClient`;
         return this.http.put<Client>(url, client);    }
 
     getClient(email: string): Observable<Client> {

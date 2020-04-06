@@ -77,4 +77,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(oldUser);
     }
 
+    @Override
+    public Client updateClient(Client client) {
+        Client oldClient = clientRepository.findByEmail(client.getEmail());
+        oldClient.setPassword(passwordEncoder.encode(client.getPassword()));
+        oldClient.setName(client.getName());
+        oldClient.setPhone(client.getPhone());
+        oldClient.setAddress(client.getAddress());
+        return clientRepository.save(oldClient);
+    }
+
 }

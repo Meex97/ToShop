@@ -78,17 +78,17 @@ public class UserController {
         }
     }
 
-   /* @PutMapping("/profileClient")
+    @PutMapping("/profileClient")
     public ResponseEntity<Client> updateClient(@RequestBody Client client, Principal principal) {
 
         System.out.println("Edit profileeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
         try {
             if (!principal.getName().equals(client.getEmail())) throw new IllegalArgumentException();
-            return ResponseEntity.ok(userService.update(client));
+            return ResponseEntity.ok(userService.updateClient(client));
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
-    }*/
+    }
 
 
     @PutMapping("/profile")
