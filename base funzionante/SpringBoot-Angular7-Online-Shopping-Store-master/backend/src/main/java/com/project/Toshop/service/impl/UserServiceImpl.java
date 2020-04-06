@@ -2,10 +2,12 @@ package com.project.Toshop.service.impl;
 
 
 import com.project.Toshop.entity.Cart;
+import com.project.Toshop.entity.Client;
 import com.project.Toshop.entity.User;
 import com.project.Toshop.enums.ResultEnum;
 import com.project.Toshop.exception.MyException;
 import com.project.Toshop.repository.CartRepository;
+import com.project.Toshop.repository.ClientRepository;
 import com.project.Toshop.repository.UserRepository;
 import com.project.Toshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +28,18 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     @Autowired
     CartRepository cartRepository;
+    @Autowired
+    ClientRepository clientRepository;
+
 
     @Override
     public User findOne(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public Client findOneClient(String email) {
+        return clientRepository.findByEmail(email);
     }
 
     @Override

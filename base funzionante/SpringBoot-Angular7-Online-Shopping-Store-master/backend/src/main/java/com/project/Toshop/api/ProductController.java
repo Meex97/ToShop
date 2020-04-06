@@ -173,6 +173,7 @@ public class ProductController {
 
         System.out.println("I LIKE IT");
         product.setStatus(1);
+
         return ResponseEntity.ok(productService.updateProductAdmin(product));
     }
 

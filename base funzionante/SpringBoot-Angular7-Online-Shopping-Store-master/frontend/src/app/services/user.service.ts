@@ -64,27 +64,28 @@ export class UserService {
     }
 
     updateClient(client: Client): Observable<Client> {
-        const url = `${apiUrl}/profileClient`;
+        const url = `${apiUrl}/profile`;
         return this.http.put<Client>(url, client);    }
 
     getClient(email: string): Observable<Client> {
-        const url = `${apiUrl}/profileClient/${email}`;
+        const url = `${apiUrl}/profile/${email}`;
         return this.http.get<Client>(url);
     }
 
-  signUpSupplier(supplier: Supplier): Observable<Supplier> {
-    const url = `${apiUrl}/registerSupplier`;
-    return this.http.post<Supplier>(url, supplier);
-  }
 
-  updateSupplier(supplier: Supplier): Observable<Supplier> {
-    const url = `${apiUrl}/profileSupplier`;
-    return this.http.put<Supplier>(url, supplier);    }
+    signUpSupplier(supplier: Supplier): Observable<Supplier> {
+      const url = `${apiUrl}/registerSupplier`;
+      return this.http.post<Supplier>(url, supplier);
+    }
 
-  getSupplier(email: string): Observable<Supplier> {
-    const url = `${apiUrl}/profileSupplier/${email}`;
-    return this.http.get<Supplier>(url);
-  }
+    updateSupplier(supplier: Supplier): Observable<Supplier> {
+      const url = `${apiUrl}/profileSupplier`;
+      return this.http.put<Supplier>(url, supplier);    }
+
+    getSupplier(email: string): Observable<Supplier> {
+      const url = `${apiUrl}/profileSupplier/${email}`;
+      return this.http.get<Supplier>(url);
+    }
 
     /**
      * Handle Http operation that failed.

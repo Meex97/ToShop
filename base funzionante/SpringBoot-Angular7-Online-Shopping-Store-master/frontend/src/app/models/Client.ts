@@ -2,23 +2,23 @@ import {Role} from "../enum/Role";
 
 export class Client {
 
-    email: string;
+     email: string;
 
-    password: string;
+     password: string;
 
-    name: string;
+     name: string;
 
-    surname: string;
+     surname: string;
 
-    phone: string;
+     phone: string;
 
-    address: string;
+     address: string;
 
-    active: boolean;
+     active: boolean;
 
-    role: string;
+     role: string;
 
-    credits: number;
+     credits: number;
 
     constructor(){
         this.active = true;
@@ -26,4 +26,5 @@ export class Client {
         this.role = Role.Customer;
         this.credits = 0;
     }
+
 }

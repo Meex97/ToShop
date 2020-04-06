@@ -1,6 +1,7 @@
 package com.project.Toshop.api;
 
 import com.project.Toshop.entity.Client;
+import com.project.Toshop.entity.ProductInfo;
 import com.project.Toshop.entity.Supplier;
 import com.project.Toshop.service.UserService;
 import com.project.Toshop.entity.User;
@@ -16,8 +17,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 /**
@@ -48,21 +51,14 @@ public class UserController {
             String jwt = jwtProvider.generate(authentication);
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             User user = userService.findOne(userDetails.getUsername());
-            return ResponseEntity.ok(new JwtResponse(jwt, user.getEmail(), user.getName(), user.getRole(), user.getId()));
+            return ResponseEntity.ok(new JwtResponse(jwt, user.getEmail(), user.getName(), user.getRole(), user.getId(),user.getPassword(),user.getPhone()));
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 
 
-  /*  @PostMapping("/register")
-    public ResponseEntity<User> save(@RequestBody User user) {
-        try {
-            return ResponseEntity.ok(userService.save(user));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }*/
+
 
     @PostMapping("/registerClient")
     public ResponseEntity<?> save(@RequestBody Client client) {
@@ -82,9 +78,24 @@ public class UserController {
         }
     }
 
+   /* @PutMapping("/profileClient")
+    public ResponseEntity<Client> updateClient(@RequestBody Client client, Principal principal) {
+
+        System.out.println("Edit profileeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        try {
+            if (!principal.getName().equals(client.getEmail())) throw new IllegalArgumentException();
+            return ResponseEntity.ok(userService.update(client));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }*/
+
+
     @PutMapping("/profile")
     public ResponseEntity<User> update(@RequestBody User user, Principal principal) {
 
+
+        System.out.println(user.toString());
         try {
             if (!principal.getName().equals(user.getEmail())) throw new IllegalArgumentException();
             return ResponseEntity.ok(userService.update(user));
@@ -92,6 +103,8 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+
 
     @GetMapping("/profile/{email}")
     public ResponseEntity<User> getProfile(@PathVariable("email") String email, Principal principal) {
@@ -102,4 +115,16 @@ public class UserController {
         }
 
     }
+
+    @GetMapping("/profileClient/{email}")
+    public ResponseEntity<Client> getProfileClient(@PathVariable("email") String email, Principal principal) {
+        if (principal.getName().equals(email)) {
+            return ResponseEntity.ok(userService.findOneClient(email));
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+
+    }
+
+
 }
