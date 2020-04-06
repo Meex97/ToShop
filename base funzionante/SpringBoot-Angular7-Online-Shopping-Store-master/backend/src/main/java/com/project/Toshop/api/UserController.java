@@ -90,6 +90,17 @@ public class UserController {
         }
     }
 
+    @PutMapping("/profileSupplier")
+    public ResponseEntity<Supplier> updateSupplier(@RequestBody Supplier supplier, Principal principal) {
+
+        try {
+            if (!principal.getName().equals(supplier.getEmail())) throw new IllegalArgumentException();
+            return ResponseEntity.ok(userService.updateSupplier(supplier));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 
     @PutMapping("/profile")
     public ResponseEntity<User> update(@RequestBody User user, Principal principal) {
@@ -125,6 +136,18 @@ public class UserController {
         }
 
     }
+
+    @GetMapping("/profileSupplier/{email}")
+    public ResponseEntity<Supplier> getProfileSupplier(@PathVariable("email") String email, Principal principal) {
+        if (principal.getName().equals(email)) {
+            return ResponseEntity.ok(userService.findOneSupplier(email));
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+
+    }
+
+
 
 
 }

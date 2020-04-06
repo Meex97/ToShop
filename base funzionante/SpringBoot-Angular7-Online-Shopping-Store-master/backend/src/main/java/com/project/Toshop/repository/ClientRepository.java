@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClientRepository extends JpaRepository<Client, String> {
 
+    Client findByIdUtente(Long idUtente);
     Client findByEmail(String email);
 }

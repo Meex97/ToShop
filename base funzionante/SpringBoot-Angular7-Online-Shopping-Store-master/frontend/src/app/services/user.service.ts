@@ -82,6 +82,7 @@ export class UserService {
       const url = `${apiUrl}/profileSupplier`;
       return this.http.put<Supplier>(url, supplier);    }
 
+
     getSupplier(email: string): Observable<Supplier> {
       const url = `${apiUrl}/profileSupplier/${email}`;
       return this.http.get<Supplier>(url);

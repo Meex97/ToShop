@@ -3,11 +3,13 @@ package com.project.Toshop.service.impl;
 
 import com.project.Toshop.entity.Cart;
 import com.project.Toshop.entity.Client;
+import com.project.Toshop.entity.Supplier;
 import com.project.Toshop.entity.User;
 import com.project.Toshop.enums.ResultEnum;
 import com.project.Toshop.exception.MyException;
 import com.project.Toshop.repository.CartRepository;
 import com.project.Toshop.repository.ClientRepository;
+import com.project.Toshop.repository.SupplierRepository;
 import com.project.Toshop.repository.UserRepository;
 import com.project.Toshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 
 
@@ -31,6 +34,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     ClientRepository clientRepository;
 
+    @Autowired
+    SupplierRepository supplierRepository;
+
 
     @Override
     public User findOne(String email) {
@@ -40,6 +46,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Client findOneClient(String email) {
         return clientRepository.findByEmail(email);
+    }
+
+    @Override
+    public Supplier findOneSupplier(String email) {
+        return supplierRepository.findByEmail(email);
     }
 
     @Override
@@ -85,6 +96,24 @@ public class UserServiceImpl implements UserService {
         oldClient.setPhone(client.getPhone());
         oldClient.setAddress(client.getAddress());
         return clientRepository.save(oldClient);
+    }
+
+    @Override
+    public Client updateCredits(BigDecimal productPrice, Long idUtente) {
+        Client oldClient = clientRepository.findByIdUtente(idUtente);
+        oldClient.setCredits(productPrice.intValue());
+        return clientRepository.save(oldClient);
+    }
+
+
+    @Override
+    public Supplier updateSupplier(Supplier supplier) {
+        Supplier oldSupplier = supplierRepository.findByEmail(supplier.getEmail());
+        oldSupplier.setPassword(passwordEncoder.encode(supplier.getPassword()));
+        oldSupplier.setName(supplier.getName());
+        oldSupplier.setPhone(supplier.getPhone());
+        oldSupplier.setAddress(supplier.getAddress());
+        return supplierRepository.save(oldSupplier);
     }
 
 }

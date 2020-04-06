@@ -17,6 +17,7 @@ import {CreateProductsComponent} from './pages/create-products/create-products.c
 import {CreateProductsCustomerComponent} from './pages/create-products-customer/create-products-customer.component';
 import {ProductListCustomerComponent} from './pages/product-list-customer/product-list-customer.component';
 import {AdminListComponent} from './pages/admin-list/admin-list.component';
+import {UserEditSupplierComponent} from "./pages/user-edit-supplier/user-edit-supplier.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/product', pathMatch: 'full'},
@@ -48,6 +49,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserDetailComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profileSupplier',
+    component: UserEditSupplierComponent,
     canActivate: [AuthGuard]
   },
   {

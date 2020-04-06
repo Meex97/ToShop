@@ -25,6 +25,7 @@ import { CreateProductsComponent } from './pages/create-products/create-products
 import { CreateProductsCustomerComponent } from './pages/create-products-customer/create-products-customer.component';
 import { ProductListCustomerComponent } from './pages/product-list-customer/product-list-customer.component';
 import { AdminListComponent } from './pages/admin-list/admin-list.component';
+import { UserEditSupplierComponent } from './pages/user-edit-supplier/user-edit-supplier.component';
 
 
 
@@ -48,6 +49,7 @@ import { AdminListComponent } from './pages/admin-list/admin-list.component';
     CreateProductsCustomerComponent,
     ProductListCustomerComponent,
     AdminListComponent,
+    UserEditSupplierComponent,
 
   ],
   imports: [
