@@ -158,7 +158,7 @@ public class ProductController {
                                   BindingResult bindingResult) {
 
         System.out.println("I LIKE IT");
-        userService.updateCredits(product.getProductPrice(), product.getIdUtente());
+        userService.updateCredits(product.getProductPrice().intValue() * 10 * product.getProductStock(), product.getIdUtente());
         product.setStatus(1);
 
         return ResponseEntity.ok(productService.updateProductAdmin(product));

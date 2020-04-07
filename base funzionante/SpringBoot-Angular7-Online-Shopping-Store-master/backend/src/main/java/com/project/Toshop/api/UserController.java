@@ -81,7 +81,6 @@ public class UserController {
     @PutMapping("/profileClient")
     public ResponseEntity<Client> updateClient(@RequestBody Client client, Principal principal) {
 
-        System.out.println("Edit profileeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
         try {
             if (!principal.getName().equals(client.getEmail())) throw new IllegalArgumentException();
             return ResponseEntity.ok(userService.updateClient(client));
@@ -93,7 +92,6 @@ public class UserController {
     @PutMapping("/profileSupplier")
     public ResponseEntity<Supplier> updateSupplier(@RequestBody Supplier supplier, Principal principal) {
 
-        System.out.println("EDIT Suppliereeee");
         try {
             if (!principal.getName().equals(supplier.getEmail())) throw new IllegalArgumentException();
             return ResponseEntity.ok(userService.updateSupplier(supplier));

@@ -24,7 +24,7 @@ public interface UserService {
 
     Client updateClient(Client client);
 
-    Client updateCredits(BigDecimal productPrice, Long idUtente);
+    Client updateCredits(int productPrice, Long idUtente);
 
     Supplier updateSupplier(Supplier supplier);
 
