@@ -99,8 +99,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Client updateCredits(BigDecimal productPrice, Long idUtente) {
-        Client oldClient = clientRepository.findByIdUtente(idUtente);
+    public Client updateCredits(BigDecimal productPrice, Long id) {
+        Client oldClient = clientRepository.findById(id);
         oldClient.setCredits(productPrice.intValue());
         return clientRepository.save(oldClient);
     }

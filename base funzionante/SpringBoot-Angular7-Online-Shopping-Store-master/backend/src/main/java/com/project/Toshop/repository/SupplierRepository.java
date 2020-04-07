@@ -5,5 +5,6 @@ import com.project.Toshop.entity.Supplier;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SupplierRepository extends JpaRepository<Supplier, String> {
+
     Supplier findByEmail(String email);
 }

@@ -93,6 +93,7 @@ public class UserController {
     @PutMapping("/profileSupplier")
     public ResponseEntity<Supplier> updateSupplier(@RequestBody Supplier supplier, Principal principal) {
 
+        System.out.println("EDIT Suppliereeee");
         try {
             if (!principal.getName().equals(supplier.getEmail())) throw new IllegalArgumentException();
             return ResponseEntity.ok(userService.updateSupplier(supplier));
