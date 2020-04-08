@@ -72,6 +72,9 @@ public class ProductInOrder {
     @Min(1)
     private Integer count;
 
+    private String nameUtente;
+
+
 
     public ProductInOrder(ProductInfo productInfo, Integer quantity) {
         this.productId = productInfo.getProductId();
@@ -82,6 +85,10 @@ public class ProductInOrder {
         this.productPrice = productInfo.getProductPrice();
         this.productStock = productInfo.getProductStock();
         this.count = quantity;
+        //Aggiunto
+        this.nameUtente= productInfo.getNameUtente();
+
+
     }
 
     @Override
@@ -111,6 +118,8 @@ public class ProductInOrder {
                 Objects.equals(productDescription, that.productDescription) &&
                 Objects.equals(productIcon, that.productIcon) &&
                 Objects.equals(categoryType, that.categoryType) &&
+                //Aggiunto
+                Objects.equals(nameUtente, that.nameUtente) &&
                 Objects.equals(productPrice, that.productPrice);
     }
 
@@ -206,5 +215,13 @@ public class ProductInOrder {
 
     public void setCount(Integer count) {
         this.count = count;
+    }
+
+    public String getNameUtente() {
+        return nameUtente;
+    }
+
+    public void setNameUtente(String nameUtente) {
+        this.nameUtente = nameUtente;
     }
 }

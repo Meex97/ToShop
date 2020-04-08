@@ -9,8 +9,10 @@ export class ProductInOrder {
     productIcon: string;
     categoryType: number;
     count: number;
+    idUtente: number;
+    nameUtente: string;
 
-    constructor(productInfo:ProductInfo, quantity = 1){
+    constructor(productInfo: ProductInfo, quantity = 1){
         this.productId = productInfo.productId;
         this.productName = productInfo.productName;
         this.productPrice = productInfo.productPrice;
@@ -19,5 +21,7 @@ export class ProductInOrder {
         this.productIcon = productInfo.productIcon;
         this.categoryType = productInfo.categoryType;
         this.count = quantity;
+        this.idUtente = productInfo.idUtente;
+        this.nameUtente = productInfo.nameUtente;
     }
 }

@@ -41,6 +41,7 @@ export class CartComponent implements OnInit, OnDestroy, AfterContentChecked {
 
     ngOnInit() {
         this.cartService.getCart().subscribe(prods => {
+            console.log(prods);
             this.productInOrders = prods;
         });
 
@@ -114,7 +115,6 @@ export class CartComponent implements OnInit, OnDestroy, AfterContentChecked {
                 });
             this.router.navigate(['/']);
         }
-
     }
 }
 

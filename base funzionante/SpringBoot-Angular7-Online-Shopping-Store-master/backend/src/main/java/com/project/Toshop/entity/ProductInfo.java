@@ -60,6 +60,16 @@ public class ProductInfo implements Serializable {
 
     private Long idUtente;
 
+    private String nameUtente;
+
+    public String getNameUtente() {
+        return nameUtente;
+    }
+
+    public void setNameUtente(String nameUtente) {
+        this.nameUtente = nameUtente;
+    }
+
     public Long getIdUtente() {
         return idUtente;
     }

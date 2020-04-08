@@ -33,7 +33,7 @@ export class CreateProductsCustomerComponent implements OnInit {
         this.currentUser = client;
       });
       this.product.idUtente = this.currentUser.id;
-      console.log(this.product.idUtente);
+      this.product.nameUtente = this.currentUser.name;
   }
 
   onSubmit() {
