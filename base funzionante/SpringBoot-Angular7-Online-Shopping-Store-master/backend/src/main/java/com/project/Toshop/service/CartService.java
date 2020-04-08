@@ -1,6 +1,7 @@
 package com.project.Toshop.service;
 
 import com.project.Toshop.entity.Cart;
+import com.project.Toshop.entity.Client;
 import com.project.Toshop.entity.ProductInOrder;
 import com.project.Toshop.entity.User;
 
@@ -14,5 +15,6 @@ public interface CartService {
 
     void delete(String itemId, User user);
 
-    void checkout(User user);
+    // void checkout(User user);
+    void checkout(Client user);
 }

@@ -2,6 +2,7 @@ package com.project.Toshop.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.aspectj.apache.bcel.generic.InstructionConstants;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
@@ -66,11 +67,23 @@ public class OrderMain implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updateTime;
 
-    public OrderMain(User buyer) {
+   /* public OrderMain(User buyer) {
         this.buyerEmail = buyer.getEmail();
         this.buyerName = buyer.getName();
         this.buyerPhone = buyer.getPhone();
-        //this.buyerAddress = buyer.getAddress();
+        // this.buyerAddress = buyer.getAddress();
+        this.orderAmount = buyer.getCart().getProducts().stream().map(item -> item.getProductPrice().multiply(new BigDecimal(item.getCount())))
+                .reduce(BigDecimal::add)
+                .orElse(new BigDecimal(0));
+        this.orderStatus = 0;
+
+    }*/
+
+    public OrderMain(Client buyer) {
+        this.buyerEmail = buyer.getEmail();
+        this.buyerName = buyer.getName();
+        this.buyerPhone = buyer.getPhone();
+        this.buyerAddress = buyer.getAddress();
         this.orderAmount = buyer.getCart().getProducts().stream().map(item -> item.getProductPrice().multiply(new BigDecimal(item.getCount())))
                 .reduce(BigDecimal::add)
                 .orElse(new BigDecimal(0));

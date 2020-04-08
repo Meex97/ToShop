@@ -1,13 +1,10 @@
 package com.project.Toshop.service.impl;
 
 
+import com.project.Toshop.entity.*;
 import com.project.Toshop.service.CartService;
 import com.project.Toshop.service.ProductService;
 import com.project.Toshop.service.UserService;
-import com.project.Toshop.entity.Cart;
-import com.project.Toshop.entity.OrderMain;
-import com.project.Toshop.entity.ProductInOrder;
-import com.project.Toshop.entity.User;
 import com.project.Toshop.repository.CartRepository;
 import com.project.Toshop.repository.OrderRepository;
 import com.project.Toshop.repository.ProductInOrderRepository;
@@ -78,7 +75,7 @@ public class CartServiceImpl implements CartService {
 
 
 
-    @Override
+   /* @Override
     @Transactional
     public void checkout(User user) {
         // Creat an order
@@ -86,7 +83,28 @@ public class CartServiceImpl implements CartService {
         orderRepository.save(order);
 
         // clear cart's foreign key & set order's foreign key& decrease stock
+        System.out.println(user.getCart().getProducts());
         user.getCart().getProducts().forEach(productInOrder -> {
+            //System.out.println(productInOrder);
+             productInOrder.setCart(null);
+             productInOrder.setOrderMain(order);
+             productService.decreaseStock(productInOrder.getProductId(), productInOrder.getCount());
+             productInOrderRepository.save(productInOrder);
+        });
+
+    }*/
+
+    @Override
+    @Transactional
+    public void checkout(Client user) {
+        // Creat an order
+        OrderMain order = new OrderMain(user);
+        orderRepository.save(order);
+
+        // clear cart's foreign key & set order's foreign key& decrease stock
+        System.out.println(user.getCart().getProducts());
+        user.getCart().getProducts().forEach(productInOrder -> {
+            //System.out.println(productInOrder);
             productInOrder.setCart(null);
             productInOrder.setOrderMain(order);
             productService.decreaseStock(productInOrder.getProductId(), productInOrder.getCount());
