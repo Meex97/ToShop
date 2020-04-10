@@ -15,7 +15,7 @@ import java.util.Objects;
 @Entity
 @Data
 @NoArgsConstructor
-public class ProductInOrder {
+public class ProductInOrder implements  Comparable<ProductInOrder>{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -74,6 +74,8 @@ public class ProductInOrder {
 
     private String nameUtente;
 
+    private Long idUtente;
+
 
 
     public ProductInOrder(ProductInfo productInfo, Integer quantity) {
@@ -87,11 +89,11 @@ public class ProductInOrder {
         this.count = quantity;
         //Aggiunto
         this.nameUtente= productInfo.getNameUtente();
-
+        this.idUtente = productInfo.getIdUtente();
 
     }
 
-    @Override
+   /* @Override
     public String toString() {
         return "ProductInOrder{" +
                 "id=" + id +
@@ -104,7 +106,16 @@ public class ProductInOrder {
                 ", productStock=" + productStock +
                 ", count=" + count +
                 '}';
-    }
+    }*/
+   public String toString() {
+       return "ProductInOrder{" +
+               "id=" + id +
+               ", productId='" + productId + '\'' +
+               ", productName='" + productName + '\'' +
+               ", idUtente='" + idUtente + '\'' +
+
+               '}';
+   }
 
     @Override
     public boolean equals(Object o) {
@@ -223,5 +234,18 @@ public class ProductInOrder {
 
     public void setNameUtente(String nameUtente) {
         this.nameUtente = nameUtente;
+    }
+
+    public Long getIdUtente() {
+        return idUtente;
+    }
+
+    public void setIdUtente(Long idUtente) {
+        this.idUtente = idUtente;
+    }
+
+    @Override
+    public int compareTo(ProductInOrder o) {
+        return this.idUtente.intValue() - o.idUtente.intValue();
     }
 }

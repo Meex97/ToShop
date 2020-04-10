@@ -18,7 +18,7 @@ import java.util.Date;
 @Data
 @DynamicUpdate
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ProductInfo implements Serializable {
+public class ProductInfo implements Serializable, Comparable<ProductInfo> {
     @Id
     // @GeneratedValue(strategy = GenerationType.AUTO)
     private String productId;
@@ -162,5 +162,10 @@ public class ProductInfo implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @Override
+    public int compareTo(ProductInfo o) {
+        return this.idUtente.intValue() - o.idUtente.intValue();
     }
 }

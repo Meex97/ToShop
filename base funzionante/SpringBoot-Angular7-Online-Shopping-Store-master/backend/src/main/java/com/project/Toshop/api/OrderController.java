@@ -1,6 +1,7 @@
 package com.project.Toshop.api;
 
 
+import com.project.Toshop.entity.ProductInfo;
 import com.project.Toshop.service.OrderService;
 import com.project.Toshop.service.UserService;
 import com.project.Toshop.entity.OrderMain;
@@ -14,7 +15,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created By Zhu Lin on 3/14/2018.
@@ -28,7 +31,7 @@ public class OrderController {
     UserService userService;
 
     @GetMapping("/order")
-    public Page<OrderMain> orderList(@RequestParam(value = "page", defaultValue = "1") Integer page,
+    public List<OrderMain> orderList(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                      @RequestParam(value = "size", defaultValue = "10") Integer size,
                                      Authentication authentication) {
         PageRequest request = PageRequest.of(page - 1, size);
@@ -38,7 +41,37 @@ public class OrderController {
         } else {
             orderPage = orderService.findAll(request);
         }
-        return orderPage;
+
+        List<OrderMain> orderClient = new ArrayList<>();
+
+        orderPage.forEach(product ->{
+
+            orderClient.add(product);
+
+        });
+        return orderClient;
+
+        // return orderPage;
+    }
+
+    @GetMapping(value = "/orderSupplier/{idUtente}")
+    //@PathVariable permette di recuperare i valori inclusi nel URL associato alla richiesta
+    public List<OrderMain> findByIdUtente(@PathVariable("idUtente") Long idUtente) {
+
+        System.out.println(idUtente);
+        // size definita da
+        Page<OrderMain> prod = orderService.findAll(PageRequest.of(0, 50));
+        List<OrderMain> orderSupplier = new ArrayList<>();
+
+        prod.forEach(product ->{
+            // System.out.println("idUtente " + product.getIdUtente());
+            if(product.getIdSeller() == idUtente.intValue() ){
+                System.out.println("Ma adesso sono quaaaaaaaaa");
+                orderSupplier.add(product);
+                // System.out.println("prodotto: "+ product.getProductId()+ " idUtente: "+ product.getIdUtente());
+            }
+        });
+        return orderSupplier;
     }
 
 

@@ -9,13 +9,12 @@ import com.project.Toshop.repository.CartRepository;
 import com.project.Toshop.repository.OrderRepository;
 import com.project.Toshop.repository.ProductInOrderRepository;
 import com.project.Toshop.repository.UserRepository;
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created By Zhu Lin on 3/11/2018.
@@ -75,41 +74,43 @@ public class CartServiceImpl implements CartService {
 
 
 
-   /* @Override
-    @Transactional
-    public void checkout(User user) {
-        // Creat an order
-        OrderMain order = new OrderMain(user);
-        orderRepository.save(order);
-
-        // clear cart's foreign key & set order's foreign key& decrease stock
-        System.out.println(user.getCart().getProducts());
-        user.getCart().getProducts().forEach(productInOrder -> {
-            //System.out.println(productInOrder);
-             productInOrder.setCart(null);
-             productInOrder.setOrderMain(order);
-             productService.decreaseStock(productInOrder.getProductId(), productInOrder.getCount());
-             productInOrderRepository.save(productInOrder);
-        });
-
-    }*/
-
     @Override
     @Transactional
     public void checkout(Client user) {
         // Creat an order
-        OrderMain order = new OrderMain(user);
-        orderRepository.save(order);
+      //  OrderMain order = new OrderMain(user);
+       // orderRepository.save(order);
 
         // clear cart's foreign key & set order's foreign key& decrease stock
-        System.out.println(user.getCart().getProducts());
-        user.getCart().getProducts().forEach(productInOrder -> {
+      //  System.out.println(user.getCart().getProducts());
+        Long prev = -1L;
+        List<ProductInOrder> orderList = Lists.newArrayList(user.getCart().getProducts());
+        Collections.sort(orderList);
+        OrderMain ordermain = null;
+        ListIterator<ProductInOrder> iterator = orderList.listIterator();
+        while(iterator.hasNext()){
+            ProductInOrder prodTmp = iterator.next();
+            prodTmp.setCart(null);
+            if(prev.intValue() != prodTmp.getIdUtente().intValue()){
+                ordermain = new OrderMain(user, prodTmp.getIdUtente().intValue());
+                orderRepository.save(ordermain);
+                prev= prodTmp.getIdUtente();
+            }
+            prodTmp.setOrderMain(ordermain);
+            productService.decreaseStock(prodTmp.getProductId(), prodTmp.getCount());
+            productInOrderRepository.save(prodTmp);
+        }
+
+        /*user.getCart().getProducts().forEach(productInOrder -> {
+            if()
             //System.out.println(productInOrder);
             productInOrder.setCart(null);
             productInOrder.setOrderMain(order);
             productService.decreaseStock(productInOrder.getProductId(), productInOrder.getCount());
             productInOrderRepository.save(productInOrder);
         });
+
+         */
 
     }
 }

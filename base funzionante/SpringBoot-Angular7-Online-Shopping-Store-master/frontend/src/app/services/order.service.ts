@@ -36,4 +36,14 @@ export class OrderService {
             catchError(_ => of(null))
         );
     }
+
+    getOrderSupplier(id: number): Observable<any> {
+      const url = `${this.orderUrl}Supplier/${id}`;
+      console.log(url);
+      return this.http.get(url)
+        .pipe(
+          // tap(_ => console.log(_)),
+        );
+    }
+
 }
