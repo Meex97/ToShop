@@ -9,7 +9,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {LoginComponent} from './pages/login/login.component';
 import {SignupComponent} from './pages/signup/signup.component';
 import {DetailComponent} from './pages/product-detail/detail.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {CartComponent} from './pages/cart/cart.component';
 import {CookieService} from 'ngx-cookie-service';
@@ -26,6 +26,7 @@ import { CreateProductsCustomerComponent } from './pages/create-products-custome
 import { ProductListCustomerComponent } from './pages/product-list-customer/product-list-customer.component';
 import { AdminListComponent } from './pages/admin-list/admin-list.component';
 import { UserEditSupplierComponent } from './pages/user-edit-supplier/user-edit-supplier.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 
 
@@ -50,15 +51,17 @@ import { UserEditSupplierComponent } from './pages/user-edit-supplier/user-edit-
     ProductListCustomerComponent,
     AdminListComponent,
     UserEditSupplierComponent,
+    CheckoutComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
 
-  ],
+    ],
   providers: [CookieService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],

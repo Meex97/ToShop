@@ -66,7 +66,6 @@ public class OrderController {
         prod.forEach(product ->{
             // System.out.println("idUtente " + product.getIdUtente());
             if(product.getIdSeller() == idUtente.intValue() ){
-                System.out.println("Ma adesso sono quaaaaaaaaa");
                 orderSupplier.add(product);
                 // System.out.println("prodotto: "+ product.getProductId()+ " idUtente: "+ product.getIdUtente());
             }

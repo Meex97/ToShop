@@ -106,14 +106,7 @@ export class CartComponent implements OnInit, OnDestroy, AfterContentChecked {
         } else if (this.currentUser.role !== Role.Customer) {
             this.router.navigate(['/seller']);
         } else {
-            this.cartService.checkout(this.currentUser.account).subscribe(
-                _ => {
-                    this.productInOrders = [];
-                },
-                error1 => {
-                    console.log('Checkout Cart Failed');
-                });
-            this.router.navigate(['/']);
+            this.router.navigate(['/checkout']);
         }
     }
 }

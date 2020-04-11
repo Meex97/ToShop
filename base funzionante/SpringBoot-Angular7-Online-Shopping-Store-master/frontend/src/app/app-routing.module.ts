@@ -18,6 +18,7 @@ import {CreateProductsCustomerComponent} from './pages/create-products-customer/
 import {ProductListCustomerComponent} from './pages/product-list-customer/product-list-customer.component';
 import {AdminListComponent} from './pages/admin-list/admin-list.component';
 import {UserEditSupplierComponent} from "./pages/user-edit-supplier/user-edit-supplier.component";
+import {CheckoutComponent} from "./pages/checkout/checkout.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/product', pathMatch: 'full'},
@@ -85,6 +86,12 @@ const routes: Routes = [
     component: AdminListComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.Manager]}
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.Customer]}
   },
 
 ];
