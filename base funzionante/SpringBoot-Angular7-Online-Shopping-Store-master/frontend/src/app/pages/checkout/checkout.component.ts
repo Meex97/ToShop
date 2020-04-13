@@ -31,24 +31,24 @@ export class CheckoutComponent implements OnInit {
   currentUser: JwtResponse;
   page: Array<ProductInfo>;
 
-  isSubmitted = false;
 
 
+
+  checked: any = {
+    remembered: true
+  };
   client: Client;
 
   productInOrders = [];
 
-  disabled = false;
+
 
   constructor(private userService: UserService,
               private productService: ProductService,
               private route: ActivatedRoute,
               private cartService: CartService,
               private router: Router) {
-  }
-
-  templateForm(value: any) {
-    alert(JSON.stringify(value));
+     // this.checked = true;
   }
 
   ngOnInit() {
@@ -69,8 +69,7 @@ export class CheckoutComponent implements OnInit {
   }
 
 
-
-
-
-
+  controlCheck() {
+    console.log(this.checked);
+  }
 }

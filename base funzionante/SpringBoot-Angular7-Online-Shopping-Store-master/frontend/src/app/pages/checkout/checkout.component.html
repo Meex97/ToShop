@@ -25,48 +25,17 @@
     </div>
 
 
-
-
-<!--    <form [formGroup]="form" (ngSubmit)="submit()">
-      <label
-        formArrayName="orders"
-        *ngFor="let order of form.controls.orders.controls; let i = index"
-      >
-        <input type="checkbox" [formControlName]="i" />
-        {{ordersData[i].name}}
-      </label>
-
-      <button>submit</button>
-    </form>
-
- -->
-
-   <!-- <form action="/action_page.php">
-      <p>Please select your gender:</p>
-      <input type="radio" id="male" name="gender" value="male">
-      <label for="male">Male</label><br>
-      <input type="radio" id="female" name="gender" value="female">
-      <label for="female">Female</label><br>
-
-    </form>-->
-
     <div class="form-group">
-      <label class="example-margin">Would you like to use your credits?</label> <br>
-      <div class="custom-control custom-radio">
-        <input id="male" type="radio" class="custom-control-input" value="male" name="gender" ngModel>
-        <label class="custom-control-label" for="male">Male</label>
+      <div>
+        <label> Would you like to use your Credits?</label> <br>
+        <input type="checkbox" id="credit" name="credit" [(ngModel)]="checked.remembered">
+        <label for="credit" class="inline">Use them</label>
       </div>
-
-      <div class="custom-control custom-radio">
-        <input id="female" type="radio" class="custom-control-input" value="female" name="gender" ngModel>
-        <label class="custom-control-label" for="female">Female</label>
+      <div *ngIf="checked">
+        Phone is required.
       </div>
-
-      <div *ngIf="isSubmitted ">
-        <p>Please select either value</p>
-      </div>
-
     </div>
+
 
 
     <div class="form-group">
