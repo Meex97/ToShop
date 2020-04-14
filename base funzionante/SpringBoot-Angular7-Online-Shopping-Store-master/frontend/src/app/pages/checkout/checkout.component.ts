@@ -31,16 +31,12 @@ export class CheckoutComponent implements OnInit {
   currentUser: JwtResponse;
   page: Array<ProductInfo>;
 
-
-
-
-  checked: any = {
-    remembered: true
-  };
-  client: Client;
+  client = new Client();
 
   productInOrders = [];
 
+  marked = false;
+  theCheckbox = false;
 
 
   constructor(private userService: UserService,
@@ -55,21 +51,28 @@ export class CheckoutComponent implements OnInit {
     this.userService.currentUser.subscribe(client => {
       this.currentUser = client;
     });
+
+    this.userService.getClient(this.currentUser.account).subscribe(u => {
+      this.client = u;
+    });
   }
 
   checkout() {
-    this.cartService.checkout(this.currentUser.account).subscribe(
+    console.log(this.marked);
+    console.log(this.theCheckbox);
+    /*this.cartService.checkout(this.currentUser.account).subscribe(
       _ => {
         this.productInOrders = [];
       },
       error1 => {
         console.log('Checkout Cart Failed');
       });
-    this.router.navigate(['/']);
+    this.router.navigate(['/']);*/
   }
 
-
-  controlCheck() {
-    console.log(this.checked);
+  toggleVisibility(e) {
+    this.theCheckbox = e.target.checked;
+    this.marked = e.target.checked;
   }
+
 }

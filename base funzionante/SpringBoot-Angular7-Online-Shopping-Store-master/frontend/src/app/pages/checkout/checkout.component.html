@@ -3,7 +3,7 @@
   <form #form="ngForm" (ngSubmit)="checkout()">
     <div class="form-group">
       <label><b>Shipping address</b></label>
-      <input [(ngModel)]="client.address" type="text" class="form-control form-control-lg" id="address" name="address" placeholder="Shipping address" required #address="ngModel">
+      <input [(ngModel)]="client.address" type="text" class="form-control form-control-lg" id="address" name="address"  required #address="ngModel">
       <div  *ngIf="address.invalid && (address.dirty ||address.touched)">
         <div *ngIf="address.errors.required">
           Shipping address is required.
@@ -25,16 +25,23 @@
     </div>
 
 
-    <div class="form-group">
-      <div>
+
+      <label class="container">
+        <input type="checkbox" [(ngModel)]="theCheckbox"  data-md-icheck (change)="toggleVisibility($event)"/>
+        Checkbox is <span *ngIf="marked">checked</span><span *ngIf="!marked">unchecked</span>
+
+        <span class="checkmark"></span>
+      </label>
+      <div>And <b>ngModel</b> also works, it's value is <b>{{theCheckbox}}</b></div>
+    <!--  <div>
         <label> Would you like to use your Credits?</label> <br>
         <input type="checkbox" id="credit" name="credit" [(ngModel)]="checked.remembered">
         <label for="credit" class="inline">Use them</label>
       </div>
       <div *ngIf="checked">
         Phone is required.
-      </div>
-    </div>
+      </div>-->
+
 
 
 
@@ -47,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div class="form-group">
+<!--    <div class="form-group">
       <label><b>Address</b></label>
       <input [(ngModel)]="client.address" type="text" class="form-control form-control-lg" id="address" name="address" placeholder="Address" required #address="ngModel">
       <div  *ngIf="address.invalid && (address.dirty ||address.touched)">
@@ -55,7 +62,7 @@
           Address is required.
         </div>
       </div>
-    </div>
+    </div>-->
     <div class="form-group">
       <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!form.form.valid" >Sign Up</button>
     </div>
