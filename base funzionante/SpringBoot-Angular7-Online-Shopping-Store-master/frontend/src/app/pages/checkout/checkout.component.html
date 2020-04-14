@@ -16,13 +16,14 @@
 
     <div class="form-group">
       <label for="paymentMethod">Payment method</label>
-      <select class="custom-select custom-select-lg " id="paymentMethod" name="paymentMethod">
+      <select class="custom-select custom-select-lg " id="paymentMethod" name="paymentMethod" [(ngModel)]="paymentMethodType" required>
         <option [ngValue]=0>Mastercard</option>
         <option [ngValue]=1>Visa</option>
-        <option [ngValue]=2>PyPal</option>
-        <option [ngValue]=3>Pompini</option>
+        <option [ngValue]=2>PayPal</option>
+        <option [ngValue]=3>PostePay</option>
       </select>
     </div>
+
 
 
 
@@ -33,7 +34,7 @@
         <span> Check to use your credits!</span>
         <span class="checkmark"></span>
       </label>
-      <div *ngIf="marked"> Your total discount is € {{total | currency}} </div>
+      <div *ngIf="marked"> Your total discount is  {{discount | currency}} </div>
     </div>
 
 
@@ -49,15 +50,15 @@
         </div>
       </div>
     </div>
-<!--    <div class="form-group">
-      <label><b>Address</b></label>
-      <input [(ngModel)]="client.address" type="text" class="form-control form-control-lg" id="address" name="address" placeholder="Address" required #address="ngModel">
-      <div  *ngIf="address.invalid && (address.dirty ||address.touched)">
-        <div *ngIf="address.errors.required">
-          Address is required.
-        </div>
-      </div>
+
+    <!--Description-->
+  <!--  <div class="form-group">
+      <label>Description</label>
+      <textarea class="form-control form-control-lg text-left"
+                id="productDescription" name="productDescription"
+                placeholder="Description" [(ngModel)]="client.productDescription"></textarea>
     </div>-->
+
     <div class="form-group">
       <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!form.form.valid" >Sign Up</button>
     </div>

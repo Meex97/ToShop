@@ -10,6 +10,7 @@ import {CartService} from '../../services/cart.service';
 import {Client} from '../../models/Client';
 import {FormsModule, NgForm} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
+import {PaymentMethodsType} from '../../enum/PaymentMethodsType';
 
 
 @NgModule({
@@ -38,8 +39,10 @@ export class CheckoutComponent implements OnInit {
   marked = false;
   theCheckbox = false;
 
-  total = 0;
+  total: number;
   discount: number;
+
+  paymentMethodType: PaymentMethodsType;
 
 
   constructor(private userService: UserService,
@@ -60,21 +63,13 @@ export class CheckoutComponent implements OnInit {
       this.client = u;
     });
 
+    this.total = 0;
     this.cartService.getCart().subscribe(prods => {
       console.log(prods);
       this.productInOrders = prods;
-      this.total = prods.reduce((prev, cur) => prev + cur.count * cur.productPrice, 0);
+
     });
-
-
-    this.discount = this.client.credits / 10 ;
-
    // this.total = this.productInOrders.reduce((prev, cur) => prev + cur.count * cur.productPrice, 0);
-    console.log(this.total)
-
-    if (this.total < this.discount ) {
-      this.discount = this.total;
-    }
   }
 
   checkout() {
@@ -93,6 +88,12 @@ export class CheckoutComponent implements OnInit {
   toggleVisibility(e) {
     this.theCheckbox = e.target.checked;
     this.marked = e.target.checked;
+    this.discount = this.client.credits / 10 ;
+    this.total = this.productInOrders.reduce((prev, cur) => prev + cur.count * cur.productPrice, 0);
+    if (this.total < this.discount ) {
+      this.discount = this.total;
+    }
+    console.log(this.discount);
   }
 
 }
