@@ -38,13 +38,17 @@ export class CheckoutComponent implements OnInit {
   marked = false;
   theCheckbox = false;
 
+  total = 0;
+  discount: number;
+
 
   constructor(private userService: UserService,
               private productService: ProductService,
               private route: ActivatedRoute,
               private cartService: CartService,
               private router: Router) {
-     // this.checked = true;
+
+    // this.checked = true;
   }
 
   ngOnInit() {
@@ -55,6 +59,22 @@ export class CheckoutComponent implements OnInit {
     this.userService.getClient(this.currentUser.account).subscribe(u => {
       this.client = u;
     });
+
+    this.cartService.getCart().subscribe(prods => {
+      console.log(prods);
+      this.productInOrders = prods;
+      this.total = prods.reduce((prev, cur) => prev + cur.count * cur.productPrice, 0);
+    });
+
+
+    this.discount = this.client.credits / 10 ;
+
+   // this.total = this.productInOrders.reduce((prev, cur) => prev + cur.count * cur.productPrice, 0);
+    console.log(this.total)
+
+    if (this.total < this.discount ) {
+      this.discount = this.total;
+    }
   }
 
   checkout() {

@@ -26,21 +26,16 @@
 
 
 
+    <div class="form-group">
+      <label>Check to use your credits! </label>
       <label class="container">
         <input type="checkbox" [(ngModel)]="theCheckbox"  data-md-icheck (change)="toggleVisibility($event)"/>
-        Checkbox is <span *ngIf="marked">checked</span><span *ngIf="!marked">unchecked</span>
-
+        <span> Check to use your credits!</span>
         <span class="checkmark"></span>
       </label>
-      <div>And <b>ngModel</b> also works, it's value is <b>{{theCheckbox}}</b></div>
-    <!--  <div>
-        <label> Would you like to use your Credits?</label> <br>
-        <input type="checkbox" id="credit" name="credit" [(ngModel)]="checked.remembered">
-        <label for="credit" class="inline">Use them</label>
-      </div>
-      <div *ngIf="checked">
-        Phone is required.
-      </div>-->
+      <div *ngIf="marked"> Your total discount is € {{total | currency}} </div>
+    </div>
+
 
 
 
