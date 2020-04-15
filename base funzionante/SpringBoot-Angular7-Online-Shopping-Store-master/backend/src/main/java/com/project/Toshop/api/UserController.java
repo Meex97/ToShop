@@ -1,10 +1,7 @@
 package com.project.Toshop.api;
 
-import com.project.Toshop.entity.Client;
-import com.project.Toshop.entity.ProductInfo;
-import com.project.Toshop.entity.Supplier;
+import com.project.Toshop.entity.*;
 import com.project.Toshop.service.UserService;
-import com.project.Toshop.entity.User;
 import com.project.Toshop.security.JWT.JwtProvider;
 import com.project.Toshop.vo.request.LoginForm;
 import com.project.Toshop.vo.response.JwtResponse;
@@ -145,6 +142,22 @@ public class UserController {
         }
 
     }
+
+
+    @PutMapping("/updateCredits/{discount}/{id}")
+    public ResponseEntity accept(@PathVariable("discount") Double discount,
+                                 @PathVariable("id") Long id,
+                                 BindingResult bindingResult) {
+
+       // userService.updateCredits(discount.intValue() * -10, id);
+
+        System.out.println("updateCredtssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+
+        return ResponseEntity.ok(userService.updateCredits(discount.intValue() * -10, id));
+    }
+
+
+
 
 
 

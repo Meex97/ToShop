@@ -103,4 +103,12 @@ export class UserService {
             return of(result as T);
         };
     }
+
+
+  updateCredits(discount: number, id: number) {
+      console.log(discount, id);
+      const url = `${apiUrl}/updateCredits/${discount}/${id}`;
+      return this.http.put(url, discount);
+
+  }
 }

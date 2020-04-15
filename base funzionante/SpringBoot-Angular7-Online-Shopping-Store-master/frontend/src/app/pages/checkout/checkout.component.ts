@@ -44,6 +44,7 @@ export class CheckoutComponent implements OnInit {
 
   paymentMethodType: PaymentMethodsType;
 
+  difference: number;
 
   constructor(private userService: UserService,
               private productService: ProductService,
@@ -65,24 +66,27 @@ export class CheckoutComponent implements OnInit {
 
     this.total = 0;
     this.cartService.getCart().subscribe(prods => {
-      console.log(prods);
+      this.total = prods.reduce((prev, cur) => prev + cur.count * cur.productPrice, 0);
       this.productInOrders = prods;
 
     });
-   // this.total = this.productInOrders.reduce((prev, cur) => prev + cur.count * cur.productPrice, 0);
+
+
   }
 
-  checkout() {
-    console.log(this.marked);
-    console.log(this.theCheckbox);
-    /*this.cartService.checkout(this.currentUser.account).subscribe(
+  checkout(discount: number) {
+    this.cartService.checkout(this.currentUser.account).subscribe(
       _ => {
         this.productInOrders = [];
       },
       error1 => {
         console.log('Checkout Cart Failed');
       });
-    this.router.navigate(['/']);*/
+
+    if (this.marked) {
+      this.userService.updateCredits(this.discount, this.currentUser.id);
+    }
+    this.router.navigate(['/']);
   }
 
   toggleVisibility(e) {
@@ -93,7 +97,8 @@ export class CheckoutComponent implements OnInit {
     if (this.total < this.discount ) {
       this.discount = this.total;
     }
-    console.log(this.discount);
+
+    this.difference = this.total - this.discount;
   }
 
 }

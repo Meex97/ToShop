@@ -51,7 +51,7 @@ export class ProductService {
         );
     }
 
-    getDetail(id: String): Observable<ProductInfo> {
+    getDetail(id: string): Observable<ProductInfo> {
         const url = `${this.productUrl}/${id}`;
         return this.http.get<ProductInfo>(url).pipe(
             catchError(_ => {

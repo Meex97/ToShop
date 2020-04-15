@@ -1,6 +1,21 @@
 <h1 align="center" class="display-4 mb-5">Checkout</h1>
 <div style="width:40%; margin: 25px auto" >
   <form #form="ngForm" (ngSubmit)="checkout()">
+
+    <div class="form-group">
+      <h3>Total: {{total | currency}}</h3>
+      <label class="container">
+        <input type="checkbox" [(ngModel)]="theCheckbox"  data-md-icheck (change)="toggleVisibility($event)"/>
+        <span> Check to use your credits!</span>
+        <span class="checkmark"></span>
+      </label>
+      <div *ngIf="marked"> Your total discount is  {{discount | currency}} <br>
+        <h4>New Total: {{difference | currency}}</h4>
+      </div>
+
+    </div>
+
+
     <div class="form-group">
       <label><b>Shipping address</b></label>
       <input [(ngModel)]="client.address" type="text" class="form-control form-control-lg" id="address" name="address"  required #address="ngModel">
@@ -14,8 +29,15 @@
       </div>
     </div>
 
+    <!--Description-->
     <div class="form-group">
-      <label for="paymentMethod">Payment method</label>
+      <label><b>Delivery's notes</b></label>
+      <textarea class="form-control form-control-lg text-left"
+                placeholder="Description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="paymentMethod"><b>Payment method</b></label>
       <select class="custom-select custom-select-lg " id="paymentMethod" name="paymentMethod" [(ngModel)]="paymentMethodType" required>
         <option [ngValue]=0>Mastercard</option>
         <option [ngValue]=1>Visa</option>
@@ -24,21 +46,10 @@
       </select>
     </div>
 
-
-
-
     <div class="form-group">
-      <label>Check to use your credits! </label>
-      <label class="container">
-        <input type="checkbox" [(ngModel)]="theCheckbox"  data-md-icheck (change)="toggleVisibility($event)"/>
-        <span> Check to use your credits!</span>
-        <span class="checkmark"></span>
-      </label>
-      <div *ngIf="marked"> Your total discount is  {{discount | currency}} </div>
+      <label><b>Card's Number</b></label>
+      <input type="text" class="form-control form-control-lg" id="numberCard" name="numberCard" required>
     </div>
-
-
-
 
 
     <div class="form-group">
@@ -51,20 +62,8 @@
       </div>
     </div>
 
-    <!--Description-->
-  <!--  <div class="form-group">
-      <label>Description</label>
-      <textarea class="form-control form-control-lg text-left"
-                id="productDescription" name="productDescription"
-                placeholder="Description" [(ngModel)]="client.productDescription"></textarea>
-    </div>-->
-
     <div class="form-group">
-      <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!form.form.valid" >Sign Up</button>
-    </div>
-
-    <div>
-      <a [routerLink]="['/registerSupplier']" class="button fancy-button">Are you a Supplier?</a>
+      <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!form.form.valid" >Checkout</button>
     </div>
 
   </form>
