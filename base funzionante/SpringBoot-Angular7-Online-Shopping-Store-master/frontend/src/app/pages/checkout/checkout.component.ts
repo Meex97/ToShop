@@ -84,7 +84,8 @@ export class CheckoutComponent implements OnInit {
       });
 
     if (this.marked) {
-      this.userService.updateCredits(this.discount, this.currentUser.id);
+      this.userService.updateCredits(this.client, this.discount, this.currentUser.id).subscribe(u => {
+      }, _ => {});
     }
     this.router.navigate(['/']);
   }

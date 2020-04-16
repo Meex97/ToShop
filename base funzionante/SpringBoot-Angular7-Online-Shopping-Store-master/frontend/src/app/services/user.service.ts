@@ -105,10 +105,12 @@ export class UserService {
     }
 
 
-  updateCredits(discount: number, id: number) {
+  updateCredits(client: Client, discount: number, id: number): Observable<Client> {
       console.log(discount, id);
       const url = `${apiUrl}/updateCredits/${discount}/${id}`;
-      return this.http.put(url, discount);
+      return this.http.put<Client>(url, client);
 
   }
+
+
 }

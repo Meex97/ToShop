@@ -145,13 +145,10 @@ public class UserController {
 
 
     @PutMapping("/updateCredits/{discount}/{id}")
-    public ResponseEntity accept(@PathVariable("discount") Double discount,
-                                 @PathVariable("id") Long id,
-                                 BindingResult bindingResult) {
-
-       // userService.updateCredits(discount.intValue() * -10, id);
-
-        System.out.println("updateCredtssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+    public ResponseEntity<Client> updateCredits(@RequestBody Client client, Principal principal,
+                                        @PathVariable("discount") Double discount,
+                                        @PathVariable("id") Long id,
+                                        BindingResult bindingResult) {
 
         return ResponseEntity.ok(userService.updateCredits(discount.intValue() * -10, id));
     }

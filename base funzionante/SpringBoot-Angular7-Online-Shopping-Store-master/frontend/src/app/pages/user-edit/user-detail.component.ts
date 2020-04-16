@@ -30,9 +30,9 @@ export class UserDetailComponent implements OnInit {
         this.currentUser = client;
       });
 
-        const account = this.userService.currentUserValue.account;
+      const account = this.userService.currentUserValue.account;
 
-        this.userService.getClient(account).subscribe( u => {
+      this.userService.getClient(account).subscribe( u => {
             console.log(u);
             this.client = u;
             this.client.password = '';
@@ -49,7 +49,7 @@ export class UserDetailComponent implements OnInit {
                 url = '/seller';
             }
             this.router.navigateByUrl(url);
-        }, _ => {})
+        }, _ => {});
     }
 
 }

@@ -37,6 +37,7 @@ export class CreateProductsCustomerComponent implements OnInit {
   }
 
   onSubmit() {
+    this.product.productStatus = 0;
     this.add();
   }
 
