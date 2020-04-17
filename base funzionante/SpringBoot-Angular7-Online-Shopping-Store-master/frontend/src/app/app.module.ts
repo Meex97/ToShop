@@ -27,6 +27,8 @@ import { ProductListCustomerComponent } from './pages/product-list-customer/prod
 import { AdminListComponent } from './pages/admin-list/admin-list.component';
 import { UserEditSupplierComponent } from './pages/user-edit-supplier/user-edit-supplier.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { PaymentComponent } from './pages/payment/payment.component';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -52,6 +54,8 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     AdminListComponent,
     UserEditSupplierComponent,
     CheckoutComponent,
+    PaymentComponent,
+
 
   ],
     imports: [

@@ -17,8 +17,10 @@ import {CreateProductsComponent} from './pages/create-products/create-products.c
 import {CreateProductsCustomerComponent} from './pages/create-products-customer/create-products-customer.component';
 import {ProductListCustomerComponent} from './pages/product-list-customer/product-list-customer.component';
 import {AdminListComponent} from './pages/admin-list/admin-list.component';
-import {UserEditSupplierComponent} from "./pages/user-edit-supplier/user-edit-supplier.component";
-import {CheckoutComponent} from "./pages/checkout/checkout.component";
+import {UserEditSupplierComponent} from './pages/user-edit-supplier/user-edit-supplier.component';
+import {CheckoutComponent} from './pages/checkout/checkout.component';
+import {PaymentComponent} from './pages/payment/payment.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/product', pathMatch: 'full'},
@@ -93,6 +95,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {roles: [Role.Customer]}
   },
+  {
+    path: 'payment/payment-response',
+    component: PaymentComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.Customer]}
+  },
+
 
 ];
 
