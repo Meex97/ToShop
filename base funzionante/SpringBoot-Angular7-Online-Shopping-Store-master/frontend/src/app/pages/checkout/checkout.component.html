@@ -1,11 +1,11 @@
 <h1 align="center" class="display-4 mb-5">Checkout</h1>
 <div style="width:40%; margin: 25px auto" >
-  <form #form="ngForm" (ngSubmit)="checkout()">
+  <form #form="ngForm" >
 
     <div class="form-group">
       <h3>Total: {{total | currency}}</h3>
       <label class="container">
-        <input type="checkbox" [(ngModel)]="theCheckbox"  data-md-icheck (change)="toggleVisibility($event)"/>
+        <input type="checkbox" [(ngModel)]="theCheckbox" name="theCheckbox" data-md-icheck (change)="toggleVisibility($event)"/>
         <span> Check to use your credits!</span>
         <span class="checkmark"></span>
       </label>
@@ -37,23 +37,6 @@
     </div>
 
     <div class="form-group">
-      <label for="paymentMethod"><b>Payment method</b></label>
-      <select class="custom-select custom-select-lg " id="paymentMethod" name="paymentMethod" [(ngModel)]="paymentMethodType" required>
-        <option [ngValue]=0>Mastercard</option>
-        <option [ngValue]=1>Visa</option>
-        <option [ngValue]=2>PayPal</option>
-        <option [ngValue]=3>PostePay</option>
-      </select>
-    </div>
-
-
-    <div class="form-group">
-      <label><b>Card's Number</b></label>
-      <input type="text" class="form-control form-control-lg" id="numberCard" name="numberCard" required>
-    </div>
-
-
-    <div class="form-group">
       <label><b>Phone</b></label>
       <input [(ngModel)]="client.phone" type="text" class="form-control form-control-lg" id="phone" name="phone" placeholder="Phone" required #phone="ngModel" >
       <div  *ngIf="phone.invalid && (phone.dirty ||phone.touched)">
@@ -63,10 +46,28 @@
       </div>
     </div>
 
+    <form ngNoForm action="https://test.payu.in/_payment" name="payuform" method="POST" target="payment_popup" onsubmit="window.open('about:blank','payment_popup','width=900,height=500');" >
+
+    <textarea type="text" class="form-control" id="productInfo" name="productinfo" hidden [(ngModel)]="amo"></textarea>
+      <textarea type="text" class="form-control" id="firstname" name="firstname" hidden [(ngModel)]="currentUser.name"></textarea>
+      <textarea type="email" class="form-control" id="email" name="email" hidden [(ngModel)]="currentUser.account"></textarea>
+      <textarea type="number" class="form-control" id="phone2" name="phone2" hidden [(ngModel)]="currentUser.phone"></textarea>
+      <textarea type="number" class="form-control" id="amount" name="amount" hidden [(ngModel)]="amo"></textarea>
+      <textarea name="surl" id="surl" ng-model="surl" rows="2" cols="2" hidden [(ngModel)]="payuform.surl"></textarea>
+      <textarea name="furl" id="furl" ng-model="furl" rows="2" cols="2" hidden [(ngModel)]="payuform.furl"></textarea>
+      <textarea name="key" id="key" ng-model="key" rows="2" cols="2" hidden [(ngModel)]="payuform.key"></textarea>
+      <textarea name="hash" id="hash" ng-model="hash" rows="2" cols="2" hidden [(ngModel)]="payuform.hash"></textarea>
+      <textarea name="txnid" id="txnid" ng-model="txnid" rows="2" cols="2" hidden [(ngModel)]="payuform.txnid"></textarea>
+      <textarea name="service_provider" id="service_provider" rows="2" cols="2" hidden></textarea>
+
+      <button type="submit" class="btn" [disabled]="!form.form.valid" (click)="checkout()">Checkout</button><!--*ngIf="!disablePaymentButton"-->
+
+    </form>
+
     <div class="form-group">
-      <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!form.form.valid" >Checkout</button>
+      <button *ngIf="!disablePaymentButton" type="submit" class="btn btn-danger" [disabled]="!form.form.valid" (click)="ok()">Order received!</button>
     </div>
+
 
   </form>
 </div>
-

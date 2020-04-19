@@ -29,6 +29,7 @@ import { UserEditSupplierComponent } from './pages/user-edit-supplier/user-edit-
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import {RouterModule} from '@angular/router';
+import { CloseComponent } from './pages/close/close.component';
 
 
 
@@ -55,6 +56,7 @@ import {RouterModule} from '@angular/router';
     UserEditSupplierComponent,
     CheckoutComponent,
     PaymentComponent,
+    CloseComponent,
 
 
   ],

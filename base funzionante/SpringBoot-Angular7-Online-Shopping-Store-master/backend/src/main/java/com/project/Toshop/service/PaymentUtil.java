@@ -14,7 +14,7 @@ public class PaymentUtil {
 
     private static final String paymentMID = "4934580";
 
-    private static final String sUrl = "http://localhost:8080/payment/payment-response";
+    private static final String sUrl = "http://localhost:4200/payment/payment-response";
 
     private static final String fUrl = "http://localhost:8080/payment/payment-response";
 

@@ -11,6 +11,7 @@ import {Client} from '../../models/Client';
 import {FormsModule, NgForm} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {PaymentMethodsType} from '../../enum/PaymentMethodsType';
+import {HttpClient} from '@angular/common/http';
 
 
 @NgModule({
@@ -41,16 +42,22 @@ export class CheckoutComponent implements OnInit {
 
   total: number;
   discount: number;
+  amo: string;
+  wtf = true;
 
   paymentMethodType: PaymentMethodsType;
 
   difference: number;
 
+  public payuform: any = {};
+  disablePaymentButton = true;
+
   constructor(private userService: UserService,
               private productService: ProductService,
               private route: ActivatedRoute,
               private cartService: CartService,
-              private router: Router) {
+              private router: Router,
+              private http: HttpClient) {
 
     // this.checked = true;
   }
@@ -68,14 +75,18 @@ export class CheckoutComponent implements OnInit {
     this.cartService.getCart().subscribe(prods => {
       this.total = prods.reduce((prev, cur) => prev + cur.count * cur.productPrice, 0);
       this.productInOrders = prods;
+      this.difference = this.total;
 
     });
 
+    this.amo = '4';
+    this.confirmPayment();
 
   }
 
-  checkout(discount: number) {
-    this.cartService.checkout(this.currentUser.account).subscribe(
+  checkout() {
+    this.disablePaymentButton = false;
+    /*this.cartService.checkout(this.currentUser.account).subscribe(
       _ => {
         this.productInOrders = [];
       },
@@ -87,7 +98,29 @@ export class CheckoutComponent implements OnInit {
       this.userService.updateCredits(this.client, this.discount, this.currentUser.id).subscribe(u => {
       }, _ => {});
     }
-    this.router.navigate(['/']);
+    */
+  }
+
+  confirmPayment() {
+    const paymentPayload = {
+      email: this.currentUser.account,
+      name: this.currentUser.name,
+      phone: this.currentUser.phone,
+      productInfo: this.amo,
+      amount: this.amo
+    }
+    return this.http.post<any>('http://localhost:8080/api/payment/payment-details', paymentPayload).subscribe(
+      data => {
+        console.log(data);
+        this.payuform.txnid = data.txnId;
+        this.payuform.surl = data.sUrl;
+        this.payuform.furl = data.fUrl;
+        this.payuform.key = data.key;
+        this.payuform.hash = data.hash;
+        this.payuform.txnid = data.txnId;
+      }, error1 => {
+        console.log(error1);
+      });
   }
 
   toggleVisibility(e) {
@@ -102,4 +135,7 @@ export class CheckoutComponent implements OnInit {
     this.difference = this.total - this.discount;
   }
 
+  ok() {
+    this.router.navigate(['/']);
+  }
 }

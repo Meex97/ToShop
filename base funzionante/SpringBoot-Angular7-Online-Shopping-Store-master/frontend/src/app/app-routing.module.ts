@@ -20,6 +20,7 @@ import {AdminListComponent} from './pages/admin-list/admin-list.component';
 import {UserEditSupplierComponent} from './pages/user-edit-supplier/user-edit-supplier.component';
 import {CheckoutComponent} from './pages/checkout/checkout.component';
 import {PaymentComponent} from './pages/payment/payment.component';
+import {CloseComponent} from './pages/close/close.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path: 'order/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
   {path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
   {path: 'seller', redirectTo: 'seller/product', pathMatch: 'full'},
+  {path: 'payment/payment-response', component: CloseComponent},
   {
     path: 'seller/product',
     component: ProductListComponent,
@@ -96,7 +98,7 @@ const routes: Routes = [
     data: {roles: [Role.Customer]}
   },
   {
-    path: 'payment/payment-response',
+    path: 'payment',
     component: PaymentComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.Customer]}
