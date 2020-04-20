@@ -77,11 +77,11 @@ export class CheckoutComponent implements OnInit {
       this.productInOrders = prods;
       this.difference = this.total;
 
+      // this.amo = `${this.difference}`;
     });
 
     this.amo = '4';
     this.confirmPayment();
-
   }
 
   checkout() {
@@ -107,7 +107,7 @@ export class CheckoutComponent implements OnInit {
       name: this.currentUser.name,
       phone: this.currentUser.phone,
       productInfo: this.amo,
-      amount: this.amo
+      amount:  this.amo
     }
     return this.http.post<any>('http://localhost:8080/api/payment/payment-details', paymentPayload).subscribe(
       data => {
@@ -117,7 +117,7 @@ export class CheckoutComponent implements OnInit {
         this.payuform.furl = data.fUrl;
         this.payuform.key = data.key;
         this.payuform.hash = data.hash;
-        this.payuform.txnid = data.txnId;
+
       }, error1 => {
         console.log(error1);
       });

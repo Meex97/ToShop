@@ -49,6 +49,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     private void savePaymentDetail(PaymentDetail paymentDetail) {
         Payment payment = new Payment();
+        //payment.setAmount(Double.parseDouble(paymentDetail.getAmount()));
         payment.setAmount(Double.parseDouble(paymentDetail.getAmount()));
         payment.setEmail(paymentDetail.getEmail());
         payment.setName(paymentDetail.getName());

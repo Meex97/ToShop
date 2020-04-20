@@ -14,7 +14,7 @@ public class PaymentUtil {
 
     private static final String paymentMID = "4934580";
 
-    private static final String sUrl = "http://localhost:4200/payment/payment-response";
+    private static final String sUrl = "http://localhost:8080/payment/payment-response";
 
     private static final String fUrl = "http://localhost:8080/payment/payment-response";
 
@@ -27,6 +27,7 @@ public class PaymentUtil {
         String hash = "";
         //String otherPostParamSeq = "phone|surl|furl|lastname|curl|address1|address2|city|state|country|zipcode|pg";
         String hashSequence = "key|txnid|amount|productinfo|firstname|email|||||||||||";
+        //String hashSequence = "key|txnid||productinfo|firstname|email|||||||||||";
         hashString = hashSequence.concat(paymentSalt);
         hashString = hashString.replace("key", paymentKey);
         hashString = hashString.replace("txnid", txnId);
