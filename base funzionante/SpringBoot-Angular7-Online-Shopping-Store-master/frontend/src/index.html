@@ -6,8 +6,67 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+
+  <script src="https://apis.google.com/js/platform.js"></script>
+
+  <!-- Google SignIn library -->
+  <!--
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+  -->
+  <!-- Loading Auth2 library and initializing GoogleAuth object -->
+<!--  <script>
+    function start() {
+      gapi.load('auth2', function() {
+        auth2 = gapi.auth2.init({
+          client_id: '250026481236-1tcpsas73dkp7nlb1kurknvsojrjiem7.apps.googleusercontent.com',
+          // Scopes to request in addition to 'profile' and 'email'
+          //scope: 'additional_scope'
+        });
+      });
+    }            console.log("I'm in signInCallback")
+
+  </script>
+  -->
+  <!-- --------------------- -->
+
 </head>
 <body>
   <app-root></app-root>
+<!--
+  <script>
+    function signInCallback(authResult) {
+      if (authResult['code']) {
+
+        // Hide the sign-in button now that the user is authorized, for example:
+        $('#signinButton').attr('style', 'display: none');
+
+        // Send the code to the server
+        $.ajax({
+          type: 'POST',
+          url: 'http://localhost:8080/api/login',
+          // Always include an `X-Requested-With` header in every AJAX request,
+          // to protect against CSRF attacks.
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          contentType: 'application/octet-stream; charset=utf-8',
+          success: function(result) {
+            // Handle or verify the server response.
+            console.log("I'm in signInCallback")
+            return result
+          },
+          processData: false,
+          data: authResult['code']
+        });
+      } else {
+        // There was an error.
+        console.log("I'm in signInCallback else")
+        alert("Error Occured")
+      }
+    }
+  </script>
+-->
 </body>
 </html>

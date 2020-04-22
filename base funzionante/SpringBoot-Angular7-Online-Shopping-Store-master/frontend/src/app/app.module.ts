@@ -27,7 +27,6 @@ import { ProductListCustomerComponent } from './pages/product-list-customer/prod
 import { AdminListComponent } from './pages/admin-list/admin-list.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

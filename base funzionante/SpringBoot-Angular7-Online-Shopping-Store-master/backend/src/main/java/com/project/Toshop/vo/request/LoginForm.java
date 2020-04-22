@@ -3,17 +3,16 @@ package com.project.Toshop.vo.request;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
-/**
- * Created By Zhu Lin on 1/1/2019.
- */
 @Data
 public class LoginForm {
     @NotBlank
     private String username;
     @NotBlank
     private String password;
+    private String googleIdToken;
+
+    //TODO aggiungere googleIdToken
 
     public String getUsername() {
         return username;
@@ -29,5 +28,13 @@ public class LoginForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getGoogleIdToken() {
+        return googleIdToken;
+    }
+
+    public void setGoogleIdToken(String googleIdToken) {
+        this.googleIdToken = googleIdToken;
     }
 }
