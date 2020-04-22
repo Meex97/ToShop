@@ -2,6 +2,7 @@ package com.project.Toshop.api;
 
 
 import com.project.Toshop.entity.Cart;
+import com.project.Toshop.entity.Client;
 import com.project.Toshop.entity.ProductInOrder;
 import com.project.Toshop.entity.User;
 import com.project.Toshop.form.ItemForm;
@@ -80,10 +81,12 @@ public class CartController {
     }
 
 
-    @PostMapping("/checkout")
-    public ResponseEntity checkout(Principal principal) {
-        User user = userService.findOne(principal.getName());// Email as username
-        cartService.checkout(user);
+    @PostMapping("/checkout/{email}")
+    public ResponseEntity checkout(@PathVariable("email") String email,Principal principal) {
+        //User user = userService.findOne(principal.getName());// Email as username
+        Client client = userService.findOneClient(email);
+        // System.out.println(client);
+        cartService.checkout(client);
         return ResponseEntity.ok(null);
     }
 

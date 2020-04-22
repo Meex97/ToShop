@@ -12,6 +12,10 @@ export class ProductInfo {
     createTime: string;
     updateTime: string;
     idUtente: number;
+    nameUtente: string;
+
+
+    productimage: File;
 
 
 

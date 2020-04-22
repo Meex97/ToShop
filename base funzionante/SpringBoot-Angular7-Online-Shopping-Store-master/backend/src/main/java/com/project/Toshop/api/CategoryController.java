@@ -11,9 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Created By Zhu Lin on 3/10/2018.
- */
+
 @RestController
 @CrossOrigin
 public class CategoryController {

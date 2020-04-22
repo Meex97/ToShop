@@ -5,6 +5,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -18,7 +19,7 @@ import java.util.Date;
 @Data
 @DynamicUpdate
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ProductInfo implements Serializable {
+public class ProductInfo implements Serializable, Comparable<ProductInfo> {
     @Id
     // @GeneratedValue(strategy = GenerationType.AUTO)
     private String productId;
@@ -41,7 +42,13 @@ public class ProductInfo implements Serializable {
     private String productDescription;
 
 
-    private String productIcon;
+     private String productIcon;
+
+    @Lob
+    private byte[] productimage;
+
+
+
 
     /** 0: on-sale 1: off-sale */
 
@@ -60,6 +67,16 @@ public class ProductInfo implements Serializable {
 
     private Long idUtente;
 
+    private String nameUtente;
+
+    public String getNameUtente() {
+        return nameUtente;
+    }
+
+    public void setNameUtente(String nameUtente) {
+        this.nameUtente = nameUtente;
+    }
+
     public Long getIdUtente() {
         return idUtente;
     }
@@ -70,8 +87,6 @@ public class ProductInfo implements Serializable {
 
     public ProductInfo() {
     }
-
-
 
 
     public String getProductId() {
@@ -122,6 +137,14 @@ public class ProductInfo implements Serializable {
         this.productIcon = productIcon;
     }
 
+    public byte[] getProductimage() {
+        return productimage;
+    }
+
+    public void setProductimage(byte[] productimage) {
+        this.productimage = productimage;
+    }
+
     public Integer getProductStatus() {
         return productStatus;
     }
@@ -152,5 +175,10 @@ public class ProductInfo implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @Override
+    public int compareTo(ProductInfo o) {
+        return this.idUtente.intValue() - o.idUtente.intValue();
     }
 }

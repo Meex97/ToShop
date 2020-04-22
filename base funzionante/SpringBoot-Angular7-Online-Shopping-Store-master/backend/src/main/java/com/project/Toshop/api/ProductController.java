@@ -6,6 +6,7 @@ import com.project.Toshop.repository.ProductInfoRepository;
 import com.project.Toshop.service.CategoryService;
 import com.project.Toshop.service.ProductService;
 import com.project.Toshop.entity.ProductInfo;
+import com.project.Toshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,8 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +30,9 @@ public class ProductController {
     CategoryService categoryService;
     @Autowired
     ProductService productService;
+    @Autowired
+    UserService userService;
+
 
     ProductInfoRepository productInfoRepository;
 
@@ -47,13 +54,7 @@ public class ProductController {
         return productService.findAllAdmin(request);
     }
 
-   /* @GetMapping("/product/Supplier")
-    public Page<ProductInfo> findAllByIdUtente(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                                     @RequestParam(value = "size", defaultValue = "3") Integer size, Long idUtente) {
-        PageRequest request = PageRequest.of(page - 1, size);
-        return productService.findByIdUtente(request, idUtente);
-    }
-*/
+
 
    @GetMapping(value = "product/Supplier/{idUtente}")
    //@PathVariable permette di recuperare i valori inclusi nel URL associato alla richiesta
@@ -84,19 +85,7 @@ public class ProductController {
 
 
     @PostMapping("/seller/producto/new")
-    public ResponseEntity create(@Valid @RequestBody ProductInfo product/*, BindingResult bindingResult*/) {
-        // System.out.println("salvo scemo");
-        /*ProductInfo productIdExists = productService.findOne(product.getProductId());
-
-
-        if (productIdExists != null) {
-           bindingResult
-                    .rejectValue("productId", "error.product",
-                            "There is already a product with the code provided");
-        }
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body(bindingResult);
-        }*/
+    public ResponseEntity create(@Valid @RequestBody ProductInfo product) {
         return ResponseEntity.ok(productService.save(product));
     }
 
@@ -104,9 +93,10 @@ public class ProductController {
     @PostMapping("/client/producto/new")
     public ResponseEntity createBaratto(@Valid @RequestBody ProductClient product) {
 
-       // ProductClient productClient = new ProductClient(product);
+        // ProductClient productClient = new ProductClient(product);
         return ResponseEntity.ok(productService.save(product));
     }
+
 
     @PutMapping("/product/{id}/edit")
     public ResponseEntity edit(@PathVariable("id") String productId,
@@ -166,5 +156,18 @@ public class ProductController {
         product.setStatus(2);
         return ResponseEntity.ok(productService.updateProductAdmin(product));
     }
+
+    @PutMapping("/product/accept")
+    public ResponseEntity accept(@Valid @RequestBody ProductClient product,
+                                  BindingResult bindingResult) {
+
+        System.out.println("I LIKE IT");
+        userService.updateCredits(product.getProductPrice().intValue() * 10 * product.getProductStock(), product.getIdUtente());
+        product.setStatus(1);
+
+        return ResponseEntity.ok(productService.updateProductAdmin(product));
+    }
+
+
 
 }

@@ -68,23 +68,25 @@ export class UserService {
         return this.http.put<Client>(url, client);    }
 
     getClient(email: string): Observable<Client> {
-        const url = `${apiUrl}/profileClient/${email}`;
+        const url = `${apiUrl}/profile/${email}`;
         return this.http.get<Client>(url);
     }
 
-  signUpSupplier(supplier: Supplier): Observable<Supplier> {
-    const url = `${apiUrl}/registerSupplier`;
-    return this.http.post<Supplier>(url, supplier);
-  }
 
-  updateSupplier(supplier: Supplier): Observable<Supplier> {
-    const url = `${apiUrl}/profileSupplier`;
-    return this.http.put<Supplier>(url, supplier);    }
+    signUpSupplier(supplier: Supplier): Observable<Supplier> {
+      const url = `${apiUrl}/registerSupplier`;
+      return this.http.post<Supplier>(url, supplier);
+    }
 
-  getSupplier(email: string): Observable<Supplier> {
-    const url = `${apiUrl}/profileSupplier/${email}`;
-    return this.http.get<Supplier>(url);
-  }
+    updateSupplier(supplier: Supplier): Observable<Supplier> {
+      const url = `${apiUrl}/profileSupplier`;
+      return this.http.put<Supplier>(url, supplier);    }
+
+
+    getSupplier(email: string): Observable<Supplier> {
+      const url = `${apiUrl}/profile/${email}`;
+      return this.http.get<Supplier>(url);
+    }
 
     /**
      * Handle Http operation that failed.
@@ -101,4 +103,14 @@ export class UserService {
             return of(result as T);
         };
     }
+
+
+  updateCredits(client: Client, discount: number, id: number): Observable<Client> {
+      console.log(discount, id);
+      const url = `${apiUrl}/updateCredits/${discount}/${id}`;
+      return this.http.put<Client>(url, client);
+
+  }
+
+
 }

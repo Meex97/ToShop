@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {ProductService} from '../../services/product.service';
 import {ActivatedRoute} from '@angular/router';
@@ -8,13 +8,14 @@ import {ProductInfo} from '../../models/productInfo';
 import {Role} from '../../enum/Role';
 import {CategoryType} from '../../enum/CategoryType';
 import {ProductStatus} from '../../enum/ProductStatus';
+import {ProductClient} from "../../models/ProductClient";
 
 @Component({
   selector: 'app-product-list-customer',
   templateUrl: './product-list-customer.component.html',
   styleUrls: ['./product-list-customer.component.css']
 })
-export class ProductListCustomerComponent implements OnInit {
+export class ProductListCustomerComponent implements OnInit, OnDestroy {
 
 
   productId: number;
@@ -48,40 +49,24 @@ export class ProductListCustomerComponent implements OnInit {
   }
 
   update() {
-    if (this.route.snapshot.queryParamMap.get('page')) {
-      const currentPage = +this.route.snapshot.queryParamMap.get('page');
-      const size = +this.route.snapshot.queryParamMap.get('size');
-      // this.getProds(currentPage, size);
-      this.getProdsSupplier(/*currentPage, size*/);
-    } else {
-      // this.getProds();
-      this.getProdsSupplier();
-    }
+      this.getProdsCustomer();
   }
 
-  getProds(page: number = 1, size: number = 5) {
-    this.productService.getAllInPage(+page, +size)
+
+  getProdsCustomer() {
+    this.productService.getAllInPageSupplier(this.productId)
       .subscribe(page => {
         this.page = page;
       });
-
-  }
-
-  getProdsSupplier(/*page: number = 1, size: number = 5*/) {
-    this.productService.getAllInPageSupplier(/*+page, +size, */this.productId)
-      .subscribe(page => {
-        this.page = page;
-      });
-
   }
 
 
 
-  remove(productInfo: ProductInfo) {
+  remove(productClient: ProductClient) {
 
-    this.page = this.page.filter(e => e.productId !== productInfo.productId);
+    this.page = this.page.filter(e => e.productId !== productClient.productId);
 
-    this.productService.delelte(productInfo).subscribe(_ => {
+    this.productService.delelte(productClient).subscribe(_ => {
       },
       err => {
       });

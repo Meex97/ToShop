@@ -116,8 +116,8 @@ export class CartService {
     }
 
 
-    checkout(): Observable<any> {
-        const url = `${this.cartUrl}/checkout`;
+  checkout(email: string): Observable<any> {
+        const url = `${this.cartUrl}/checkout/${email}`;
         return this.http.post(url, null).pipe();
     }
 

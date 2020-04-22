@@ -10,8 +10,8 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.project.Toshop.entity.Client;
 import com.project.Toshop.entity.Supplier;
+import com.project.Toshop.entity.*;
 import com.project.Toshop.service.UserService;
-import com.project.Toshop.entity.User;
 import com.project.Toshop.security.JWT.JwtProvider;
 import com.project.Toshop.vo.request.LoginForm;
 import com.project.Toshop.vo.response.JwtResponse;
@@ -25,6 +25,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -56,7 +57,7 @@ public class UserController {
             String jwt = jwtProvider.generate(authentication);
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             User user = userService.findOne(userDetails.getUsername());
-            return ResponseEntity.ok(new JwtResponse(jwt, user.getEmail(), user.getName(), user.getRole(), user.getId()));
+            return ResponseEntity.ok(new JwtResponse(jwt, user.getEmail(), user.getName(), user.getRole(), user.getId(),user.getPassword(),user.getPhone()));
         } catch (AuthenticationException e) {
             try {
                 //this.metodo1(loginForm); funzionaaaa
@@ -124,14 +125,7 @@ public class UserController {
 
     //TODO inserire codice di gestione accesso con google nel metodo sopra o in un nuovo metodo??
 
-  /*  @PostMapping("/register")
-    public ResponseEntity<User> save(@RequestBody User user) {
-        try {
-            return ResponseEntity.ok(userService.save(user));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }*/
+
 
     @PostMapping("/registerClient")
     public ResponseEntity<?> save(@RequestBody Client client) {
@@ -151,9 +145,34 @@ public class UserController {
         }
     }
 
+    @PutMapping("/profileClient")
+    public ResponseEntity<Client> updateClient(@RequestBody Client client, Principal principal) {
+
+        try {
+            if (!principal.getName().equals(client.getEmail())) throw new IllegalArgumentException();
+            return ResponseEntity.ok(userService.updateClient(client));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("/profileSupplier")
+    public ResponseEntity<Supplier> updateSupplier(@RequestBody Supplier supplier, Principal principal) {
+
+        try {
+            if (!principal.getName().equals(supplier.getEmail())) throw new IllegalArgumentException();
+            return ResponseEntity.ok(userService.updateSupplier(supplier));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
     @PutMapping("/profile")
     public ResponseEntity<User> update(@RequestBody User user, Principal principal) {
 
+
+        System.out.println(user.toString());
         try {
             if (!principal.getName().equals(user.getEmail())) throw new IllegalArgumentException();
             return ResponseEntity.ok(userService.update(user));
@@ -161,6 +180,8 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+
 
     @GetMapping("/profile/{email}")
     public ResponseEntity<User> getProfile(@PathVariable("email") String email, Principal principal) {
@@ -171,4 +192,41 @@ public class UserController {
         }
 
     }
+
+    @GetMapping("/profileClient/{email}")
+    public ResponseEntity<Client> getProfileClient(@PathVariable("email") String email, Principal principal) {
+        if (principal.getName().equals(email)) {
+            return ResponseEntity.ok(userService.findOneClient(email));
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+
+    }
+
+    @GetMapping("/profileSupplier/{email}")
+    public ResponseEntity<Supplier> getProfileSupplier(@PathVariable("email") String email, Principal principal) {
+        if (principal.getName().equals(email)) {
+            return ResponseEntity.ok(userService.findOneSupplier(email));
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+
+    }
+
+
+    @PutMapping("/updateCredits/{discount}/{id}")
+    public ResponseEntity<Client> updateCredits(@RequestBody Client client, Principal principal,
+                                        @PathVariable("discount") Double discount,
+                                        @PathVariable("id") Long id,
+                                        BindingResult bindingResult) {
+
+        return ResponseEntity.ok(userService.updateCredits(discount.intValue() * -10, id));
+    }
+
+
+
+
+
+
+
 }

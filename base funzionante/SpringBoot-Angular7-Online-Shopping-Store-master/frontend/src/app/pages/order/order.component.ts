@@ -44,9 +44,15 @@ export class OrderComponent implements OnInit, OnDestroy {
             nextPage = +this.route.snapshot.queryParamMap.get('page');
             size = +this.route.snapshot.queryParamMap.get('size');
         }
-        this.orderService.getPage(nextPage, size).subscribe(page => this.page = page, _ => {
-            console.log("Get Orde Failed")
-        });
+        if (this.currentUser.role === Role.Employee) {
+          this.orderService.getOrderSupplier(this.currentUser.id) .subscribe(page => {
+            this.page = page;
+          });
+        } else {
+          this.orderService.getPage(nextPage, size).subscribe(page => this.page = page, _ => {
+            console.log('Get Orde Failed');
+          });
+        }
     }
 
 

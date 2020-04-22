@@ -5,6 +5,8 @@ export class JwtResponse {
     name: string;
     role: string;
     id: number;
+    password: string;
+    phone: string;
 
 }
 

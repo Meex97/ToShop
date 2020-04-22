@@ -35,11 +35,12 @@ export class CreateProductsComponent implements OnInit {
       this.currentUser = supplier;
     });
     this.product.idUtente = this.currentUser.id;
-    console.log(this.product.idUtente);
+    this.product.nameUtente = this.currentUser.name;
   }
 
   onSubmit() {
-      this.add();
+    this.product.productStatus = 0;
+    this.add();
   }
 
 

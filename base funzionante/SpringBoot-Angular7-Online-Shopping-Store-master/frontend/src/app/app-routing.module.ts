@@ -17,6 +17,11 @@ import {CreateProductsComponent} from './pages/create-products/create-products.c
 import {CreateProductsCustomerComponent} from './pages/create-products-customer/create-products-customer.component';
 import {ProductListCustomerComponent} from './pages/product-list-customer/product-list-customer.component';
 import {AdminListComponent} from './pages/admin-list/admin-list.component';
+import {UserEditSupplierComponent} from './pages/user-edit-supplier/user-edit-supplier.component';
+import {CheckoutComponent} from './pages/checkout/checkout.component';
+import {PaymentComponent} from './pages/payment/payment.component';
+import {CloseComponent} from './pages/close/close.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/product', pathMatch: 'full'},
@@ -33,6 +38,7 @@ const routes: Routes = [
   {path: 'order/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
   {path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
   {path: 'seller', redirectTo: 'seller/product', pathMatch: 'full'},
+  {path: 'payment/payment-response', component: CloseComponent},
   {
     path: 'seller/product',
     component: ProductListComponent,
@@ -48,6 +54,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserDetailComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profileSupplier',
+    component: UserEditSupplierComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -80,6 +91,19 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {roles: [Role.Manager]}
   },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.Customer]}
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.Customer]}
+  },
+
 
 ];
 

@@ -3,6 +3,9 @@ import {Observable} from "rxjs";
 import {OrderService} from "../../services/order.service";
 import {Order} from "../../models/Order";
 import {ActivatedRoute} from "@angular/router";
+import {JwtResponse} from "../../response/JwtResponse";
+import {UserService} from "../../services/user.service";
+import {Role} from '../../enum/Role';
 
 @Component({
     selector: 'app-order-detail',
@@ -12,12 +15,18 @@ import {ActivatedRoute} from "@angular/router";
 export class OrderDetailComponent implements OnInit {
 
     constructor(private orderService: OrderService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private userService: UserService) {
     }
 
     order$: Observable<Order>;
 
+  Role = Role;
+  currentUser: JwtResponse;
     ngOnInit() {
+      this.userService.currentUser.subscribe(user => {
+        this.currentUser = user;
+        });
         // this.items$ = this.route.paramMap.pipe(
         //     map(paramMap =>paramMap.get('id')),
         //     switchMap((id:string) => this.orderService.show(id))

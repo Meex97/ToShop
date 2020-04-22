@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {ProductInfo} from '../models/productInfo';
@@ -51,7 +51,7 @@ export class ProductService {
         );
     }
 
-    getDetail(id: String): Observable<ProductInfo> {
+    getDetail(id: string): Observable<ProductInfo> {
         const url = `${this.productUrl}/${id}`;
         return this.http.get<ProductInfo>(url).pipe(
             catchError(_ => {
@@ -76,15 +76,15 @@ export class ProductService {
 
     }
 
-    createProductCustomer(productInfo: ProductInfo): Observable<ProductInfo> {
+  createProductCustomer(productInfo: ProductInfo): Observable<ProductInfo> {
 
-      const url = `${apiUrl}/client/producto/new`;
-      return this.http.post<ProductInfo>(url, productInfo);
+    const url = `${apiUrl}/client/producto/new`;
+    return this.http.post<ProductInfo>(url, productInfo);
 
-   }
+  }
 
 
-    delelte(productInfo: ProductInfo): Observable<any> {
+    delelte(productInfo: any): Observable<any> {
         const url = `${apiUrl}/seller/product/${productInfo.productId}/delete`;
         console.log(productInfo.productId);
         // return this.http.delete(url);
@@ -116,9 +116,12 @@ export class ProductService {
 
   declineProd(productClient: ProductClient): Observable<ProductClient> {
     const url = `${apiUrl}/product/decline`;
-    // return this.http.delete(url);
     return this.http.put<ProductClient>(url, productClient);
   }
 
 
+  acceptProd(productClient: ProductClient) {
+    const url = `${apiUrl}/product/accept`;
+    return this.http.put<ProductClient>(url, productClient);
+  }
 }

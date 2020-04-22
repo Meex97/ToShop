@@ -7,6 +7,7 @@
         <th scope="col">Description</th>
         <th scope="col">Price</th>
         <th scope="col">Quantity</th>
+        <th *ngIf="currentUser.role == Role.Customer" scope="col">Seller</th>
         <th scope="col">Subtotal</th>
 
     </tr>
@@ -21,6 +22,7 @@
         <td class="align-middle">{{item.productDescription}}</td>
         <td class="align-middle">{{item.productPrice | currency}}</td>
         <td class="align-middle">{{item.count}}</td>
+        <td *ngIf="currentUser.role == Role.Customer" class="align-middle">{{item.nameUtente}}</td>
         <td class="align-middle">{{(item.productPrice * item.count | currency)}}</td>
     </tr>
     </tbody>

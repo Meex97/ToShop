@@ -15,7 +15,7 @@ import java.util.Objects;
 @Entity
 @Data
 @NoArgsConstructor
-public class ProductInOrder {
+public class ProductInOrder implements  Comparable<ProductInOrder>{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -50,6 +50,7 @@ public class ProductInOrder {
      * 小图.
      */
     private String productIcon;
+    private byte[] productimage;
 
     /**
      * 类目编号.
@@ -72,19 +73,29 @@ public class ProductInOrder {
     @Min(1)
     private Integer count;
 
+    private String nameUtente;
+
+    private Long idUtente;
+
+
 
     public ProductInOrder(ProductInfo productInfo, Integer quantity) {
         this.productId = productInfo.getProductId();
         this.productName = productInfo.getProductName();
         this.productDescription = productInfo.getProductDescription();
-        this.productIcon = productInfo.getProductIcon();
+        //this.productIcon = productInfo.getProductIcon();
+        this.productimage = productInfo.getProductimage();
         this.categoryType = productInfo.getCategoryType();
         this.productPrice = productInfo.getProductPrice();
         this.productStock = productInfo.getProductStock();
         this.count = quantity;
+        //Aggiunto
+        this.nameUtente= productInfo.getNameUtente();
+        this.idUtente = productInfo.getIdUtente();
+
     }
 
-    @Override
+   /* @Override
     public String toString() {
         return "ProductInOrder{" +
                 "id=" + id +
@@ -97,7 +108,16 @@ public class ProductInOrder {
                 ", productStock=" + productStock +
                 ", count=" + count +
                 '}';
-    }
+    }*/
+   public String toString() {
+       return "ProductInOrder{" +
+               "id=" + id +
+               ", productId='" + productId + '\'' +
+               ", productName='" + productName + '\'' +
+               ", idUtente='" + idUtente + '\'' +
+
+               '}';
+   }
 
     @Override
     public boolean equals(Object o) {
@@ -110,14 +130,17 @@ public class ProductInOrder {
                 Objects.equals(productName, that.productName) &&
                 Objects.equals(productDescription, that.productDescription) &&
                 Objects.equals(productIcon, that.productIcon) &&
+               // Objects.equals(productimage, that.productimage) &&
                 Objects.equals(categoryType, that.categoryType) &&
+                //Aggiunto
+                Objects.equals(nameUtente, that.nameUtente) &&
                 Objects.equals(productPrice, that.productPrice);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(super.hashCode(), id, productId, productName, productDescription, productIcon, categoryType, productPrice);
+        return Objects.hash(super.hashCode(), id, productId, productName, productDescription, productimage, categoryType, productPrice);
     }
 
     public Long getId() {
@@ -176,6 +199,14 @@ public class ProductInOrder {
         this.productIcon = productIcon;
     }
 
+    public byte[] getProductimage() {
+        return productimage;
+    }
+
+    public void setProductimage(byte[] productimage) {
+        this.productimage = productimage;
+    }
+
     public Integer getCategoryType() {
         return categoryType;
     }
@@ -206,5 +237,26 @@ public class ProductInOrder {
 
     public void setCount(Integer count) {
         this.count = count;
+    }
+
+    public String getNameUtente() {
+        return nameUtente;
+    }
+
+    public void setNameUtente(String nameUtente) {
+        this.nameUtente = nameUtente;
+    }
+
+    public Long getIdUtente() {
+        return idUtente;
+    }
+
+    public void setIdUtente(Long idUtente) {
+        this.idUtente = idUtente;
+    }
+
+    @Override
+    public int compareTo(ProductInOrder o) {
+        return this.idUtente.intValue() - o.idUtente.intValue();
     }
 }
