@@ -27,6 +27,12 @@ export class CreateProductsCustomerComponent implements OnInit {
 
   productId: string;
 
+  // AGGIUNTI DA ME
+  fileToUpload: File = null;
+  showAdd = false;
+  auth: string;
+  imageUrl =  '/assets/img/noimage.png';
+  // FINE
 
   ngOnInit() {
       this.userService.currentUser.subscribe(client => {
@@ -34,6 +40,16 @@ export class CreateProductsCustomerComponent implements OnInit {
       });
       this.product.idUtente = this.currentUser.id;
       this.product.nameUtente = this.currentUser.name;
+  }
+
+  handleFileInput(file: FileList) {
+    this.product.productimage = file.item(0);
+    // ho sostituito var con const
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+    };
+    reader.readAsDataURL(this.product.productimage);
   }
 
   onSubmit() {

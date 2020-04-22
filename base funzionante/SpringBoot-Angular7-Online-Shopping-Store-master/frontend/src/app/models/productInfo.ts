@@ -15,6 +15,9 @@ export class ProductInfo {
     nameUtente: string;
 
 
+    productimage: File;
+
+
 
     constructor(productInOrder?: ProductInOrder) {
         if (productInOrder) {

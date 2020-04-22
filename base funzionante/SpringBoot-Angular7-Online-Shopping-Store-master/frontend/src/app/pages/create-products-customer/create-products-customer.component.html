@@ -11,11 +11,29 @@
     </div>
 
     <!--Photo-->
-    <div class="form-group">
+   <div class="form-group">
       <label>Photo Link</label>
       <input [(ngModel)]="product.productIcon" type="text" class="form-control form-control-lg" id="productIcon"
              name="productIcon" placeholder="Photo">
     </div>
+
+
+
+    <!-- UPLOAD IMAGE -->
+   <!-- <div class="form-group">
+    <input type="file" class="form-control" placeholder="Product Picture" #image
+           accept="image/*" name="image"
+           (change)="handleFileInput($event.target.files)">
+    </div>
+    <div class="col-6">
+      <h4 class="text-center">Image preview</h4>
+      <img [src]="imageUrl" style="width:400px;height: 300px;">
+
+    </div>
+
+-->
+
+
 
     <!--Name-->
     <div class="form-group">

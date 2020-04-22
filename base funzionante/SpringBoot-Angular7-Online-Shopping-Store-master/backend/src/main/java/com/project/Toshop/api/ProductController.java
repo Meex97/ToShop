@@ -14,8 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,9 +93,10 @@ public class ProductController {
     @PostMapping("/client/producto/new")
     public ResponseEntity createBaratto(@Valid @RequestBody ProductClient product) {
 
-       // ProductClient productClient = new ProductClient(product);
+        // ProductClient productClient = new ProductClient(product);
         return ResponseEntity.ok(productService.save(product));
     }
+
 
     @PutMapping("/product/{id}/edit")
     public ResponseEntity edit(@PathVariable("id") String productId,

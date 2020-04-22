@@ -50,6 +50,7 @@ public class ProductInOrder implements  Comparable<ProductInOrder>{
      * 小图.
      */
     private String productIcon;
+    private byte[] productimage;
 
     /**
      * 类目编号.
@@ -82,7 +83,8 @@ public class ProductInOrder implements  Comparable<ProductInOrder>{
         this.productId = productInfo.getProductId();
         this.productName = productInfo.getProductName();
         this.productDescription = productInfo.getProductDescription();
-        this.productIcon = productInfo.getProductIcon();
+        //this.productIcon = productInfo.getProductIcon();
+        this.productimage = productInfo.getProductimage();
         this.categoryType = productInfo.getCategoryType();
         this.productPrice = productInfo.getProductPrice();
         this.productStock = productInfo.getProductStock();
@@ -128,6 +130,7 @@ public class ProductInOrder implements  Comparable<ProductInOrder>{
                 Objects.equals(productName, that.productName) &&
                 Objects.equals(productDescription, that.productDescription) &&
                 Objects.equals(productIcon, that.productIcon) &&
+               // Objects.equals(productimage, that.productimage) &&
                 Objects.equals(categoryType, that.categoryType) &&
                 //Aggiunto
                 Objects.equals(nameUtente, that.nameUtente) &&
@@ -137,7 +140,7 @@ public class ProductInOrder implements  Comparable<ProductInOrder>{
     @Override
     public int hashCode() {
 
-        return Objects.hash(super.hashCode(), id, productId, productName, productDescription, productIcon, categoryType, productPrice);
+        return Objects.hash(super.hashCode(), id, productId, productName, productDescription, productimage, categoryType, productPrice);
     }
 
     public Long getId() {
@@ -194,6 +197,14 @@ public class ProductInOrder implements  Comparable<ProductInOrder>{
 
     public void setProductIcon(String productIcon) {
         this.productIcon = productIcon;
+    }
+
+    public byte[] getProductimage() {
+        return productimage;
+    }
+
+    public void setProductimage(byte[] productimage) {
+        this.productimage = productimage;
     }
 
     public Integer getCategoryType() {

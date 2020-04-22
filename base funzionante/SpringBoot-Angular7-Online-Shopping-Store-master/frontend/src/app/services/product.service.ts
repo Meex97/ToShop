@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {ProductInfo} from '../models/productInfo';
@@ -76,12 +76,12 @@ export class ProductService {
 
     }
 
-    createProductCustomer(productInfo: ProductInfo): Observable<ProductInfo> {
+  createProductCustomer(productInfo: ProductInfo): Observable<ProductInfo> {
 
-      const url = `${apiUrl}/client/producto/new`;
-      return this.http.post<ProductInfo>(url, productInfo);
+    const url = `${apiUrl}/client/producto/new`;
+    return this.http.post<ProductInfo>(url, productInfo);
 
-   }
+  }
 
 
     delelte(productInfo: any): Observable<any> {
