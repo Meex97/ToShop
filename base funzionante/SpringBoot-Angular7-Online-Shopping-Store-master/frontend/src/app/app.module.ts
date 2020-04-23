@@ -32,7 +32,6 @@ import {RouterModule} from '@angular/router';
 import { CloseComponent } from './pages/close/close.component';
 import {FileUploadModule} from 'ng2-file-upload';
 
-
 @NgModule({
   declarations: [
     AppComponent,
