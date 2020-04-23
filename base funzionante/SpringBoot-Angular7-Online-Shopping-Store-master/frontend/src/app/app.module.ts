@@ -30,7 +30,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import {RouterModule} from '@angular/router';
 import { CloseComponent } from './pages/close/close.component';
-
+import {FileUploadModule} from 'ng2-file-upload';
 
 
 @NgModule({
@@ -60,14 +60,15 @@ import { CloseComponent } from './pages/close/close.component';
 
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        ReactiveFormsModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FileUploadModule,
 
-    ],
+  ],
   providers: [CookieService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],

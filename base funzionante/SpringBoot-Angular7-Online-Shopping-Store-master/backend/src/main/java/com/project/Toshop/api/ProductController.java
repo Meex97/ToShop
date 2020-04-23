@@ -1,12 +1,12 @@
 package com.project.Toshop.api;
 
-import com.project.Toshop.entity.Client;
 import com.project.Toshop.entity.ProductClient;
 import com.project.Toshop.repository.ProductInfoRepository;
 import com.project.Toshop.service.CategoryService;
 import com.project.Toshop.service.ProductService;
 import com.project.Toshop.entity.ProductInfo;
 import com.project.Toshop.service.UserService;
+import com.project.Toshop.service.impl.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +35,26 @@ public class ProductController {
 
     ProductInfoRepository productInfoRepository;
 
+
+    private  FileService fileService;
+
+    @Autowired
+    public void FileController(FileService fileService) {
+        this.fileService = fileService;
+    }
+
+    @PostMapping("/api/files")
+    @ResponseStatus(HttpStatus.OK)
+    public void handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+        fileService.storeFile(file);
+    }
+
+
+
+
     /**
      * Show All Categories
-     */
+     **/
 
     @GetMapping("/product")
     public Page<ProductInfo> findAll(@RequestParam(value = "page", defaultValue = "1") Integer page,

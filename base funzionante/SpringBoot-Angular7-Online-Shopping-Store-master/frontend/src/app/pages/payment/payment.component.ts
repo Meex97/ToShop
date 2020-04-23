@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {FileUploader} from 'ng2-file-upload';
+import {apiUrl} from '../../../environments/environment';
+import {ProductInfo} from '../../models/productInfo';
 
 @Component({
   selector: 'app-payment',
@@ -8,37 +11,27 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PaymentComponent implements OnInit {
 
-  public payuform: any = {};
-  disablePaymentButton = true;
+  // @ViewChild('fileInput') fileInput: ElementRef;
+  @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
+  uploader: FileUploader;
+  isDropOver: boolean;
 
-  constructor(private http: HttpClient) {
+  ngOnInit(): void {
+    const headers = [{name: 'Accept', value: 'application/json'}];
+    // const url = `${apiUrl}/seller/product/${productInfo.productId}/delete`;
+    this.uploader = new FileUploader({url: `${apiUrl}/api/files`, autoUpload: true, headers});
+
+    this.uploader.onCompleteAll = () => alert('File uploaded');
+
+    // const url = `${apiUrl}/files`;
+    // return this.http.post<ProductInfo>(url, productInfo);
   }
 
-  confirmPayment() {
-    const paymentPayload = {
-      email: this.payuform.email,
-      name: this.payuform.firstname,
-      phone: this.payuform.phone,
-      productInfo: this.payuform.productinfo,
-      amount: this.payuform.amount
-    }
-    return this.http.post<any>('http://localhost:8080/api/payment/payment-details', paymentPayload).subscribe(
-      data => {
-        console.log(data);
-        this.payuform.txnid = data.txnId;
-        this.payuform.surl = data.sUrl;
-        this.payuform.furl = data.fUrl;
-        this.payuform.key = data.key;
-        this.payuform.hash = data.hash;
-        this.payuform.txnid = data.txnId;
-        this.disablePaymentButton = false;
-      }, error1 => {
-        console.log(error1);
-      });
+  fileOverAnother(e: any): void {
+    this.isDropOver = e;
   }
 
-  ngOnInit() {
+  fileClicked() {
+    this.fileInput.nativeElement.click();
   }
-
-
 }
