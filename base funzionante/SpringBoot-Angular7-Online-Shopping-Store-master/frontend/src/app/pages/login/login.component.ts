@@ -3,6 +3,7 @@ import {UserService} from '../../services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Role} from '../../enum/Role';
 import * as CryptoJS from 'crypto-js';
+import {Client} from '../../models/Client';
 
 
 declare const gapi: any;
@@ -24,17 +25,29 @@ export class LoginComponent implements OnInit {
         remembered: false
     };
 
+
     returnUrl = '/';
+
+  encryptMode: boolean;
+  textToConvert: string;
+  password: string;
+  conversionOutput: string;
+  customer: Client;
+
 
   @ViewChild('loginRef', {static: true}) loginElement: ElementRef;
 
       public auth2: any;
       public encryptSecretKey: CryptoKey;
+      private profile: gapi.auth2.BasicProfile;
+      private x: boolean;
 
     constructor(private userService: UserService,
                 private router: Router,
                 private route: ActivatedRoute,
                 private element: ElementRef) {
+
+      this.encryptMode = true;
     }
 
     ngOnInit() {
@@ -43,6 +56,9 @@ export class LoginComponent implements OnInit {
         this.returnUrl = params.get('returnUrl');
 //        this.googleInit();
         this.googleSDK();
+
+        this.customer = new Client();
+        this.x = true;
     }
 
     onSubmit() {
@@ -63,46 +79,6 @@ export class LoginComponent implements OnInit {
         );
     }
 
-/*
-  public googleInit() {
-    const that = this;
-    gapi.load('auth2', function() {
-      that.auth2 = gapi.auth2.init({
-        client_id: '250026481236-1tcpsas73dkp7nlb1kurknvsojrjiem7.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin',
-        scope: [
-          'profile',
-          'email',
-          'https://www.googleapis.com/auth/plus.me',
-          'https://www.googleapis.com/auth/contacts.readonly',
-          'https://www.googleapis.com/auth/admin.directory.user.readonly'
-        ].join(' ')
-      });
-      that.attachSignin(that.element.nativeElement.firstChild);
-//      that.attachSignin(ElementRef);
-    });
-  }
-  public attachSignin(element) {
-    const that = this;
-    this.auth2.attachClickHandler(element, {},
-      // tslint:disable-next-line:only-arrow-functions
-      function(googleUser) {
-
-        const profile = googleUser.getBasicProfile();
-        console.log('Token || ' +     googleUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-        // YOUR CODE HERE
-
-
-        // tslint:disable-next-line:only-arrow-functions
-      }, function(error) {
-        console.log(JSON.stringify(error, undefined, 2));
-      });
-  }
-*/
 
   googleSDK() {
     window['googleSDKLoaded'] = () => {
@@ -126,47 +102,44 @@ export class LoginComponent implements OnInit {
 
   }
 
+
   prepareLoginButton() {
 
-    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
-      (googleUser) => {
+    this.auth2.attachClickHandler(this.loginElement.nativeElement, {}, (googleUser) => {
+      this.profile = googleUser.getBasicProfile();
+      this.model.googleIdToken = googleUser.getAuthResponse().id_token;
 
-        const profile = googleUser.getBasicProfile();
-        console.log('Token || ' + googleUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-        this.userService.getClient(profile.getEmail()).subscribe();
+      console.log('ID: ' + this.profile.getId());
+      console.log('Name: ' + this.profile.getName());
+      console.log('Image URL: ' + this.profile.getImageUrl());
+      console.log('Email: ' + this.profile.getEmail());
 
-        this.userService.getClient(profile.getEmail()).subscribe( u => {
-          this.encryptData(profile.getEmail());
-          this.fillLoginFields(u.email, this.encryptSecretKey);
-
-          console.log('Cripted Pass using crypto.getRandomValues(): ' + window.btoa(profile.getEmail()));
-        }, e => {
-          this.encryptData(profile.getEmail());
-          console.log(this.encryptSecretKey);
-
-
-
-
-
-          console.log('Cripted Pass: error');
-        });
-
-        // YOUR CODE HERE
-/*
-        this.model.username = profile.getEmail();
-        this.model.password = '123';
-*/
-        this.model.googleIdToken = googleUser.getAuthResponse().id_token;
-        console.log('su: ' + this.model.googleIdToken);
-        this.onSubmit();
-
-      }, (error) => {
-        alert(JSON.stringify(error, undefined, 2));
+      this.userService.getClient(this.profile.getEmail()).subscribe( u => {
+        // this.encryptData(profile.getEmail());
+        console.log('login');
+      }, e => {
+        this.x = false;
+        // this.encryptData(this.profile.getEmail());
+        //  console.log(this.conversionOutput);
       });
+
+
+      if (!this.x) {
+        this.customer.createClient(this.profile.getEmail(), this.profile.getGivenName(),
+          this.profile.getFamilyName(), this.profile.getEmail());
+        console.log(this.customer.name);
+
+        this.userService.signUpClient(this.customer).subscribe(u => {
+            console.log('singup');
+          },
+          e => {});
+      }
+      this.fillLoginFields(this.profile.getEmail(), this.profile.getEmail());
+
+    });
+
+
+    // console.log('su: ' + this.model.googleIdToken);
 
   }
 
@@ -179,12 +152,20 @@ export class LoginComponent implements OnInit {
 
   encryptData(data) {
 
-    try {
-      return CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
-    } catch (e) {
-      console.log(e);
+    if (data.trim() === '' ) {
+      this.conversionOutput = 'Please fill the textboxes.';
+      return;
+    } else {
+      if (this.encryptMode) {
+        this.conversionOutput = CryptoJS.AES.encrypt(data.trim(), data.trim()).toString();
+      } else {
+        this.conversionOutput = CryptoJS.AES.decrypt(data.trim(), data.trim()).toString(CryptoJS.enc.Utf8);
+      }
     }
 
+
   }
+
+
 
 }

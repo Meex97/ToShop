@@ -21,8 +21,9 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+
 @DependsOn("passwordEncoder")
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     JwtFilter jwtFilter;
@@ -50,6 +51,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder);
     }
+
+
 
     @Bean
     @Override

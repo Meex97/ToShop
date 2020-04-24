@@ -20,11 +20,20 @@ export class Client {
 
      credits: number;
 
-    constructor(){
+    constructor() {
         this.active = true;
         // this.role = 'ROLE_CLIENT';
         this.role = Role.Customer;
         this.credits = 0;
+    }
+
+    createClient(email: string, name: string, surname: string, password: string ) {
+      this.email = email;
+      this.name = name;
+      this.surname = surname;
+      this.password = password;
+      this.address = ' ';
+      this.phone = ' ';
     }
 
 }
