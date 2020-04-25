@@ -13,18 +13,18 @@
 
 
   <table style="width: 100%;" id="sampleLoginTable">
-        <tr>
-            <td><a
-                    (click)="fillLoginFields('customer1@email.com','123')"
-                    href="javascript:void(0)">customer1</a></td>
-            <td><a
-                    (click)="fillLoginFields('employee1@email.com','123')"
-                    href="javascript:void(0)">employee1</a></td>
-            <td><a
-                    (click)="fillLoginFields('manager1@email.com','123')"
-                    href="javascript:void(0)">manager1</a></td>
-        </tr>
-    </table>
+    <tr>
+        <td><a
+          (click)="fillLoginFields('customer1@email.com','123')"
+          href="javascript:void(0)">customer1</a></td>
+        <td><a
+          (click)="fillLoginFields('employee1@email.com','123')"
+          href="javascript:void(0)">employee1</a></td>
+        <td><a
+          (click)="fillLoginFields('manager1@email.com','123')"
+          href="javascript:void(0)">manager1</a></td>
+    </tr>
+  </table>
   <form #form='ngForm' (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Email address</label>
@@ -56,32 +56,16 @@
       <button [disabled]="!form.form.valid" type="submit" class="btn btn-lg btn-primary btn-block">Sign In</button>
     </div>
 
+  </form>
 
-    <div class="container mt-5">
-      <div class="row mt-5">
-        <div class="col-md-4 mt-2 m-auto ">
-          <button class="loginBtn loginBtn--google" #loginRef>
-            Login with Google
-          </button>
-        </div>
+  <div class="container mt-5">
+    <div class="row mt-5">
+      <div class="col-md-4 mt-2 m-auto ">
+        <button class="loginBtn loginBtn--google" #loginRef (click)="ok()">
+          Login with Google
+        </button>
       </div>
     </div>
-
-    <!-- Google SignIn button -->
-    <!--        <a  style="display: block" (click)="onSignIn(googleUser)" routerLink="./">Sign In with Google</a> -->
-    <!--
-          <button id="signinButton">Sign in with Google</button>
-          <script>
-            $('#signinButton').click(function() {
-              // signInCallback defined in step 6.)
-              console.log("sign in google button")
-              //TODO la richiesta arriva al server ma ha username e password vuote e il server ritorna errore, devo aggiungere altro negli scope?
-              auth2.grantOfflineAccess().then(signInCallback);
-            });
-          </script>
-          -->
-    <!-- -------------------------------------------------- -->
-
-  </form>
+  </div>
 
 </div>

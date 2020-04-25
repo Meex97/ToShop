@@ -42,7 +42,6 @@ export class UserService {
                     if (loginForm.remembered) {
                         localStorage.setItem('currentUser', JSON.stringify(client));
                     }
-                    console.log((client.name));
                     this.nameTerms.next(client.name);
                     this.currentUserSubject.next(client);
                     return client;

@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Role} from '../../enum/Role';
 import * as CryptoJS from 'crypto-js';
 import {Client} from '../../models/Client';
+import {delay} from 'rxjs/operators';
 
 
 declare const gapi: any;
@@ -41,6 +42,8 @@ export class LoginComponent implements OnInit {
       public encryptSecretKey: CryptoKey;
       private profile: gapi.auth2.BasicProfile;
       private x: boolean;
+      private done: boolean;
+      private counter: number;
 
     constructor(private userService: UserService,
                 private router: Router,
@@ -59,6 +62,7 @@ export class LoginComponent implements OnInit {
 
         this.customer = new Client();
         this.x = true;
+        this.done = false;
     }
 
     onSubmit() {
@@ -108,38 +112,9 @@ export class LoginComponent implements OnInit {
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {}, (googleUser) => {
       this.profile = googleUser.getBasicProfile();
       this.model.googleIdToken = googleUser.getAuthResponse().id_token;
-
-      console.log('ID: ' + this.profile.getId());
-      console.log('Name: ' + this.profile.getName());
-      console.log('Image URL: ' + this.profile.getImageUrl());
-      console.log('Email: ' + this.profile.getEmail());
-
-      this.userService.getClient(this.profile.getEmail()).subscribe( u => {
-        // this.encryptData(profile.getEmail());
-        console.log('login');
-      }, e => {
-        this.x = false;
-        // this.encryptData(this.profile.getEmail());
-        //  console.log(this.conversionOutput);
-      });
-
-
-      if (!this.x) {
-        this.customer.createClient(this.profile.getEmail(), this.profile.getGivenName(),
-          this.profile.getFamilyName(), this.profile.getEmail());
-        console.log(this.customer.name);
-
-        this.userService.signUpClient(this.customer).subscribe(u => {
-            console.log('singup');
-          },
-          e => {});
-      }
-      this.fillLoginFields(this.profile.getEmail(), this.profile.getEmail());
+      this.done = true;
 
     });
-
-
-    // console.log('su: ' + this.model.googleIdToken);
 
   }
 
@@ -151,7 +126,6 @@ export class LoginComponent implements OnInit {
 
 
   encryptData(data) {
-
     if (data.trim() === '' ) {
       this.conversionOutput = 'Please fill the textboxes.';
       return;
@@ -162,10 +136,54 @@ export class LoginComponent implements OnInit {
         this.conversionOutput = CryptoJS.AES.decrypt(data.trim(), data.trim()).toString(CryptoJS.enc.Utf8);
       }
     }
-
-
   }
 
 
+  private isRegistered() {
+    this.userService.getClient(this.profile.getEmail()).subscribe( u => {
+      // this.encryptData(profile.getEmail());
+      console.log('login');
+    }, e => {
+      this.x = false;
+      console.log('non cè mica');
+      // this.encryptData(this.profile.getEmail());
+      //  console.log(this.conversionOutput);
+    });
+  }
+
+  ok() {
+    (async () => {
+
+      this.counter = 0;
+      while (!this.done) {
+        await this.delay(100);
+        this.counter++;
+        console.log(this.counter);
+      }
+
+      console.log('USCITOOOOOOOO');
+
+      this.isRegistered();
+
+
+      if (!this.x) {
+        console.log('creo nuovo client_____________________________');
+        this.customer.createClient(this.profile.getEmail(), this.profile.getGivenName(),
+          this.profile.getFamilyName(), this.profile.getEmail());
+        console.log(this.customer.name);
+
+        this.userService.signUpClient(this.customer).subscribe(u => {
+            console.log('singup');
+          },
+          e => {});
+      }
+      this.fillLoginFields(this.profile.getEmail(), this.profile.getEmail());
+
+    })();
+  }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
 
 }

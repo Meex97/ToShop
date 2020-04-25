@@ -34,4 +34,9 @@ export class PaymentComponent implements OnInit {
   fileClicked() {
     this.fileInput.nativeElement.click();
   }
+
+
+
+
+
 }
