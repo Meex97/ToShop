@@ -122,7 +122,7 @@ public class UserController {
     @PostMapping("/registerClient")
     public ResponseEntity<?> save(@RequestBody Client client) {
         try {
-            return ResponseEntity.ok(userService.save(client));
+            return ResponseEntity.ok(userService.saveClient(client));
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }

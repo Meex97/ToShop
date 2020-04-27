@@ -11,6 +11,8 @@ public class Client extends User {
 
     private int credits;
 
+    private boolean google;
+
 
     public String getAddress() {
         return address;
@@ -26,5 +28,13 @@ public class Client extends User {
 
     public void setCredits(int credits) {
         this.credits = credits;
+    }
+
+    public boolean isGoogle() {
+        return google;
+    }
+
+    public void setGoogle(boolean google) {
+        this.google = google;
     }
 }

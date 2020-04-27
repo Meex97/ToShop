@@ -20,9 +20,11 @@ export class Client {
 
      credits: number;
 
+     google: boolean;
+
     constructor() {
         this.active = true;
-        // this.role = 'ROLE_CLIENT';
+        this.google = false;
         this.role = Role.Customer;
         this.credits = 0;
     }
@@ -34,6 +36,7 @@ export class Client {
       this.password = password;
       this.address = ' ';
       this.phone = ' ';
+      this.google = true;
     }
 
 }

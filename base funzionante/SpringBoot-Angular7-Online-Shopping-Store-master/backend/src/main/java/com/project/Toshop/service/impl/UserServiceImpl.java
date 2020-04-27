@@ -79,6 +79,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public Client saveClient(Client client) {
+        client.setPassword(passwordEncoder.encode(client.getPassword()));
+        try {
+            Client savedUser = clientRepository.save(client);
+
+            // initial Cart
+            Cart savedCart = cartRepository.save(new Cart(savedUser));
+            savedUser.setCart(savedCart);
+            return clientRepository.save(savedUser);
+
+        } catch (Exception e) {
+            throw new MyException(ResultEnum.VALID_ERROR);
+        }
+    }
+
+    @Override
+    @Transactional
     public User update(User user) {
         User oldUser = userRepository.findByEmail(user.getEmail());
         oldUser.setPassword(passwordEncoder.encode(user.getPassword()));

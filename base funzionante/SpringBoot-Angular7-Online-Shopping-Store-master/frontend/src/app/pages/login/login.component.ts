@@ -2,9 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Role} from '../../enum/Role';
-import * as CryptoJS from 'crypto-js';
 import {Client} from '../../models/Client';
-import {delay} from 'rxjs/operators';
 
 
 declare const gapi: any;
@@ -30,9 +28,7 @@ export class LoginComponent implements OnInit {
     returnUrl = '/';
 
   encryptMode: boolean;
-  textToConvert: string;
   password: string;
-  conversionOutput: string;
   customer: Client;
 
 
@@ -121,20 +117,6 @@ export class LoginComponent implements OnInit {
         this.model.password = p;
         this.onSubmit();
     }
-
-
-  encryptData(data) {
-    if (data.trim() === '' ) {
-      this.conversionOutput = 'Please fill the textboxes.';
-      return;
-    } else {
-      if (this.encryptMode) {
-        this.conversionOutput = CryptoJS.AES.encrypt(data.trim(), data.trim()).toString();
-      } else {
-        this.conversionOutput = CryptoJS.AES.decrypt(data.trim(), data.trim()).toString(CryptoJS.enc.Utf8);
-      }
-    }
-  }
 
 
   private isRegistered() {

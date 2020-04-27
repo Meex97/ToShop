@@ -20,6 +20,8 @@ public interface UserService {
 
     User save(User user);
 
+    Client saveClient(Client client);
+
     User update(User user);
 
     Client updateClient(Client client);
