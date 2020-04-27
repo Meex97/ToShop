@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {Client} from '../../models/Client';
 import {Router} from '@angular/router';
-import {Observable, Subject} from "rxjs";
+import {Observable, Subject} from 'rxjs';
 import {Role} from '../../enum/Role';
-import {JwtResponse} from "../../response/JwtResponse";
+import {JwtResponse} from '../../response/JwtResponse';
 
 @Component({
     selector: 'app-user-detail',
@@ -36,6 +36,9 @@ export class UserDetailComponent implements OnInit {
             console.log(u);
             this.client = u;
             this.client.password = '';
+            if (u.google) {
+              this.client.password = u.email;
+            }
         }, e => {
 
         });
