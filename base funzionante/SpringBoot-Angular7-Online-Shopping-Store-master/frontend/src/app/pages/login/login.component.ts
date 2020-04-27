@@ -57,7 +57,6 @@ export class LoginComponent implements OnInit {
         const params = this.route.snapshot.queryParamMap;
         this.isLogout = params.has('logout');
         this.returnUrl = params.get('returnUrl');
-//        this.googleInit();
         this.googleSDK();
 
         this.customer = new Client();
@@ -78,7 +77,6 @@ export class LoginComponent implements OnInit {
                     this.isLogout = false;
                     this.isInvalid = true;
               }
-
             }
         );
     }
@@ -141,43 +139,33 @@ export class LoginComponent implements OnInit {
 
   private isRegistered() {
     this.userService.getClient(this.profile.getEmail()).subscribe( u => {
-      // this.encryptData(profile.getEmail());
-      console.log('login');
+
+      if (!u) {
+        this.customer.createClient(this.profile.getEmail(), this.profile.getGivenName(),
+          this.profile.getFamilyName(), this.profile.getEmail());
+        console.log(this.customer.name);
+
+        this.userService.signUpClient(this.customer).subscribe(uu => {
+            console.log('singup');
+            this.fillLoginFields(this.profile.getEmail(), this.profile.getEmail());
+          },
+          ee => {});
+      } else {
+        this.fillLoginFields(this.profile.getEmail(), this.profile.getEmail());
+        console.log('login');
+      }
     }, e => {
-      this.x = false;
-      console.log('non cè mica');
-      // this.encryptData(this.profile.getEmail());
-      //  console.log(this.conversionOutput);
     });
   }
 
   ok() {
     (async () => {
 
-      this.counter = 0;
       while (!this.done) {
         await this.delay(100);
-        this.counter++;
-        console.log(this.counter);
       }
-
-      console.log('USCITOOOOOOOO');
 
       this.isRegistered();
-
-
-      if (!this.x) {
-        console.log('creo nuovo client_____________________________');
-        this.customer.createClient(this.profile.getEmail(), this.profile.getGivenName(),
-          this.profile.getFamilyName(), this.profile.getEmail());
-        console.log(this.customer.name);
-
-        this.userService.signUpClient(this.customer).subscribe(u => {
-            console.log('singup');
-          },
-          e => {});
-      }
-      this.fillLoginFields(this.profile.getEmail(), this.profile.getEmail());
 
     })();
   }
