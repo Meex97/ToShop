@@ -31,6 +31,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import {RouterModule} from '@angular/router';
 import { CloseComponent } from './pages/close/close.component';
 import {FileUploadModule} from 'ng2-file-upload';
+import { UploadImageComponent } from './pages/upload-image/upload-image.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import {FileUploadModule} from 'ng2-file-upload';
     CheckoutComponent,
     PaymentComponent,
     CloseComponent,
+    UploadImageComponent,
 
 
   ],

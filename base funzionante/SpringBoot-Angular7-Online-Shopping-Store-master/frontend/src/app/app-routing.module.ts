@@ -21,6 +21,7 @@ import {UserEditSupplierComponent} from './pages/user-edit-supplier/user-edit-su
 import {CheckoutComponent} from './pages/checkout/checkout.component';
 import {PaymentComponent} from './pages/payment/payment.component';
 import {CloseComponent} from './pages/close/close.component';
+import {UploadImageComponent} from './pages/upload-image/upload-image.component';
 
 
 const routes: Routes = [
@@ -100,6 +101,12 @@ const routes: Routes = [
   {
     path: 'payment',
     component: PaymentComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.Customer]}
+  },
+  {
+    path: 'image',
+    component: UploadImageComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.Customer]}
   },

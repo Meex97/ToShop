@@ -1,16 +1,15 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
-import {FileUploader} from 'ng2-file-upload';
-import {apiUrl} from '../../../environments/environment';
-import {ProductInfo} from '../../models/productInfo';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
+  selector: 'app-upload-image',
+  templateUrl: './upload-image.component.html',
+  styleUrls: ['./upload-image.component.css']
 })
-export class PaymentComponent {
+
+
+export class UploadImageComponent {
+
 
   constructor(private httpClient: HttpClient) { }
 
@@ -37,7 +36,7 @@ export class PaymentComponent {
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
 
     // Make a call to the Spring Boot Application to save the image
-    this.httpClient.post('http://localhost:8080/api/image/upload', uploadImageData, { observe: 'response' })
+    this.httpClient.post('http://localhost:8080/api/image/upload', uploadImageData,  { observe: 'response' })
       .subscribe((response) => {
           if (response.status === 200) {
             this.message = 'Image uploaded successfully';
@@ -62,5 +61,4 @@ export class PaymentComponent {
         }
       );
   }
-
 }
