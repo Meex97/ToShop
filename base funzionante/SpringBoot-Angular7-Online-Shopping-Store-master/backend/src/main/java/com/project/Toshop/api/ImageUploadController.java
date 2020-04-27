@@ -38,6 +38,8 @@ public class ImageUploadController {
     @PostMapping("/upload")
     public ResponseEntity.BodyBuilder uplaodImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
 
+        System.out.println("sono nella post" + file);
+
         System.out.println("Original Image Byte Size - " + file.getBytes().length);
         ImageModel img = new ImageModel(file.getOriginalFilename(), file.getContentType(),
                 compressBytes(file.getBytes()));
