@@ -114,14 +114,6 @@ public class UserController {
         }
     }
 
-/*
-    private void metodo2(@RequestBody LoginForm loginForm) {
-        if (request.getHeader("X-Requested-With") == null) {
-            // Without the `X-Requested-With` header, this request could be forged. Aborts.
-        }
-    }
-*/
-
 
     //TODO inserire codice di gestione accesso con google nel metodo sopra o in un nuovo metodo??
 
@@ -185,12 +177,12 @@ public class UserController {
 
     @GetMapping("/profile/{email}")
     public ResponseEntity<User> getProfile(@PathVariable("email") String email, Principal principal) {
-        if (principal.getName().equals(email)) {
+        /*if (principal.getName().equals(email)) {
             return ResponseEntity.ok(userService.findOne(email));
         } else {
             return ResponseEntity.badRequest().build();
-        }
-
+        }*/
+        return ResponseEntity.ok(userService.findOne(email));
     }
 
     @GetMapping("/profileClient/{email}")
