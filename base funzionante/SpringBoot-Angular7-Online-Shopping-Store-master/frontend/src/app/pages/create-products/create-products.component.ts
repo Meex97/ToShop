@@ -45,6 +45,7 @@ export class CreateProductsComponent implements OnInit {
 
 
   add() {
+    this.product.type = 1;
     this.productService.create/*ProductSupplier*/(this.product).subscribe(prod => {
 
         this.router.navigate(['/seller']);

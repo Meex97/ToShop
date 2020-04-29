@@ -51,6 +51,13 @@ export class ProductService {
         );
     }
 
+  getTypeInPage(Type: number, page: number, size: number): Observable<any> {
+    const url = `${this.categoryUrl}/${Type}?page=${page}&size=${size}`;
+    return this.http.get(url).pipe(
+      // tap(data => console.log(data))
+    );
+  }
+
     getDetail(id: string): Observable<ProductInfo> {
         const url = `${this.productUrl}/${id}`;
         return this.http.get<ProductInfo>(url).pipe(

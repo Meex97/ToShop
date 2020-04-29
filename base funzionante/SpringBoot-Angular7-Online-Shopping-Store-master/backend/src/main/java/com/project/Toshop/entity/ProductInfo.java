@@ -48,8 +48,6 @@ public class ProductInfo implements Serializable, Comparable<ProductInfo> {
     private byte[] productimage;
 
 
-
-
     /** 0: on-sale 1: off-sale */
 
     @ColumnDefault("0")
@@ -68,6 +66,9 @@ public class ProductInfo implements Serializable, Comparable<ProductInfo> {
     private Long idUtente;
 
     private String nameUtente;
+
+    // 1 nuovo, 2 Usato
+    private Integer type;
 
     public String getNameUtente() {
         return nameUtente;
@@ -175,6 +176,14 @@ public class ProductInfo implements Serializable, Comparable<ProductInfo> {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     @Override

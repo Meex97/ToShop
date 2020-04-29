@@ -14,6 +14,8 @@ export class ProductInfo {
     idUtente: number;
     nameUtente: string;
 
+    // if is a new product (1) or secondHand product (2)
+    type: number;
 
     productimage: File;
 

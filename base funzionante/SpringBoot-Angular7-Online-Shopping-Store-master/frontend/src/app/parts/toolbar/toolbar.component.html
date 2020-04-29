@@ -15,12 +15,14 @@
         <a mat-menu-item routerLink="/category/2">  Clothes</a>
         <a mat-menu-item routerLink="/category/3">  Drink</a>
       </div>
+      <div *ngIf="!currentUser ||currentUser.role == Role.Customer  || currentUser.role == Role.Employee || currentUser.role == Role.Manager ">
       <button mat-menu-item>
         <mat-icon>exit_to_app</mat-icon>
         <a (click)="logout()" routerLink="/login" [queryParams]="{logout: true}">
           <span>Logout</span>
         </a>
       </button>
+      </div>
     </mat-menu>
   </span>
 
@@ -34,6 +36,17 @@
     <a mat-button class="companyName" routerLink="/">
       <span>TOShop</span>
     </a>
+
+
+    <span class="example-spacer"></span>
+    <div class="navbar-nav" *ngIf="!currentUser ||currentUser.role == Role.Customer ">
+
+      <a mat-button routerLink="/category/4">  New </a>
+      <a mat-button routerLink="/category/5">  Secondhand</a>
+
+    </div>
+
+
     <span class="example-spacer"></span>
     <div fxShow="true" fxHide.lt-md="true">
       <a *ngIf="!currentUser || currentUser.role == Role.Customer "   mat-button routerLink="/customer/product">  Exchange</a>
@@ -67,7 +80,7 @@
         <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> {{name}}</a>
         <a *ngIf="currentUser.role == Role.Employee" mat-button routerLink="/profileSupplier"> {{name}}</a>
         <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> Credits: {{customer.credits}}</a>
-        <!--<a (click)="logout()" mat-button routerLink="/login" [queryParams]="{logout: true}">Sign Out</a>-->
+        <a (click)="logout()" mat-button routerLink="/login" [queryParams]="{logout: true}">Sign Out</a>
       </ng-container>
       <ng-template #noUser>
         <a mat-button routerLink="/login">Sign In</a>

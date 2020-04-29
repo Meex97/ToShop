@@ -66,19 +66,42 @@ export class CardComponent implements OnInit, OnDestroy {
       this.getProds();
     }
   }
+  /*getProds(page: number = 1, size: number = 3) {
+    if (this.route.snapshot.url.length === 1) {
+      this.productService.getAllInPage(+page, +size)
+        // tslint:disable-next-line:no-shadowed-variable
+        .subscribe(page => {
+          this.page = page;
+          if (this.currentUser && this.currentUser.role === Role.Manager) {
+            this.title = 'ToShop\'s Items';
+          } else {
+            this.title = 'Get Whatever You Want!';
+          }
+        });
+    }  else { //  /category/:id
+      const type = this.route.snapshot.url[1].path;
+      this.productService.getCategoryInPage(+type, page, size)
+        .subscribe(categoryPage => {
+          this.title = categoryPage.category;
+          this.page = categoryPage.page;
+        });
+    }
+
+  }*/
+
   getProds(page: number = 1, size: number = 3) {
     if (this.route.snapshot.url.length === 1) {
       this.productService.getAllInPage(+page, +size)
         // tslint:disable-next-line:no-shadowed-variable
         .subscribe(page => {
           this.page = page;
-          if(this.currentUser && this.currentUser.role === Role.Manager){
+          if (this.currentUser && this.currentUser.role === Role.Manager) {
             this.title = 'ToShop\'s Items';
           } else {
             this.title = 'Get Whatever You Want!';
           }
         });
-    } else { //  /category/:id
+    }  else { //  /category/:id
       const type = this.route.snapshot.url[1].path;
       this.productService.getCategoryInPage(+type, page, size)
         .subscribe(categoryPage => {
@@ -88,6 +111,5 @@ export class CardComponent implements OnInit, OnDestroy {
     }
 
   }
-
 
 }

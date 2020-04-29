@@ -41,7 +41,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatListModule, MatMenuModule} from '@angular/material';
+import {MatFormFieldModule, MatListModule, MatMenuModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -89,6 +89,7 @@ import {MatListModule, MatMenuModule} from '@angular/material';
     FlexLayoutModule,
     MatListModule,
     MatMenuModule,
+    MatFormFieldModule,
 
   ],
   providers: [CookieService,
