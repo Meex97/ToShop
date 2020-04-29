@@ -32,6 +32,16 @@ import {RouterModule} from '@angular/router';
 import { CloseComponent } from './pages/close/close.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import { UploadImageComponent } from './pages/upload-image/upload-image.component';
+import { ToolbarComponent } from './parts/toolbar/toolbar.component';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule, MatMenuModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -58,6 +68,8 @@ import { UploadImageComponent } from './pages/upload-image/upload-image.componen
     PaymentComponent,
     CloseComponent,
     UploadImageComponent,
+    ToolbarComponent,
+
 
 
   ],
@@ -68,6 +80,15 @@ import { UploadImageComponent } from './pages/upload-image/upload-image.componen
     HttpClientModule,
     ReactiveFormsModule,
     FileUploadModule,
+
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MatListModule,
+    MatMenuModule,
 
   ],
   providers: [CookieService,

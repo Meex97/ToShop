@@ -1,0 +1,147 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div>
+  <mat-toolbar color="primary">
+
+   <span class="fill-remaining-space" color="primary">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>home</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+
+      <div *ngIf="!currentUser ||currentUser.role == Role.Customer ">
+        <a mat-menu-item routerLink="/category/0">  Books</a>
+        <a mat-menu-item routerLink="/category/1">  Food</a>
+        <a mat-menu-item routerLink="/category/2">  Clothes</a>
+        <a mat-menu-item routerLink="/category/3">  Drink</a>
+      </div>
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <a (click)="logout()" routerLink="/login" [queryParams]="{logout: true}">
+          <span>Logout</span>
+        </a>
+      </button>
+    </mat-menu>
+  </span>
+
+
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <a mat-button class="companyName" routerLink="/">
+      <span>TOShop</span>
+    </a>
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a *ngIf="!currentUser || currentUser.role == Role.Customer "   mat-button routerLink="/customer/product">  Exchange</a>
+      <a *ngIf="currentUser && currentUser.role == Role.Manager "  mat-button routerLink="/admin/list"> Evaluate</a>
+      <a *ngIf="!currentUser || currentUser.role == Role.Customer " mat-button routerLink="/cart"> Cart</a>
+
+      <ng-container *ngIf="currentUser; else noUser">
+        <a mat-button routerLink="/order"> Orders</a>
+        <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> {{name}}</a>
+        <a *ngIf="currentUser.role == Role.Employee" mat-button routerLink="/profileSupplier"> {{name}}</a>
+        <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> Credits: {{customer.credits}}</a>
+        <!--<a (click)="logout()" mat-button routerLink="/login" [queryParams]="{logout: true}">Sign Out</a>-->
+      </ng-container>
+      <ng-template #noUser>
+        <a mat-button routerLink="/login">Sign In</a>
+        <a mat-button routerLink="/register">Sign Up</a>
+      </ng-template>
+
+    </div>
+  </mat-toolbar>
+
+
+  <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+    <div fxLayout="column">
+      <a *ngIf="!currentUser || currentUser.role == Role.Customer "   mat-button routerLink="/customer/product">  Exchange</a>
+      <a *ngIf="currentUser && currentUser.role == Role.Manager "  mat-button routerLink="/admin/list"> Evaluate</a>
+      <a *ngIf="!currentUser || currentUser.role == Role.Customer " mat-button routerLink="/cart"> Cart</a>
+
+      <ng-container *ngIf="currentUser; else noUser">
+        <a mat-button routerLink="/order"> Orders</a>
+        <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> {{name}}</a>
+        <a *ngIf="currentUser.role == Role.Employee" mat-button routerLink="/profileSupplier"> {{name}}</a>
+        <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> Credits: {{customer.credits}}</a>
+        <!--<a (click)="logout()" mat-button routerLink="/login" [queryParams]="{logout: true}">Sign Out</a>-->
+      </ng-container>
+      <ng-template #noUser>
+        <a mat-button routerLink="/login">Sign In</a>
+        <a mat-button routerLink="/register">Sign Up</a>
+      </ng-template>
+
+    </div>
+  </mat-sidenav>
+</div>
+
+
+
+
+
+<!--
+<div>
+<mat-toolbar color="primary">
+
+   <span class="fill-remaining-space">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>home</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item>
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>people_outline</mat-icon>
+        <span>Connecting</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>videocam</mat-icon>
+        <span>Let's talk</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </span>
+
+
+
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <a mat-button class="companyName" routerLink="/">
+      <span>Site name</span>
+    </a>
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a mat-button routerLink="/about-us">About us</a>
+      <a mat-button routerLink="/prices">Prices</a>
+      <a mat-button routerLink="/start-page">Start page</a>
+      <a mat-button routerLink="/offer">Offer</a>
+      <a mat-button routerLink="/contact">Contact</a>
+    </div>
+  </mat-toolbar>
+
+ quando si restringe la finestra&ndash
+    <mat-sidenav color="primary" #sidenav fxLayout="column" mode="push" opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
+        <a mat-button routerLink="/about-us">About us</a>
+        <a mat-button routerLink="/prices">Prices</a>
+        <a mat-button routerLink="/start-page">Start page</a>
+        <a mat-button routerLink="/offer">Offer</a>
+        <a mat-button routerLink="/contact">Contact</a>
+      </div>
+    </mat-sidenav>
+</div>
+-->
+
+
