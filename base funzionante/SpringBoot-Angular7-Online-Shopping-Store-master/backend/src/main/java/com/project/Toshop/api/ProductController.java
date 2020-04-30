@@ -73,18 +73,14 @@ public class ProductController {
 
 
    @GetMapping(value = "product/Supplier/{idUtente}")
-   //@PathVariable permette di recuperare i valori inclusi nel URL associato alla richiesta
    public List<ProductInfo> findByIdUtente(@PathVariable("idUtente") Long idUtente) {
 
-       // size definita da utente
        Page<ProductInfo> prod =this.findAll(1,50);
        List<ProductInfo> prodSupplier = new ArrayList<>();
 
        prod.forEach(product ->{
-           // System.out.println("idUtente " + product.getIdUtente());
            if(product.getIdUtente().equals(idUtente)){
                prodSupplier.add(product);
-              // System.out.println("prodotto: "+ product.getProductId()+ " idUtente: "+ product.getIdUtente());
            }
        });
        return prodSupplier;
@@ -109,7 +105,6 @@ public class ProductController {
     @PostMapping("/client/producto/new")
     public ResponseEntity createBaratto(@Valid @RequestBody ProductClient product) {
 
-        // ProductClient productClient = new ProductClient(product);
         return ResponseEntity.ok(productService.save(product));
     }
 
@@ -118,7 +113,6 @@ public class ProductController {
     public ResponseEntity edit(@PathVariable("id") String productId,
                                @Valid @RequestBody ProductInfo product,
                                BindingResult bindingResult) {
-       //System.out.println("prova");
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(bindingResult);
         }
@@ -130,12 +124,42 @@ public class ProductController {
     }
 
 
-    //////////
     @DeleteMapping("/seller/product/{id}/delete")
     public ResponseEntity delete(@PathVariable("id") String productId) {
        System.out.println("prodotto da cancellare: " + productId);
         productService.delete(productId);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(value = "product/secondhandProductList")
+    public List<ProductClient> findByUser() {
+
+        Page<ProductClient> prod = this.findAllAdmin(1,50);
+        List<ProductClient> prodAdmin = new ArrayList<>();
+
+        prod.forEach(product ->{
+            if(product.getStatus() == 1){
+                prodAdmin.add(product);
+            }
+        });
+        return prodAdmin;
+    }
+
+    @GetMapping(value = "product/newProductList")
+    public List<ProductInfo> findBySupplier() {
+
+        Page<ProductInfo> prod = this.findAll(1,50);
+        List<ProductInfo> prodSupp = new ArrayList<>();
+
+        prod.forEach(product ->{
+
+            System.out.println(this.userService.findOneById(product.getIdUtente()));
+            if (this.userService.findOneById(product.getIdUtente()).getRole().equals("ROLE_EMPLOYEE")){
+                prodSupp.add(product);
+            }
+
+        });
+        return prodSupp;
     }
 
 
@@ -144,31 +168,24 @@ public class ProductController {
      */
 
     @GetMapping(value = "product/adminlist")
-    //@PathVariable permette di recuperare i valori inclusi nel URL associato alla richiesta
     public List<ProductClient> findByAdmin() {
 
-        // size definita da utente
-        Page<ProductClient> prod =this.findAllAdmin(1,50);
+        Page<ProductClient> prod = this.findAllAdmin(1,50);
         List<ProductClient> prodAdmin = new ArrayList<>();
 
         prod.forEach(product ->{
-            // System.out.println("idUtente " + product.getIdUtente());
             if(product.getStatus() == 0){
                 prodAdmin.add(product);
-                // System.out.println("prodotto: "+ product.getProductId()+ " idUtente: "+ product.getIdUtente());
             }
         });
         return prodAdmin;
     }
 
 
-
-
     @PutMapping("/product/decline")
     public ResponseEntity decline(@Valid @RequestBody ProductClient product,
                                   BindingResult bindingResult) {
 
-        System.out.println("PROVOLONEEEEEEEEEEEEEE NON CI SONO CASCATO NELLA TUA TRUFFA");
         product.setStatus(2);
         return ResponseEntity.ok(productService.updateProductAdmin(product));
     }
@@ -177,7 +194,6 @@ public class ProductController {
     public ResponseEntity accept(@Valid @RequestBody ProductClient product,
                                   BindingResult bindingResult) {
 
-        System.out.println("I LIKE IT");
         userService.updateCredits(product.getProductPrice().intValue() * 10 * product.getProductStock(), product.getIdUtente());
         product.setStatus(1);
 

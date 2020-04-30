@@ -10,6 +10,9 @@ import java.util.Collection;
 
 public interface UserRepository extends JpaRepository<User, String> {
     User findByEmail(String email);
+    //find by id
+
+    User findById(Long id);
     Collection<User> findAllByRole(String role);
 
 }

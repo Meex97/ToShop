@@ -69,7 +69,7 @@ public class UserController {
         }
     }
 
-    private void metodo1(LoginForm loginForm) { //------------------------FUNZIONAAAAAAAAAAAAAAAAAAAAAAAAA (forse)
+    private void metodo1(LoginForm loginForm) { //------FUNZIONAAAAAA (forse)
         try {
             HttpTransport httpTransport = new NetHttpTransport();
             JsonFactory jsonFactory = new JacksonFactory();

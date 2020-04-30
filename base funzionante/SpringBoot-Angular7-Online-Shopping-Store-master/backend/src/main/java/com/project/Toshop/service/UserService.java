@@ -12,6 +12,8 @@ import java.util.Collection;
 public interface UserService {
     User findOne(String email);
 
+    User findOneById(Long id);
+
     Client findOneClient(String email);
 
     Supplier findOneSupplier(String email);
