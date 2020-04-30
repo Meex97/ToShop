@@ -22,6 +22,8 @@ import {CheckoutComponent} from './pages/checkout/checkout.component';
 import {PaymentComponent} from './pages/payment/payment.component';
 import {CloseComponent} from './pages/close/close.component';
 import {UploadImageComponent} from './pages/upload-image/upload-image.component';
+import {NewProductsComponent} from './pages/new-products/new-products.component';
+import {SecondHandProductsComponent} from './pages/second-hand-products/second-hand-products.component';
 
 
 const routes: Routes = [
@@ -30,6 +32,8 @@ const routes: Routes = [
   {path: 'category/:id', component: CardComponent},
   {path: 'product', component: CardComponent},
   {path: 'category', component: CardComponent},
+  {path: 'new', component: NewProductsComponent},
+  {path: 'second-hand', component: SecondHandProductsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LoginComponent},
   {path: 'register', component: SignupComponent},

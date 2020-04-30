@@ -131,4 +131,12 @@ export class ProductService {
     const url = `${apiUrl}/product/accept`;
     return this.http.put<ProductClient>(url, productClient);
   }
+
+  getAllInPageNew(): Observable<any> {
+    const url = `${this.productUrl}/newProductList`;
+    return this.http.get(url)
+      .pipe(
+        // tap(_ => console.log(_)),
+      );
+  }
 }

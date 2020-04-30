@@ -42,6 +42,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule, MatListModule, MatMenuModule} from '@angular/material';
+import { NewProductsComponent } from './pages/new-products/new-products.component';
+import { SecondHandProductsComponent } from './pages/second-hand-products/second-hand-products.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import {MatFormFieldModule, MatListModule, MatMenuModule} from '@angular/materia
     CloseComponent,
     UploadImageComponent,
     ToolbarComponent,
+    NewProductsComponent,
+    SecondHandProductsComponent,
 
 
 
