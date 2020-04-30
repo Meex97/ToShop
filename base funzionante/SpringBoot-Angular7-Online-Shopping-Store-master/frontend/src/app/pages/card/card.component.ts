@@ -5,7 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {JwtResponse} from '../../response/JwtResponse';
 import {Role} from '../../enum/Role';
-import {UserService} from "../../services/user.service";
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-card',
@@ -67,7 +67,7 @@ export class CardComponent implements OnInit, OnDestroy {
     }
   }
 
-  getProds(page: number = 1, size: number = 3) {
+  getProds(page: number = 1, size: number = 6) {
     if (this.route.snapshot.url.length === 1) {
       this.productService.getAllInPage(+page, +size)
         // tslint:disable-next-line:no-shadowed-variable

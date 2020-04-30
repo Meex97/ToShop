@@ -139,4 +139,12 @@ export class ProductService {
         // tap(_ => console.log(_)),
       );
   }
+
+  getAllInPageSecondHand(): Observable<any> {
+    const url = `${this.productUrl}/secondhandProductList`;
+    return this.http.get(url)
+      .pipe(
+        // tap(_ => console.log(_)),
+      );
+  }
 }
