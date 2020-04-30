@@ -55,9 +55,29 @@
 
       <ng-container *ngIf="currentUser; else noUser">
         <a mat-button routerLink="/order"> Orders</a>
-        <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> {{name}}</a>
+
+        <span class="fill-remaining-space" color="primary">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>person</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" [overlapTrigger]="false">
+              <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> {{name}}</a>
+              <a *ngIf="currentUser.role == Role.Employee" mat-button routerLink="/profileSupplier"> {{name}}</a>
+              <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> Credits: {{customer.credits}}</a>
+            <div *ngIf="!currentUser ||currentUser.role == Role.Customer  || currentUser.role == Role.Employee || currentUser.role == Role.Manager ">
+            <button mat-menu-item>
+              <mat-icon>exit_to_app</mat-icon>
+              <a (click)="logout()" routerLink="/login" [queryParams]="{logout: true}">
+                <span>Logout</span>
+              </a>
+            </button>
+            </div>
+          </mat-menu>
+        </span>
+
+       <!-- <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> {{name}}</a>
         <a *ngIf="currentUser.role == Role.Employee" mat-button routerLink="/profileSupplier"> {{name}}</a>
-        <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> Credits: {{customer.credits}}</a>
+        <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> Credits: {{customer.credits}}</a>-->
         <!--<a (click)="logout()" mat-button routerLink="/login" [queryParams]="{logout: true}">Sign Out</a>-->
       </ng-container>
       <ng-template #noUser>
