@@ -1,7 +1,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <div>
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" >
 
    <span class="fill-remaining-space" color="primary">
     <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -15,14 +15,10 @@
         <a mat-menu-item routerLink="/category/2">  Clothes</a>
         <a mat-menu-item routerLink="/category/3">  Drink</a>
       </div>
-      <div *ngIf="!currentUser ||currentUser.role == Role.Customer  || currentUser.role == Role.Employee || currentUser.role == Role.Manager ">
-      <button mat-menu-item>
-        <mat-icon>exit_to_app</mat-icon>
-        <a (click)="logout()" routerLink="/login" [queryParams]="{logout: true}">
+        <a *ngIf="!currentUser ||currentUser.role == Role.Customer  || currentUser.role == Role.Employee || currentUser.role == Role.Manager " mat-menu-item (click)="logout()" routerLink="/login" [queryParams]="{logout: true}"> <mat-icon>exit_to_app</mat-icon>
           <span>Logout</span>
         </a>
-      </button>
-      </div>
+
     </mat-menu>
   </span>
 
@@ -38,20 +34,18 @@
     </a>
 
 
-    <span class="example-spacer"></span>
-    <div class="navbar-nav" *ngIf="!currentUser ||currentUser.role == Role.Customer ">
 
+    <div *ngIf="!currentUser ||currentUser.role == Role.Customer ">
       <a mat-button routerLink="/new">  New </a>
-      <a mat-button routerLink="/second-hand">  Secondhand</a>
-
+      <a mat-button routerLink="/second-hand"> Secondhand</a>
     </div>
 
 
     <span class="example-spacer"></span>
     <div fxShow="true" fxHide.lt-md="true">
-      <a *ngIf="!currentUser || currentUser.role == Role.Customer "   mat-button routerLink="/customer/product">  Exchange</a>
+      <a *ngIf="!currentUser || currentUser.role == Role.Customer "   mat-button routerLink="/customer/product"> Exchange</a>
       <a *ngIf="currentUser && currentUser.role == Role.Manager "  mat-button routerLink="/admin/list"> Evaluate</a>
-      <a *ngIf="!currentUser || currentUser.role == Role.Customer " mat-button routerLink="/cart"> Cart</a>
+      <a *ngIf="!currentUser || currentUser.role == Role.Customer " mat-button routerLink="/cart"> <mat-icon>shopping_cart</mat-icon>  Cart</a>
 
       <ng-container *ngIf="currentUser; else noUser">
         <a mat-button routerLink="/order"> Orders</a>
@@ -61,25 +55,16 @@
             <mat-icon>person</mat-icon>
           </button>
           <mat-menu #menu="matMenu" [overlapTrigger]="false">
-              <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> {{name}}</a>
-              <a *ngIf="currentUser.role == Role.Employee" mat-button routerLink="/profileSupplier"> {{name}}</a>
-              <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> Credits: {{customer.credits}}</a>
-            <div *ngIf="!currentUser ||currentUser.role == Role.Customer  || currentUser.role == Role.Employee || currentUser.role == Role.Manager ">
-            <button mat-menu-item>
-              <mat-icon>exit_to_app</mat-icon>
-              <a (click)="logout()" routerLink="/login" [queryParams]="{logout: true}">
+              <a *ngIf="currentUser.role == Role.Customer" mat-menu-item routerLink="/profile"> <mat-icon>edit</mat-icon> {{name}} </a>
+              <a *ngIf="currentUser.role == Role.Employee" mat-menu-item routerLink="/profileSupplier"> <mat-icon>edit</mat-icon> {{name}}</a>
+              <a *ngIf="currentUser.role == Role.Customer" mat-menu-item routerLink="/profile"> <mat-icon>money</mat-icon> Credits: {{customer.credits}}</a>
+              <a *ngIf="!currentUser ||currentUser.role == Role.Customer  || currentUser.role == Role.Employee || currentUser.role == Role.Manager " mat-menu-item (click)="logout()" routerLink="/login" [queryParams]="{logout: true}"> <mat-icon>exit_to_app</mat-icon>
                 <span>Logout</span>
-              </a>
-            </button>
-            </div>
+             </a>
           </mat-menu>
         </span>
-
-       <!-- <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> {{name}}</a>
-        <a *ngIf="currentUser.role == Role.Employee" mat-button routerLink="/profileSupplier"> {{name}}</a>
-        <a *ngIf="currentUser.role == Role.Customer" mat-button routerLink="/profile"> Credits: {{customer.credits}}</a>-->
-        <!--<a (click)="logout()" mat-button routerLink="/login" [queryParams]="{logout: true}">Sign Out</a>-->
       </ng-container>
+
       <ng-template #noUser>
         <a mat-button routerLink="/login">Sign In</a>
         <a mat-button routerLink="/register">Sign Up</a>

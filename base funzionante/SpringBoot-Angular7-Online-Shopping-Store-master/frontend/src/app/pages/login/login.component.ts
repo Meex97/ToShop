@@ -3,9 +3,13 @@ import {UserService} from '../../services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Role} from '../../enum/Role';
 import {Client} from '../../models/Client';
+import {MatIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 declare const gapi: any;
+
+const googleLogoURL = 'https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg';
 
 @Component({
     selector: 'app-login',
@@ -44,9 +48,11 @@ export class LoginComponent implements OnInit {
     constructor(private userService: UserService,
                 private router: Router,
                 private route: ActivatedRoute,
-                private element: ElementRef) {
-
+                private element: ElementRef,
+                private matIconRegistry: MatIconRegistry,
+                private domSanitizer: DomSanitizer) {
       this.encryptMode = true;
+      this.matIconRegistry.addSvgIcon('logo', this.domSanitizer.bypassSecurityTrustResourceUrl(googleLogoURL));
     }
 
     ngOnInit() {
