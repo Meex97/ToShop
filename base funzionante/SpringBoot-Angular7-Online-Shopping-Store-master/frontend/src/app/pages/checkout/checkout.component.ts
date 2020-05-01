@@ -52,6 +52,8 @@ export class CheckoutComponent implements OnInit {
   public payuform: any = {};
   disablePaymentButton = true;
 
+
+
   constructor(private userService: UserService,
               private productService: ProductService,
               private route: ActivatedRoute,
@@ -108,7 +110,7 @@ export class CheckoutComponent implements OnInit {
       phone: this.currentUser.phone,
       productInfo: this.amo,
       amount:  this.amo
-    }
+    };
     return this.http.post<any>('http://localhost:8080/api/payment/payment-details', paymentPayload).subscribe(
       data => {
         console.log(data);

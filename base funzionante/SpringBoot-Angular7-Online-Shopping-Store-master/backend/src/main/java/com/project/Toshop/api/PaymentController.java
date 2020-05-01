@@ -19,8 +19,8 @@ public class PaymentController {
     public @ResponseBody
     PaymentDetail proceedPayment(@RequestBody PaymentDetail paymentDetail){
         PaymentCallback paymentCallback = new PaymentCallback();
-        paymentCallback.setMihpayid("4934545");
-        paymentCallback.setMode(PaymentMode.CC);
+        //paymentCallback.setMihpayid("4934545");
+        //paymentCallback.setMode(PaymentMode.CC);
         return paymentService.proceedPayment(paymentDetail);
     }
 
