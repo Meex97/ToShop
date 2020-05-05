@@ -110,9 +110,9 @@ const routes: Routes = [
   },
   {
     path: 'image',
-    component: UploadImageComponent,
-    canActivate: [AuthGuard],
-    data: {roles: [Role.Customer]}
+    component: UploadImageComponent
+    // canActivate: [AuthGuard],
+    // data: {roles: [Role.Customer]}
   },
 
 

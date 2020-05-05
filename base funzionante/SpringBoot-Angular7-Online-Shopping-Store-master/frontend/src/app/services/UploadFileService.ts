@@ -12,22 +12,17 @@ export class UploadFileService {
 
   constructor(private http: HttpClient) { }
 
-  pushFileToStorage(file: File) {  // pushFileToStorage2(file: File): Observable<HttpEvent<{}>> {
+  pushFileToStorage(file: File): Observable<HttpEvent<{}>> {
     const formdata: FormData = new FormData();
 
     formdata.append('file', file);
 
-    const req = new HttpRequest('POST', 'http://localhost:8080/api/api/file/upload', formdata, {
+    const req = new HttpRequest('POST', 'http://localhost:8080/api/file/upload', formdata, {
       reportProgress: true,
       responseType: 'text'
     });
 
-    return this.http.post<File>('http://localhost:8080/api/api/file/upload', file); // return this.http.request(req);
-  }
-
-  pushFileToStorage2(file: File): Observable<any> {
-    const url = 'http://localhost:8080/api/api/file/upload';
-    return this.http.post<File>(url, file);
+    return this.http.request(req);
   }
 
   getFiles(): Observable<any> {

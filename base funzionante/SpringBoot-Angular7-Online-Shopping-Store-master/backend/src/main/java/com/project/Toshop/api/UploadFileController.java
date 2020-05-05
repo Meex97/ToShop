@@ -16,34 +16,9 @@ import java.util.LinkedHashMap;
 @RestController
 public class UploadFileController {
 
-    @Autowired
-    FileRepository fileRepository;
-
-    /*
-     * MultipartFile Upload
-     */
-    @PostMapping("/api/file/upload2")
-    public String uploadMultipartFile(@RequestParam("file") LinkedHashMap file, RedirectAttributes redirectAttributes)  {
-        System.out.println("ciao");
-        System.out.println(file);
-        return "ciao";
-        /*try {
-            // save file to PostgreSQL
-            FileModel filemode = new FileModel(file.getOriginalFilename(), file.getContentType(), file.getBytes());
-            fileRepository.save(filemode);
-            return "File uploaded successfully! -> filename = " + file.getOriginalFilename();
-        } catch (  Exception e) {
-            return "FAIL! Maybe You had uploaded the file before or the file's size > 500KB";
-        }*/
-    }
-
-    @PostMapping("/api/file/upload")
-    public ResponseEntity<?> save(@RequestBody Object file) {
-
-        System.out.println("ciao");
-        System.out.println(file);
-        System.out.println(file.getClass());
-
-        return ResponseEntity.badRequest().build();
+    @PostMapping("/upload5")
+    public String handleFileUpload(@RequestParam("file") MultipartFile file){
+        String a = "sadad";
+        return a ;
     }
 }
