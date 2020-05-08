@@ -9,11 +9,20 @@
              name="productId" placeholder="Name" required>
     </div>
 
-    <!--Photo-->
+    <!--Photo
     <div class="form-group">
       <label>Photo Link</label>
       <input [(ngModel)]="product.productIcon" type="text" class="form-control form-control-lg" id="productIcon"
              name="productIcon" placeholder="Photo">
+    </div>
+    -->
+    <div class="container row">
+      <div class="col-md-6">
+        <input type="file" (change)="onFileChanged($event)">
+      </div>
+      <div class="col-md-6">
+        <input type="button" (click)="onUpload()" value="upload">
+      </div>
     </div>
 
     <!--Name-->
