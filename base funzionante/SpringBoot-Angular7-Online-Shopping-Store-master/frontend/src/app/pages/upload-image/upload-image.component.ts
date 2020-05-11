@@ -3,6 +3,11 @@ import {HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpResp
 import {Observable} from 'rxjs';
 import {UploadFileService} from '../../services/UploadFileService';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {ProductService} from '../../services/product.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserService} from '../../services/user.service';
+import {ProductInfo} from '../../models/productInfo';
+import {JwtResponse} from '../../response/JwtResponse';
 
 @Component({
   selector: 'app-upload-image',
@@ -20,11 +25,53 @@ export class UploadImageComponent implements  OnInit {
   message: string;
   imageName: any;
 
+  product: ProductInfo;
+  private currentUser: JwtResponse;
+
+  constructor(private productService: ProductService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private userService: UserService,
+              private httpClient: HttpClient) {
+    this.product = new ProductInfo();
+  }
+
+  productId: string;
+
+  ngOnInit() {
+
+    this.userService.currentUser.subscribe(supplier => {
+      this.currentUser = supplier;
+    });
+    this.product.idUtente = this.currentUser.id;
+    this.product.nameUtente = this.currentUser.name;
+  }
+
+  onSubmit() {
+    this.product.productStatus = 0;
+    this.add();
+  }
+
+
+  add() {
+    this.product.type = 1;
+    this.productService.create/*ProductSupplier*/(this.product).subscribe(prod => {
+
+        this.router.navigate(['/seller']);
+      },
+      e => {});
+  }
+
+
+
+/*
+
   constructor(private uploadService: UploadFileService,
               private httpClient: HttpClient) { }
 
   ngOnInit() {
   }
+*/
 
   // Gets called when the user selects an image
   public onFileChanged(event) {
