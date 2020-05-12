@@ -44,6 +44,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule, MatListModule, MatMenuModule} from '@angular/material';
 import { NewProductsComponent } from './pages/new-products/new-products.component';
 import { SecondHandProductsComponent } from './pages/second-hand-products/second-hand-products.component';
+import { InsertProductsSupplierComponent } from './pages/insert-products-supplier/insert-products-supplier.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { SecondHandProductsComponent } from './pages/second-hand-products/second
     ToolbarComponent,
     NewProductsComponent,
     SecondHandProductsComponent,
+    InsertProductsSupplierComponent,
 
 
 
