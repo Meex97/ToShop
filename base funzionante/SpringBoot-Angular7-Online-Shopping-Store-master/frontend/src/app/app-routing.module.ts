@@ -81,8 +81,8 @@ const routes: Routes = [
   {
     path: 'seller/insertProduct',
     component: CreateProductsComponent,
-    canActivate: [AuthGuard],
-    data: {roles: [Role.Manager, Role.Employee]}
+    /*canActivate: [AuthGuard],
+    data: {roles: [Role.Manager, Role.Employee]}*/
   },
   {
     path: 'customer/insertProduct',
@@ -110,9 +110,9 @@ const routes: Routes = [
   },
   {
     path: 'image',
-    component: UploadImageComponent
-    // canActivate: [AuthGuard],
-    // data: {roles: [Role.Customer]}
+    component: UploadImageComponent,
+/*    canActivate: [AuthGuard],
+    data: {roles: [Role.Customer, Role.Employee]}*/
   },
 
 
