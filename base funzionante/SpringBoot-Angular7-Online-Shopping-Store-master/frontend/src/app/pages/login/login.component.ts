@@ -67,6 +67,9 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
+        this.userService.idUtente = this.model.username;
+        this.userService.pwsUtente = this.model.password;
+
         this.submitted = true;
         this.userService.login(this.model).subscribe(
             client => {

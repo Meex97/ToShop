@@ -1,19 +1,10 @@
 <h1 align="center" class="display-4 mb-5">Insert Product</h1>
 <div style="width:40%; margin: 25px auto">
-<div class="container row">
-  <div class="col-md-12">
-    <label>Upload Image</label>
-  </div>
-</div>
-<div class="container row">
-  <div class="col-md-6">
+<div class="form-group">
+    <label>Upload Image</label><br/>
     <input type="file" (change)="onFileChanged($event)">
-  </div>
-  <div class="col-md-6">
-    <input type="button" (click)="onUpload()" value="upload">
-  </div>
 </div>
-<hr />
+<!--<hr />
 <div class="container row">
   <div class="col-md-12">
     <div *ngIf=message>{{message}}</div>
@@ -34,7 +25,7 @@
       <img [src]="retrievedImage">
     </div>
   </div>
-</div>
+</div>-->
 </div>
 
 

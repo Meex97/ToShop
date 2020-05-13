@@ -16,6 +16,9 @@ import {Supplier} from '../models/Supplier';
 })
 export class UserService {
 
+    idUtente: any;
+    pwsUtente: any;
+
     private currentUserSubject: BehaviorSubject<JwtResponse>;
     public currentUser: Observable<JwtResponse>;
     public nameTerms = new Subject<string>();
@@ -28,7 +31,8 @@ export class UserService {
         cookieService.set('currentUser', memo);
     }
 
-    get currentUserValue() {
+
+  get currentUserValue() {
         return this.currentUserSubject.value;
     }
 
