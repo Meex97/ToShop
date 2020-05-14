@@ -21,13 +21,10 @@ import {ProductListComponent} from './pages/product-list/product.list.component'
 import {UserDetailComponent} from './pages/user-edit/user-detail.component';
 import {ProductEditComponent} from './pages/product-edit/product-edit.component';
 import { SignupSupplierComponent } from './pages/signup-supplier/signup-supplier.component';
-import { CreateProductsComponent } from './pages/create-products/create-products.component';
-import { CreateProductsCustomerComponent } from './pages/create-products-customer/create-products-customer.component';
 import { ProductListCustomerComponent } from './pages/product-list-customer/product-list-customer.component';
 import { AdminListComponent } from './pages/admin-list/admin-list.component';
 import { UserEditSupplierComponent } from './pages/user-edit-supplier/user-edit-supplier.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
-import { PaymentComponent } from './pages/payment/payment.component';
 import {RouterModule} from '@angular/router';
 import { CloseComponent } from './pages/close/close.component';
 import {FileUploadModule} from 'ng2-file-upload';
@@ -45,6 +42,7 @@ import {MatFormFieldModule, MatListModule, MatMenuModule} from '@angular/materia
 import { NewProductsComponent } from './pages/new-products/new-products.component';
 import { SecondHandProductsComponent } from './pages/second-hand-products/second-hand-products.component';
 import { InsertProductsSupplierComponent } from './pages/insert-products-supplier/insert-products-supplier.component';
+import { InsertProductsCustomerComponent } from './pages/insert-products-customer/insert-products-customer.component';
 
 @NgModule({
   declarations: [
@@ -62,19 +60,17 @@ import { InsertProductsSupplierComponent } from './pages/insert-products-supplie
     UserDetailComponent,
     ProductEditComponent,
     SignupSupplierComponent,
-    CreateProductsComponent,
-    CreateProductsCustomerComponent,
     ProductListCustomerComponent,
     AdminListComponent,
     UserEditSupplierComponent,
     CheckoutComponent,
-    PaymentComponent,
     CloseComponent,
     UploadImageComponent,
     ToolbarComponent,
     NewProductsComponent,
     SecondHandProductsComponent,
     InsertProductsSupplierComponent,
+    InsertProductsCustomerComponent,
 
 
 

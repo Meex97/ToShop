@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -57,6 +58,7 @@ public class ProductController {
      * Show All Categories
      **/
 
+    @Transactional
     @GetMapping("/product")
     public Page<ProductInfo> findAll(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                      @RequestParam(value = "size", defaultValue = "3") Integer size) {
@@ -71,8 +73,7 @@ public class ProductController {
         return productService.findAllAdmin(request);
     }
 
-
-
+   @Transactional
    @GetMapping(value = "product/Supplier/{idUtente}")
    public List<ProductInfo> findByIdUtente(@PathVariable("idUtente") Long idUtente) {
 

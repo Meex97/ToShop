@@ -1,23 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-
-import {Location} from '@angular/common';
-
-import {ActivatedRoute, Router} from '@angular/router';
 import {ProductInfo} from '../../models/productInfo';
-import {ProductService} from '../../services/product.service';
-import {Observable} from 'rxjs';
-import {apiUrl} from '../../../environments/environment';
 import {JwtResponse} from '../../response/JwtResponse';
+import {ProductService} from '../../services/product.service';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
-  selector: 'app-create-products',
-  templateUrl: './create-products.component.html',
-  styleUrls: ['./create-products.component.css']
+  selector: 'app-insert-products-customer',
+  templateUrl: './insert-products-customer.component.html',
+  styleUrls: ['./insert-products-customer.component.css']
 })
-export class CreateProductsComponent implements OnInit {
-
+export class InsertProductsCustomerComponent implements OnInit {
 
   selectedFile: File;
   retrievedImage: any;
@@ -28,6 +22,12 @@ export class CreateProductsComponent implements OnInit {
 
   product: ProductInfo;
   private currentUser: JwtResponse;
+  model: any = {
+    username: '',
+    password: '',
+    googleIdToken: null,
+    remembered: false
+  };
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
@@ -41,8 +41,8 @@ export class CreateProductsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userService.currentUser.subscribe(supplier => {
-      this.currentUser = supplier;
+    this.userService.currentUser.subscribe(client => {
+      this.currentUser = client;
     });
     this.product.idUtente = this.currentUser.id;
     this.product.nameUtente = this.currentUser.name;
@@ -55,50 +55,47 @@ export class CreateProductsComponent implements OnInit {
 
 
   add() {
-    this.product.type = 1;
-
-    this.onUpload();
-
-
-    this.productService.create/*ProductSupplier*/(this.product).subscribe(prod => {
-
-        this.router.navigate(['/seller']);
+    this.product.idUtente = this.currentUser.id;
+    this.product.type = 2;
+    this.productService.createProductCustomer(this.product).subscribe(prod => {
       },
       e => {});
 
+    this.onUpload();
 
   }
-
-
-
 
   // Gets called when the user selects an image
   public onFileChanged(event) {
     // Select File
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile.name);
   }
   // Gets called when the user clicks on submit to upload the image
   onUpload() {
-    // this.userService.logout();
+
+    this.userService.logout();
 
     // FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
     const uploadImageData = new FormData();
     uploadImageData.append('image', this.selectedFile, this.product.productId);
 
-    // Make a call to the Spring Boot Application to save the image
     this.httpClient.post('http://localhost:8080/api/image/upload', uploadImageData, { observe: 'response' })
       .subscribe((response) => {
-        if (response.status === 200) {
-          this.message = 'Image uploaded successfully';
-        } else {
-          this.message = 'Image not uploaded successfully';
+          if (response.status === 200) {
+            this.message = 'Image uploaded successfully';
+          } else {
+            this.message = 'Image not uploaded successfully';
+          }
         }
-      });
+      );
+
+    this.model.username = this.userService.idUtente;
+    this.model.password = this.userService.pwsUtente;
+    this.userService.login(this.model).subscribe(client => {
+      console.log(client);
+      this.router.navigate(['/customer/product']);
+    });
   }
-
-
-
   // Gets called when the user clicks on retieve image button to get the image from back end
   getImage() {
     // Make a call to Sprinf Boot to get the Image Bytes.

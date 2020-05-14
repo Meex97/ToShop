@@ -44,6 +44,8 @@ export class UserEditSupplierComponent implements OnInit {
 
 
   onSubmit() {
+    this.userService.pwsUtente = this.supplier.password;
+
     this.userService.updateSupplier(this.supplier).subscribe(u => {
       this.userService.nameTerms.next(u.name);
       let url = '/';

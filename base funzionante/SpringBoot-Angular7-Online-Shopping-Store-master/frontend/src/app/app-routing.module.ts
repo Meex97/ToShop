@@ -13,17 +13,16 @@ import {UserDetailComponent} from './pages/user-edit/user-detail.component';
 import {ProductEditComponent} from './pages/product-edit/product-edit.component';
 import {Role} from './enum/Role';
 import {SignupSupplierComponent} from './pages/signup-supplier/signup-supplier.component';
-import {CreateProductsComponent} from './pages/create-products/create-products.component';
-import {CreateProductsCustomerComponent} from './pages/create-products-customer/create-products-customer.component';
 import {ProductListCustomerComponent} from './pages/product-list-customer/product-list-customer.component';
 import {AdminListComponent} from './pages/admin-list/admin-list.component';
 import {UserEditSupplierComponent} from './pages/user-edit-supplier/user-edit-supplier.component';
 import {CheckoutComponent} from './pages/checkout/checkout.component';
-import {PaymentComponent} from './pages/payment/payment.component';
 import {CloseComponent} from './pages/close/close.component';
 import {UploadImageComponent} from './pages/upload-image/upload-image.component';
 import {NewProductsComponent} from './pages/new-products/new-products.component';
 import {SecondHandProductsComponent} from './pages/second-hand-products/second-hand-products.component';
+import {InsertProductsSupplierComponent} from './pages/insert-products-supplier/insert-products-supplier.component';
+import {InsertProductsCustomerComponent} from './pages/insert-products-customer/insert-products-customer.component';
 
 
 const routes: Routes = [
@@ -79,18 +78,6 @@ const routes: Routes = [
     data: {roles: [Role.Employee]}
   },
   {
-    path: 'seller/insertProduct',
-    component: CreateProductsComponent,
-    /*canActivate: [AuthGuard],
-    data: {roles: [Role.Manager, Role.Employee]}*/
-  },
-  {
-    path: 'customer/insertProduct',
-    component: CreateProductsCustomerComponent,
-    canActivate: [AuthGuard],
-    data: {roles: [Role.Manager, Role.Customer]}
-  },
-  {
     path: 'admin/list',
     component: AdminListComponent,
     canActivate: [AuthGuard],
@@ -103,16 +90,18 @@ const routes: Routes = [
     data: {roles: [Role.Customer]}
   },
   {
-    path: 'payment',
-    component: PaymentComponent,
-    canActivate: [AuthGuard],
-    data: {roles: [Role.Customer]}
-  },
-  {
     path: 'image',
     component: UploadImageComponent,
-/*    canActivate: [AuthGuard],
-    data: {roles: [Role.Customer, Role.Employee]}*/
+    /*    canActivate: [AuthGuard],
+        data: {roles: [Role.Customer, Role.Employee]}*/
+  },
+  {
+    path: 'seller/insertProduct',
+    component: InsertProductsSupplierComponent,
+  },
+  {
+    path: 'customer/insertProduct',
+    component: InsertProductsCustomerComponent,
   },
 
 

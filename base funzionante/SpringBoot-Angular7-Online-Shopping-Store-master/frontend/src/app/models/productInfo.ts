@@ -13,11 +13,10 @@ export class ProductInfo {
     updateTime: string;
     idUtente: number;
     nameUtente: string;
-
     // if is a new product (1) or secondHand product (2)
     type: number;
 
-    productimage: File;
+  productimage: any;
 
 
 
@@ -31,6 +30,7 @@ export class ProductInfo {
             this.productIcon = productInOrder.productIcon;
             this.categoryType = productInOrder.categoryType;
             this.productStatus = 0;
+            this.productimage = productInOrder.productimage;
         } else {
             this.productId = '';
             this.productName = '';
@@ -40,6 +40,7 @@ export class ProductInfo {
             this.productIcon = '';
             this.categoryType = 0;
             this.productStatus = 0;
+            this.productimage = '';
         }
     }
 

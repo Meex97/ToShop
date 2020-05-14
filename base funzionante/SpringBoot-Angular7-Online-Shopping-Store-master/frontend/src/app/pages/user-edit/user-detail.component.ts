@@ -45,6 +45,8 @@ export class UserDetailComponent implements OnInit {
     }
 
     onSubmit() {
+        this.userService.pwsUtente = this.client.password;
+
         this.userService.updateClient(this.client).subscribe(u => {
             this.userService.nameTerms.next(u.name);
             let url = '/';

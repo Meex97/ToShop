@@ -1,24 +1,7 @@
 <h1 align="center" class="display-4 mb-5">Insert Product</h1>
 <div style="width:40%; margin: 25px auto">
-  <div class="container row">
-    <div class="col-md-12">
-      <label>Upload Image</label>
-    </div>
-  </div>
-  <div class="container row">
-    <div class="col-md-6">
-      <input type="file" (change)="onFileChanged($event)">
-    </div>
-    <div class="col-md-6">
-      <input type="button" (click)="onUpload()" value="upload">
-    </div>
-  </div>
-  <hr />
-  <div class="container row">
-    <div class="col-md-12">
-      <div *ngIf=message>{{message}}</div>
-    </div>
-  </div>
+
+  <!--
   <div class="container row">
     <div class="col-md-6">
       <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
@@ -34,7 +17,7 @@
         <img [src]="retrievedImage">
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
 
 
@@ -49,14 +32,11 @@
              name="productId" placeholder="Name" required>
     </div>
 
-    <!--Photo
+    <!--Photo-->
     <div class="form-group">
-      <label>Photo Link</label>
-      <input [(ngModel)]="product.productIcon" type="text" class="form-control form-control-lg" id="productIcon"
-             name="productIcon" placeholder="Photo">
+      <label>Upload Image</label><br/>
+      <input type="file" (change)="onFileChanged($event)">
     </div>
-    -->
-
 
     <!--Name-->
     <div class="form-group">
@@ -123,13 +103,11 @@
         </div>
       </div>
     </div>
-    <!--Status-->
 
     <div class="form-group">
       <button type="submit" [disabled]="!form.form.valid" class="btn btn-lg btn-primary btn-block">Submit</button>
     </div>
   </form>
 </div>
-
 
 
