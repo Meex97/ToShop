@@ -1,3 +1,57 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<mat-card>
+  <mat-card-content>
+    <form #form='ngForm' (ngSubmit)="onSubmit()">
+      <h1>Login</h1>
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="Email"  id="email" name="email" placeholder="Enter email"
+               required autofocus [(ngModel)]="model.username" #email="ngModel" autocomplete="email" >
+      </mat-form-field>
+      <mat-error  [hidden]="email.valid || email.pristine">
+        Email required
+      </mat-error>
+
+      <mat-form-field class="full-width-input">
+        <input matInput type="password" id="password" name="password"  autocomplete="password"
+               placeholder="Password" required [(ngModel)]="model.password" #password='ngModel'>
+        <mat-error [hidden]="password.valid || password.pristine" >
+          Password is required
+        </mat-error>
+      </mat-form-field>
+      <mat-checkbox id="remember_me" name="remember-me" [(ngModel)]="model.remembered" color="primary"> Remember me</mat-checkbox>
+      <a class="float-right" routerLink="/register">Sign Up</a>
+
+      <div class="form-group">
+        <button mat-raised-button  [disabled]="!form.form.valid"  color="primary">Login</button>
+      </div>
+    </form>
+
+    <div class="container mt-5">
+      <button class="loginBtn loginBtn&#45;&#45;google" #loginRef (click)="ok()">
+        <mat-icon style="width: 90px; height:40px" svgIcon="logo"></mat-icon> Login With Google
+      </button>
+    </div>
+
+    <div>
+      <mat-error *ngIf="isInvalid">
+        Invalid username and password.
+      </mat-error>
+
+      <mat-error *ngIf="isLogout">
+        You have been logged out.
+      </mat-error>
+    </div>
+
+  </mat-card-content>
+</mat-card>
+
+
+
+
+
+<!--
 <h1 align="center" class="display-4 mb-5">Sign In</h1>
 <div style="width:40%; margin: 25px auto">
 
@@ -61,7 +115,7 @@
   <div class="container mt-5">
     <div class="row mt-5">
       <div class="col-md-4 mt-2 m-auto ">
-        <button class="loginBtn loginBtn--google" #loginRef (click)="ok()">
+        <button class="loginBtn loginBtn&#45;&#45;google" #loginRef (click)="ok()">
           <mat-icon style="width: 90px; height:40px"
                     svgIcon="logo"></mat-icon> Login With Google
         </button>
@@ -69,9 +123,5 @@
     </div>
   </div>
 
-
-
-
-
-
 </div>
+-->

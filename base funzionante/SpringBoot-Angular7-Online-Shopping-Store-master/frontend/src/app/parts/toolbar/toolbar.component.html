@@ -28,10 +28,9 @@
       </button>
     </div>
 
-    <a mat-button class="companyName" routerLink="/">
-      <span>TOShop</span>
-    </a>
-
+    <a *ngIf="!currentUser || currentUser.role == Role.Customer; then thenTemplateName else elseTemplateName "></a>
+    <ng-template #thenTemplateName><a mat-button class="companyName" routerLink="/"><span>TOShop</span></a></ng-template>
+    <ng-template #elseTemplateName><a mat-button class="companyName" routerLink="/seller/product"><span>TOShop</span></a></ng-template>
 
 
     <div *ngIf="!currentUser ||currentUser.role == Role.Customer ">
