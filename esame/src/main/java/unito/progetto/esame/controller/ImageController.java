@@ -42,7 +42,8 @@ public class ImageController {
         imageRepository.save(img);
 
         ProductInfo prod = productInfoRepository.findByProductId(img.getName());
-        prod.setProductimage(compressBytes(file.getBytes()));
+        //prod.setProductimage(compressBytes(file.getBytes()));
+        prod.setProductimage(file.getBytes());
         System.out.println(prod);
         productService.update(prod);
 
@@ -76,6 +77,7 @@ public class ImageController {
         System.out.println("Compressed Image Byte Size - " + outputStream.toByteArray().length);
         return outputStream.toByteArray();
     }
+
     // uncompress the image bytes before returning it to the angular application
     public static byte[] decompressBytes(byte[] data) {
         Inflater inflater = new Inflater();

@@ -19,7 +19,8 @@
     <tbody>
     <tr *ngFor="let productInfo of page">
         <th class="align-middle" scope="row">
-            <img height="100px" src="{{productInfo.productIcon}}" alt="{{productInfo.productName}}">
+            <img height="100px" [src]="productInfo.productimage">
+            <!--<img height="100px" src="{{productInfo.productIcon}}" alt="{{productInfo.productName}}">-->
         </th>
         <td class="align-middle">{{productInfo.productId}}</td>
         <td class="align-middle">{{productInfo.productName}}</td>

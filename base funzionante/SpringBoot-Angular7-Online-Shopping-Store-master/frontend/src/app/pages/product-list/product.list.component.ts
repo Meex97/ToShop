@@ -53,7 +53,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             // this.getProds(currentPage, size);
             this.getProdsSupplier(/*currentPage, size*/);
         } else {
-            //this.getProds();
+            // this.getProds();
             this.getProdsSupplier();
         }
     }
@@ -64,16 +64,17 @@ export class ProductListComponent implements OnInit, OnDestroy {
                 this.page = page;
             });
 
-        /*this.page.content.forEach(function(value) {
-            console.log(value.idUtente);
-        });*/
-
     }
 
     getProdsSupplier(/*page: number = 1, size: number = 5*/) {
-      this.productService.getAllInPageSupplier(/*+page, +size, */this.productId)
+      this.productService.getAllInPageSupplier(this.productId)
         .subscribe(page => {
           this.page = page;
+
+          this.page.forEach(value => {
+            value.productimage = 'data:image/jpeg;base64,' + value.productimage;
+            console.log(value.idUtente);
+          });
         });
 
     }
