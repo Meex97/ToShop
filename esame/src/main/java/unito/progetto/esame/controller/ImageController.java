@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import unito.progetto.esame.model.ImageModel;
@@ -32,6 +33,7 @@ public class ImageController {
     ProductService productService;
 
 
+    @Transactional
     @PostMapping("/upload")
     public BodyBuilder uplaodImage(@RequestParam("image") MultipartFile file) throws IOException {
         System.out.println("Original Image Byte Size - " + file.getBytes().length);
@@ -47,6 +49,7 @@ public class ImageController {
         return ResponseEntity.status(HttpStatus.OK);
     }
 
+    @Transactional
     @GetMapping(path = { "/get/{imageName}" })
     public ImageModel getImage(@PathVariable("imageName") String imageName) throws IOException {
         final Optional<ImageModel> retrievedImage = imageRepository.findByName(imageName);

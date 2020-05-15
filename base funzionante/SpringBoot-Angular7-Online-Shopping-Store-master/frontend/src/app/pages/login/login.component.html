@@ -5,6 +5,17 @@
   <mat-card-content>
     <form #form='ngForm' (ngSubmit)="onSubmit()">
       <h1>Login</h1>
+
+      <div>
+        <mat-error *ngIf="isInvalid">
+          Invalid username and password.
+        </mat-error>
+
+        <mat-error *ngIf="isLogout">
+          You have been logged out.
+        </mat-error>
+      </div>
+
       <mat-form-field class="full-width-input">
         <input matInput placeholder="Email"  id="email" name="email" placeholder="Enter email"
                required autofocus [(ngModel)]="model.username" #email="ngModel" autocomplete="email" >
@@ -16,10 +27,10 @@
       <mat-form-field class="full-width-input">
         <input matInput type="password" id="password" name="password"  autocomplete="password"
                placeholder="Password" required [(ngModel)]="model.password" #password='ngModel'>
-        <mat-error [hidden]="password.valid || password.pristine" >
-          Password is required
-        </mat-error>
       </mat-form-field>
+      <mat-error [hidden]="password.valid || password.pristine" >
+        Password is required
+      </mat-error>
       <mat-checkbox id="remember_me" name="remember-me" [(ngModel)]="model.remembered" color="primary"> Remember me</mat-checkbox>
       <a class="float-right" routerLink="/register">Sign Up</a>
 
@@ -34,15 +45,7 @@
       </button>
     </div>
 
-    <div>
-      <mat-error *ngIf="isInvalid">
-        Invalid username and password.
-      </mat-error>
 
-      <mat-error *ngIf="isLogout">
-        You have been logged out.
-      </mat-error>
-    </div>
 
   </mat-card-content>
 </mat-card>

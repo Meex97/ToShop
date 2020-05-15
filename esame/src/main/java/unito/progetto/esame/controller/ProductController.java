@@ -66,6 +66,7 @@ public class ProductController {
         return productService.findAll(request);
     }
 
+    @Transactional
     @GetMapping("/product/client")
     public Page<ProductClient> findAllAdmin(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                             @RequestParam(value = "size", defaultValue = "3") Integer size) {
@@ -88,7 +89,7 @@ public class ProductController {
        return prodSupplier;
    }
 
-
+    @Transactional
     @GetMapping("/product/{productId}")
     public ProductInfo showOne(@PathVariable("productId") String productId) {
 
@@ -133,6 +134,7 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
+    @Transactional
     @GetMapping(value = "product/secondhandProductList")
     public List<ProductClient> findByUser() {
 
@@ -147,6 +149,7 @@ public class ProductController {
         return prodAdmin;
     }
 
+    @Transactional
     @GetMapping(value = "product/newProductList")
     public List<ProductInfo> findBySupplier() {
 
@@ -169,6 +172,7 @@ public class ProductController {
      ADMIN's Methods
      */
 
+    @Transactional
     @GetMapping(value = "product/adminlist")
     public List<ProductClient> findByAdmin() {
 

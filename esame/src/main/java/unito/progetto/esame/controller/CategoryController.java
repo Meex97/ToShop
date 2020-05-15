@@ -5,6 +5,7 @@ package unito.progetto.esame.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import unito.progetto.esame.model.ProductCategory;
 import unito.progetto.esame.model.ProductInfo;
@@ -30,6 +31,7 @@ public class CategoryController {
      * @param size
      * @return
      */
+    @Transactional
     @GetMapping("/category/{type}")
     public CategoryPage showOne(@PathVariable("type") Integer categoryType,
                                 @RequestParam(value = "page", defaultValue = "1") Integer page,
