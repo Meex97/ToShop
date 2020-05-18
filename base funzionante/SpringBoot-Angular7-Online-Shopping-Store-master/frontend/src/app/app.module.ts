@@ -38,7 +38,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatFormFieldModule, MatListModule, MatMenuModule} from '@angular/material';
+import {MatCardModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatListModule, MatMenuModule} from '@angular/material';
 import { NewProductsComponent } from './pages/new-products/new-products.component';
 import { SecondHandProductsComponent } from './pages/second-hand-products/second-hand-products.component';
 import { InsertProductsSupplierComponent } from './pages/insert-products-supplier/insert-products-supplier.component';
@@ -92,6 +92,9 @@ import { InsertProductsCustomerComponent } from './pages/insert-products-custome
     MatListModule,
     MatMenuModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatCheckboxModule,
 
   ],
   providers: [CookieService,
