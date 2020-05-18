@@ -89,6 +89,7 @@ public class ProductController {
    }
 
 
+    @Transactional
     @GetMapping("/product/{productId}")
     public ProductInfo showOne(@PathVariable("productId") String productId) {
 

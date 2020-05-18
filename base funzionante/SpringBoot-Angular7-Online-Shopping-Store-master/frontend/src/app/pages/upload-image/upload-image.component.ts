@@ -78,13 +78,13 @@ export class UploadImageComponent implements  OnInit {
   // Gets called when the user clicks on submit to upload the image
   onUpload() {
 
-    this.userService.logout();
+    // this.userService.logout();
 
     // FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
     const uploadImageData = new FormData();
-    uploadImageData.append('image', this.selectedFile, this.product.productId);
+    uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
 
-    this.httpClient.post('http://localhost:8080/api/image/upload', uploadImageData, { observe: 'response' })
+    this.httpClient.post('http://localhost:8080/api/image/upload2', uploadImageData, { observe: 'response' })
       .subscribe((response) => {
           if (response.status === 200) {
             this.message = 'Image uploaded successfully';
@@ -93,13 +93,13 @@ export class UploadImageComponent implements  OnInit {
           }
         }
       );
-
+/*
     this.model.username = this.userService.idUtente;
     this.model.password = this.userService.pwsUtente;
     this.userService.login(this.model).subscribe(client => {
       console.log(client);
       this.router.navigate(['/seller']);
-    });
+    });*/
   }
   // Gets called when the user clicks on retieve image button to get the image from back end
   getImage() {

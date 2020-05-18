@@ -44,6 +44,7 @@ public class ProductInfo implements Serializable, Comparable<ProductInfo> {
     private String productIcon;
 
     @Lob
+    @Column(name = "productimage", length = 1000)
     private byte[] productimage;
 
 

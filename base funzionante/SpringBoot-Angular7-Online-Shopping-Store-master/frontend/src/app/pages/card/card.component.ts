@@ -73,6 +73,11 @@ export class CardComponent implements OnInit, OnDestroy {
         // tslint:disable-next-line:no-shadowed-variable
         .subscribe(page => {
           this.page = page;
+
+          this.page.content.forEach(function(prod) {
+            prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
+          });
+
           if (this.currentUser && this.currentUser.role === Role.Manager) {
             this.title = 'ToShop\'s Items';
           } else {

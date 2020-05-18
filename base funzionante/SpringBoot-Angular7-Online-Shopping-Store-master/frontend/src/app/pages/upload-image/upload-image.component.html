@@ -1,27 +1,42 @@
 <h1 align="center" class="display-4 mb-5">Insert Product</h1>
-<div style="width:40%; margin: 25px auto">
-
-<!--
-<div class="container row">
-  <div class="col-md-6">
-    <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
-           name="name" />
-  </div>
-  <div class="col-md-6">
-    <input type="button" (click)="getImage()" value="Get Image">
-  </div>
-</div>
-
-
-<div class="container row">
-  <div class="col-md-12">
-    <div *ngIf=retrievedImage>
-      <img [src]="retrievedImage">
+<div>
+  <div class="container row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Upload Image</label><br/>
+        <input type="file" (change)="onFileChanged($event)">
+      </div>
+      <div class="col-md-6">
+        <input type="button" (click)="onUpload()" value="upload">
+      </div>
+    </div>
+    <hr />
+    <hr />
+    <div class="container row">
+      <div class="col-md-12">
+        <div *ngIf=message>{{message}}</div>
+      </div>
+    </div>
+    <div class="container row">
+      <div class="col-md-6">
+        <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
+               name="name" />
+      </div>
+      <div class="col-md-6">
+        <input type="button" (click)="getImage()" value="Get Image">
+      </div>
+    </div>
+    <div class="container row">
+      <div class="col-md-12">
+        <div *ngIf=retrievedImage>
+          <img [src]="retrievedImage">
+        </div>
+      </div>
+    </div>
     </div>
   </div>
-</div>-->
-</div>
 
+<!--
 
 <div style="width:40%; margin: 25px auto">
 
@@ -34,13 +49,13 @@
              name="productId" placeholder="Name" required>
     </div>
 
-    <!--Photo-->
+    &lt;!&ndash;Photo&ndash;&gt;
     <div class="form-group">
         <label>Upload Image</label><br/>
         <input type="file" (change)="onFileChanged($event)">
     </div>
 
-    <!--Name-->
+    &lt;!&ndash;Name&ndash;&gt;
     <div class="form-group">
       <label>Name</label>
       <input [(ngModel)]="product.productName" type="text" class="form-control form-control-lg" id="productName"
@@ -53,7 +68,7 @@
       </div>
     </div>
 
-    <!--Category-->
+    &lt;!&ndash;Category&ndash;&gt;
     <div class="form-group">
       <label for="categoryType">Category</label>
       <select class="custom-select custom-select-lg " id="categoryType" name="categoryType"
@@ -66,14 +81,14 @@
       </select>
     </div>
 
-    <!--Description-->
+    &lt;!&ndash;Description&ndash;&gt;
     <div class="form-group">
       <label>Description</label>
       <textarea class="form-control form-control-lg text-left"
                 id="productDescription" name="productDescription"
                 placeholder="Description" [(ngModel)]="product.productDescription"></textarea>
     </div>
-    <!--Price-->
+    &lt;!&ndash;Price&ndash;&gt;
     <div class="form-group">
       <label for="productPrice">Price</label>
       <input class="form-control form-control-lg"
@@ -89,7 +104,7 @@
         </div>
       </div>
     </div>
-    <!--Stock-->
+    &lt;!&ndash;Stock&ndash;&gt;
     <div class="form-group">
       <label for="productStock">Stock</label>
       <input class="form-control form-control-lg"
@@ -105,12 +120,13 @@
         </div>
       </div>
     </div>
-    <!--Status-->
+    &lt;!&ndash;Status&ndash;&gt;
 
     <div class="form-group">
       <button type="submit" [disabled]="!form.form.valid" class="btn btn-lg btn-primary btn-block">Submit</button>
     </div>
   </form>
 </div>
+-->
 
 

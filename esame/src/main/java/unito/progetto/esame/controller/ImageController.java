@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import unito.progetto.esame.model.ImageModel;
@@ -31,22 +32,37 @@ public class ImageController {
     @Autowired
     ProductService productService;
 
-
+    @Transactional
     @PostMapping("/upload")
     public BodyBuilder uplaodImage(@RequestParam("image") MultipartFile file) throws IOException {
-        System.out.println("Original Image Byte Size - " + file.getBytes().length);
         ImageModel img = new ImageModel(file.getOriginalFilename(), file.getContentType(),
-        compressBytes(file.getBytes()));
+                compressBytes(file.getBytes()));
         imageRepository.save(img);
 
         ProductInfo prod = productInfoRepository.findByProductId(img.getName());
-        prod.setProductimage(compressBytes(file.getBytes()));
-        System.out.println(prod);
+        System.out.println(img.getName());
+        prod.setProductimage(decompressBytes(compressBytes(file.getBytes())));
         productService.update(prod);
+
+        System.out.println(img.getPicByte());
+        System.out.println(prod.getProductimage());
 
         return ResponseEntity.status(HttpStatus.OK);
     }
 
+    // PER PROVEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    @Transactional
+    @PostMapping("/upload2")
+    public BodyBuilder uplaodImage2(@RequestParam("image") MultipartFile file) throws IOException {
+        System.out.println("Original Image Byte Size - " + file.getBytes().length);
+        ImageModel img = new ImageModel(file.getOriginalFilename(), file.getContentType(),
+                compressBytes(file.getBytes()));
+        imageRepository.save(img);
+
+        return ResponseEntity.status(HttpStatus.OK);
+    }
+
+    @Transactional
     @GetMapping(path = { "/get/{imageName}" })
     public ImageModel getImage(@PathVariable("imageName") String imageName) throws IOException {
         final Optional<ImageModel> retrievedImage = imageRepository.findByName(imageName);
@@ -70,7 +86,6 @@ public class ImageController {
             outputStream.close();
         } catch (IOException e) {
         }
-        System.out.println("Compressed Image Byte Size - " + outputStream.toByteArray().length);
         return outputStream.toByteArray();
     }
     // uncompress the image bytes before returning it to the angular application

@@ -53,7 +53,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             // this.getProds(currentPage, size);
             this.getProdsSupplier(/*currentPage, size*/);
         } else {
-            //this.getProds();
+            // this.getProds();
             this.getProdsSupplier();
         }
     }
@@ -74,6 +74,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
       this.productService.getAllInPageSupplier(/*+page, +size, */this.productId)
         .subscribe(page => {
           this.page = page;
+
+          this.page.forEach(prod => {
+            prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
+            console.log(prod.productimage);
+          });
         });
 
     }
