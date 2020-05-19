@@ -14,11 +14,14 @@
             </div>
         </div>
         <!--Photo-->
-        <div class="form-group">
-            <label>Photo Link</label>
-            <input [(ngModel)]="product.productIcon" type="text" class="form-control form-control-lg" id="productIcon"
-                   name="productIcon" placeholder="Photo">
+        <div class="align-middle">
+          <img height="100px" [src]="product.productimage">
         </div>
+
+      <div class="form-group" >
+        <label>Change Image</label><br/>
+        <input type="file" (change)="onFileChanged($event)">
+      </div>
 
         <!--Name-->
         <div class="form-group">
@@ -85,19 +88,10 @@
                 </div>
             </div>
         </div>
-        <!--Status-->
-        <div class="form-group">
-            <label for="productStatus">Status</label>
-            <select class="custom-select custom-select-lg " id="productStatus" name="productStatus" required
-                    [(ngModel)]="product.productStatus">
-                <option [ngValue]=0>Available</option>
-                <option [ngValue]=1>Unavailable</option>
-            </select>
-        </div>
         <div class="form-group">
             <button type="submit" [disabled]="!form.form.valid" class="btn btn-lg btn-primary btn-block">Submit</button>
         </div>
     </form>
 
-
 </div>
+
