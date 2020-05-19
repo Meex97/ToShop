@@ -57,10 +57,9 @@ export class InsertProductsSupplierComponent implements OnInit {
   add() {
     this.product.type = 1;
     this.productService.create/*ProductSupplier*/(this.product).subscribe(prod => {
-      },
+        this.onUpload();
+     },
       e => {});
-
-    this.onUpload();
 
   }
 

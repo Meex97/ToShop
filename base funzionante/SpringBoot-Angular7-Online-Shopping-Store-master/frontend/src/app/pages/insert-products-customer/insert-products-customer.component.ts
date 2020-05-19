@@ -58,10 +58,9 @@ export class InsertProductsCustomerComponent implements OnInit {
     this.product.idUtente = this.currentUser.id;
     this.product.type = 2;
     this.productService.createProductCustomer(this.product).subscribe(prod => {
+        this.onUpload();
       },
       e => {});
-
-    this.onUpload();
 
   }
 
