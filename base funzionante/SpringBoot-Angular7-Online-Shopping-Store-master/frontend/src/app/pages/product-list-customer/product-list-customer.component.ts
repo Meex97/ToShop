@@ -57,6 +57,11 @@ export class ProductListCustomerComponent implements OnInit, OnDestroy {
     this.productService.getAllInPageSupplier(this.productId)
       .subscribe(page => {
         this.page = page;
+
+        this.page.forEach(prod => {
+          prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
+          console.log(prod.productimage);
+        });
       });
   }
 

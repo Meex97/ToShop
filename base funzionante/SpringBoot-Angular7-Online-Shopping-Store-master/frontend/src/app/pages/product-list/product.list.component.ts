@@ -47,26 +47,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     update() {
-        if (this.route.snapshot.queryParamMap.get('page')) {
-            const currentPage = +this.route.snapshot.queryParamMap.get('page');
-            const size = +this.route.snapshot.queryParamMap.get('size');
-            // this.getProds(currentPage, size);
-            this.getProdsSupplier(/*currentPage, size*/);
-        } else {
-            // this.getProds();
-            this.getProdsSupplier();
-        }
+      this.getProdsSupplier();
     }
 
-    getProds(page: number = 1, size: number = 5) {
-        this.productService.getAllInPage(+page, +size)
-            .subscribe(page => {
-                this.page = page;
-            });
 
-    }
-
-    getProdsSupplier(/*page: number = 1, size: number = 5*/) {
+    getProdsSupplier() {
       this.productService.getAllInPageSupplier(this.productId)
         .subscribe(page => {
           this.page = page;

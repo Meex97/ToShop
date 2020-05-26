@@ -29,6 +29,8 @@ export class InsertProductsSupplierComponent implements OnInit {
     remembered: false
   };
 
+  fileData: File = null;
+
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private router: Router,
@@ -55,8 +57,9 @@ export class InsertProductsSupplierComponent implements OnInit {
 
 
   add() {
+    this.product.productimage = ' ';
     this.product.type = 1;
-    this.productService.create/*ProductSupplier*/(this.product).subscribe(prod => {
+    this.productService.create(this.product).subscribe(prod => {
         this.onUpload();
      },
       e => {});
@@ -67,10 +70,26 @@ export class InsertProductsSupplierComponent implements OnInit {
   public onFileChanged(event) {
     // Select File
     this.selectedFile = event.target.files[0];
+    this.fileData = event.target.files[0] as File;
+    this.preview();
   }
+
+  preview() {
+    // Show preview
+    var mimeType = this.fileData.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    reader.onload = (_event) => {
+      this.product.productimage = reader.result;
+    }
+  }
+
   // Gets called when the user clicks on submit to upload the image
   onUpload() {
-
     this.userService.logout();
 
     // FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.

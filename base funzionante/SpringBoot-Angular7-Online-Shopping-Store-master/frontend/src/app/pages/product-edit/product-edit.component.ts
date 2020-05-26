@@ -23,8 +23,9 @@ export class ProductEditComponent implements OnInit, AfterContentChecked {
       googleIdToken: null,
       remembered: false
     };
-
-   page: Array<ProductInfo>;
+    image: any;
+    page: Array<ProductInfo>;
+    fileData: File = null;
 
     constructor(private productService: ProductService,
                 private route: ActivatedRoute,
@@ -49,14 +50,15 @@ export class ProductEditComponent implements OnInit, AfterContentChecked {
     }
 
     update() {
+        this.image =  this.product.productimage;
+        this.product.productimage = ' ';
         this.productService.update(this.product).subscribe(prod => {
               if (!prod) throw new Error();
+              this.onUpload();
               this.router.navigate(['/seller']);
             },
             err => {
             });
-        this.onUpload();
-
     }
 
     onSubmit() {
@@ -79,8 +81,24 @@ export class ProductEditComponent implements OnInit, AfterContentChecked {
 
 
   public onFileChanged(event) {
-    // Select File
     this.selectedFile = event.target.files[0];
+    this.fileData = event.target.files[0] as File;
+    this.preview();
+  }
+
+
+  preview() {
+    // Show preview
+    var mimeType = this.fileData.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    reader.onload = (_event) => {
+      this.product.productimage = reader.result;
+    }
   }
 
   onUpload() {
@@ -108,4 +126,6 @@ export class ProductEditComponent implements OnInit, AfterContentChecked {
       this.router.navigate(['/seller']);
     });
   }
+
+
 }
