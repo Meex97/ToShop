@@ -11,7 +11,7 @@ export class ProductInOrder {
     count: number;
     idUtente: number;
     nameUtente: string;
-  productimage: any;
+    productimage: any;
 
     constructor(productInfo: ProductInfo, quantity = 1) {
         this.productId = productInfo.productId;
