@@ -66,6 +66,10 @@ export class NewProductsComponent  implements OnInit, OnDestroy {
       // tslint:disable-next-line:no-shadowed-variable
       .subscribe(page => {
         this.page = page;
+
+        this.page.forEach(prod => {
+          prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
+        });
         this.title = 'New products';
       });
 

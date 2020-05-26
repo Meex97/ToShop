@@ -26,7 +26,6 @@ import { AdminListComponent } from './pages/admin-list/admin-list.component';
 import { UserEditSupplierComponent } from './pages/user-edit-supplier/user-edit-supplier.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import {RouterModule} from '@angular/router';
-import { CloseComponent } from './pages/close/close.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import { UploadImageComponent } from './pages/upload-image/upload-image.component';
 import { ToolbarComponent } from './parts/toolbar/toolbar.component';
@@ -64,7 +63,6 @@ import { InsertProductsCustomerComponent } from './pages/insert-products-custome
     AdminListComponent,
     UserEditSupplierComponent,
     CheckoutComponent,
-    CloseComponent,
     UploadImageComponent,
     ToolbarComponent,
     NewProductsComponent,

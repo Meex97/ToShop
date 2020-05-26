@@ -65,6 +65,7 @@ export class AdminListComponent implements OnInit, OnDestroy {
   }
 
   accept(productClient: ProductClient) {
+    productClient.productimage = productClient.oldimg;
     this.page = this.page.filter(e => e.productId !== productClient.productId);
     this.productService.acceptProd(productClient).subscribe(_ => {},
       err => {

@@ -31,7 +31,7 @@ export class OrderDetailComponent implements OnInit {
         //     map(paramMap =>paramMap.get('id')),
         //     switchMap((id:string) => this.orderService.show(id))
         // )
-        this.order$ = this.orderService.show(this.route.snapshot.paramMap.get('id'));
+      this.order$ = this.orderService.show(this.route.snapshot.paramMap.get('id'));
     }
 
 }

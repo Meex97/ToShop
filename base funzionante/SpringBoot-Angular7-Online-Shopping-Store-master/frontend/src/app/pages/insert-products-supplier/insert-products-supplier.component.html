@@ -33,6 +33,9 @@
     </div>
 
     <!--Photo-->
+    <div class="align-middle" *ngIf="product.productimage">
+      <img height="100px" [src]="product.productimage">
+    </div>
     <div class="form-group">
       <label>Upload Image</label><br/>
       <input type="file" (change)="onFileChanged($event)">

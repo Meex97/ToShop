@@ -17,7 +17,6 @@ import {ProductListCustomerComponent} from './pages/product-list-customer/produc
 import {AdminListComponent} from './pages/admin-list/admin-list.component';
 import {UserEditSupplierComponent} from './pages/user-edit-supplier/user-edit-supplier.component';
 import {CheckoutComponent} from './pages/checkout/checkout.component';
-import {CloseComponent} from './pages/close/close.component';
 import {UploadImageComponent} from './pages/upload-image/upload-image.component';
 import {NewProductsComponent} from './pages/new-products/new-products.component';
 import {SecondHandProductsComponent} from './pages/second-hand-products/second-hand-products.component';
@@ -42,7 +41,6 @@ const routes: Routes = [
   {path: 'order/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
   {path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
   {path: 'seller', redirectTo: 'seller/product', pathMatch: 'full'},
-  {path: 'payment/payment-response', component: CloseComponent},
   {
     path: 'seller/product',
     component: ProductListComponent,

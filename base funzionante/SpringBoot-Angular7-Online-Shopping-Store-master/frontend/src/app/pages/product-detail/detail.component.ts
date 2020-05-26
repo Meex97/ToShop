@@ -46,6 +46,7 @@ export class DetailComponent implements OnInit {
     this.productService.getDetail(id).subscribe(
         prod => {
           this.productInfo = prod;
+          this.productInfo.productimage = 'data:image/jpeg;base64,' + this.productInfo.productimage;
         },
         _ => console.log('Get Cart Failed')
     );

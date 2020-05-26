@@ -1,4 +1,7 @@
-
+.mat-toolbar.mat-primary {
+  background: #007bff;
+  color: #fff;
+}
 .companyName{
   font-size: 110%;
 }
@@ -20,6 +23,7 @@ a{
   text-decoration: none;
   font-size: medium;
   white-space: normal;
+
 }
 a:hover {
   color: inherit;

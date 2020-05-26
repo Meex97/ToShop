@@ -29,6 +29,8 @@ export class InsertProductsCustomerComponent implements OnInit {
     remembered: false
   };
 
+  fileData: File = null;
+
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private router: Router,
@@ -55,6 +57,7 @@ export class InsertProductsCustomerComponent implements OnInit {
 
 
   add() {
+    this.product.productimage = ' ';
     this.product.idUtente = this.currentUser.id;
     this.product.type = 2;
     this.productService.createProductCustomer(this.product).subscribe(prod => {
@@ -68,7 +71,24 @@ export class InsertProductsCustomerComponent implements OnInit {
   public onFileChanged(event) {
     // Select File
     this.selectedFile = event.target.files[0];
+    this.fileData = event.target.files[0] as File;
+    this.preview();
   }
+
+  preview() {
+    // Show preview
+    var mimeType = this.fileData.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    reader.onload = (_event) => {
+      this.product.productimage = reader.result;
+    }
+  }
+
   // Gets called when the user clicks on submit to upload the image
   onUpload() {
 
