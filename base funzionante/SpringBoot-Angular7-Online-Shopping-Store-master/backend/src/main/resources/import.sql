@@ -75,7 +75,7 @@ INSERT INTO "public"."users" VALUES (2147483645, 't', '3100 Western Road A', 'cu
 
 INSERT INTO "public"."users" VALUES (2147483641, 't', 'customer1@email.com', 'customer1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', '3200 West Road', 'ROLE_CUSTOMER','123456789' );
 INSERT INTO "public"."users" VALUES (2147483643, 't', 'employee1@email.com','employee1','$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu' , '222 East Drive ', 'ROLE_EMPLOYEE','123123122' );
-INSERT INTO "public"."users" VALUES (2147483642, 't', 'manager1@email.com', 'manager1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu','2000 John Road' , 'ROLE_MANAGER','987654321' );
+INSERT INTO "public"."users" VALUES (2147483642, 't', 'm1@m1.m1', 'manager1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu','2000 John Road' , 'ROLE_MANAGER','987654321' );
 
 -- ----------------------------
 -- Records of cart

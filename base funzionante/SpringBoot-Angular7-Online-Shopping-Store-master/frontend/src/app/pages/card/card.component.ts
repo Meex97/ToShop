@@ -90,6 +90,10 @@ export class CardComponent implements OnInit, OnDestroy {
         .subscribe(categoryPage => {
           this.title = categoryPage.category;
           this.page = categoryPage.page;
+
+          this.page.content.forEach(function(prod) {
+            prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
+          });
         });
     }
 

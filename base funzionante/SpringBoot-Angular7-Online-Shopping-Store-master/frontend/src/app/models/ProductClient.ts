@@ -12,7 +12,9 @@ export class ProductClient {
   createTime: string;
   updateTime: string;
   idUtente: number;
-  status: number
+  status: number;
+  productimage: any;
+  oldimg: any;
 
 
 

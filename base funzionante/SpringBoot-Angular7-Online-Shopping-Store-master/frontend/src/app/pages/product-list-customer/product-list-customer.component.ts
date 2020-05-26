@@ -8,7 +8,7 @@ import {ProductInfo} from '../../models/productInfo';
 import {Role} from '../../enum/Role';
 import {CategoryType} from '../../enum/CategoryType';
 import {ProductStatus} from '../../enum/ProductStatus';
-import {ProductClient} from "../../models/ProductClient";
+import {ProductClient} from '../../models/ProductClient';
 
 @Component({
   selector: 'app-product-list-customer',
@@ -57,6 +57,10 @@ export class ProductListCustomerComponent implements OnInit, OnDestroy {
     this.productService.getAllInPageSupplier(this.productId)
       .subscribe(page => {
         this.page = page;
+
+        this.page.forEach(prod => {
+          prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
+        });
       });
   }
 

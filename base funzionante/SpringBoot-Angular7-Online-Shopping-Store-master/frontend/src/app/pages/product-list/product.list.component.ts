@@ -58,14 +58,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
         }
     }
 
-    getProds(page: number = 1, size: number = 5) {
-        this.productService.getAllInPage(+page, +size)
-            .subscribe(page => {
-                this.page = page;
-            });
-
-    }
-
     getProdsSupplier(/*page: number = 1, size: number = 5*/) {
       this.productService.getAllInPageSupplier(this.productId)
         .subscribe(page => {
@@ -73,7 +65,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
           this.page.forEach(prod => {
             prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
-            console.log(prod.productimage);
           });
         });
 
