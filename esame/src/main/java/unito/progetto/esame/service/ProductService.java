@@ -12,6 +12,8 @@ public interface ProductService {
 
     ProductInfo findOne(String productId);
 
+    ProductClient findOneProductClient(Long productId);
+
     // All selling products
     Page<ProductInfo> findUpAll(Pageable pageable);
     // All products

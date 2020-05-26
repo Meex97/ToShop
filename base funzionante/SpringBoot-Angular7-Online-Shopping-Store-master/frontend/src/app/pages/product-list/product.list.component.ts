@@ -58,7 +58,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
           this.page.forEach(prod => {
             prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
-            console.log(prod.productimage);
           });
         });
 

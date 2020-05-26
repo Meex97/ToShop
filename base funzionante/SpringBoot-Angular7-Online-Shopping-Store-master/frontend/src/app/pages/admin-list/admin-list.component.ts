@@ -55,11 +55,17 @@ export class AdminListComponent implements OnInit, OnDestroy {
     this.productService.getAllInPageAdmin()
       .subscribe(page => {
         this.page = page;
+
+        this.page.forEach(prod => {
+          prod.oldimg = prod.productimage;
+          prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
+        });
       });
 
   }
 
   accept(productClient: ProductClient) {
+    productClient.productimage = productClient.oldimg;
     this.page = this.page.filter(e => e.productId !== productClient.productId);
     this.productService.acceptProd(productClient).subscribe(_ => {},
       err => {
@@ -68,6 +74,7 @@ export class AdminListComponent implements OnInit, OnDestroy {
   }
 
   decline(productClient: ProductClient) {
+    productClient.productimage = productClient.oldimg;
     this.page = this.page.filter(e => e.productId !== productClient.productId);
     this.productService.declineProd(productClient).subscribe(_ => {},
       err => {

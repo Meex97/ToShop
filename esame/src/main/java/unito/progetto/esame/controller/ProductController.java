@@ -3,6 +3,7 @@ package unito.progetto.esame.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,8 +63,30 @@ public class ProductController {
     @GetMapping("/product")
     public Page<ProductInfo> findAll(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                      @RequestParam(value = "size", defaultValue = "3") Integer size) {
-        PageRequest request = PageRequest.of(page - 1, size);
-        return productService.findAll(request);
+        /*PageRequest request = PageRequest.of(page - 1, size);
+        Page<ProductInfo> x = productService.findAll(request);*/
+
+        PageRequest request = PageRequest.of(page - 1, 50);
+        PageRequest request2 = PageRequest.of(page - 1, size);
+        Page<ProductInfo> x = productService.findAll(request);
+        List<ProductInfo> tmp = new ArrayList<>();
+
+        x.forEach(prod -> {
+            if (this.userService.findOneById(prod.getIdUtente()).getRole().equals("ROLE_EMPLOYEE")){
+                tmp.add(prod);
+            } else {
+                ProductClient tmpProd = this.productService.findOneProductClient(prod.getIdUtente());
+                System.out.println(prod);
+                if (tmpProd.getStatus() == 1) {
+                    tmp.add(prod);
+                }
+            }
+        });
+
+        Page<ProductInfo> pages = new PageImpl<ProductInfo>(tmp.subList(0, size), request2, tmp.size());
+
+
+        return pages;
     }
 
     @Transactional
