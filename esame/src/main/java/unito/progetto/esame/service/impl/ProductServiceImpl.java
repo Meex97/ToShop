@@ -39,6 +39,12 @@ public class ProductServiceImpl implements ProductService {
         return productInfo;
     }
 
+    @Override
+    public ProductClient findOneProductClient(Long productId) {
+        ProductClient productInfo = productClientRepository.findByProductId(String.valueOf(productId));
+        return productInfo;
+    }
+
 
     @Override
     public Page<ProductInfo> findUpAll(Pageable pageable) {
