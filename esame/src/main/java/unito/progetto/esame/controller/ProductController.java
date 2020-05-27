@@ -22,6 +22,8 @@ import unito.progetto.esame.service.impl.FileService;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -60,33 +62,36 @@ public class ProductController {
      **/
 
     @Transactional
-    @GetMapping("/product")
+    @GetMapping("/product2")
     public Page<ProductInfo> findAll(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                      @RequestParam(value = "size", defaultValue = "3") Integer size) {
-        /*PageRequest request = PageRequest.of(page - 1, size);
-        Page<ProductInfo> x = productService.findAll(request);*/
+        PageRequest request = PageRequest.of(page - 1, size);
 
-        PageRequest request = PageRequest.of(page - 1, 50);
+
+        return productService.findAll(request);
+
+    }
+
+    @Transactional
+    @GetMapping("/product")
+    public Page<ProductInfo> findAll2(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                     @RequestParam(value = "size", defaultValue = "3") Integer size) {
+
         PageRequest request2 = PageRequest.of(page - 1, size);
-        Page<ProductInfo> x = productService.findAll(request);
-        List<ProductInfo> tmp = new ArrayList<>();
+        List<ProductInfo> new_products = this.findBySupplier();
+        List<ProductClient> secondHand_products = this.findByUser();
+        secondHand_products.forEach(x -> {
+            new_products.add(x);
 
-        x.forEach(prod -> {
-            if (this.userService.findOneById(prod.getIdUtente()).getRole().equals("ROLE_EMPLOYEE")){
-                tmp.add(prod);
-            } else {
-                ProductClient tmpProd = this.productService.findOneProductClient(prod.getIdUtente());
-                System.out.println(prod);
-                if (tmpProd.getStatus() == 1) {
-                    tmp.add(prod);
-                }
-            }
         });
-
-        Page<ProductInfo> pages = new PageImpl<ProductInfo>(tmp.subList(0, size), request2, tmp.size());
-
+        Collections.sort(new_products);
+        if(new_products.size() <= size){
+            size = new_products.size() ;
+        }
+        Page<ProductInfo> pages = new PageImpl<>(new_products.subList(page-1, size), request2, new_products.size());
 
         return pages;
+
     }
 
     @Transactional

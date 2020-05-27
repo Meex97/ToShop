@@ -12,16 +12,12 @@ public interface ProductService {
 
     ProductInfo findOne(String productId);
 
-    ProductClient findOneProductClient(Long productId);
-
     // All selling products
     Page<ProductInfo> findUpAll(Pageable pageable);
     // All products
     Page<ProductInfo> findAll(Pageable pageable);
 
     Page<ProductClient> findAllAdmin(Pageable pageable);
-
-    //Page<ProductInfo> findByIdUtente(Pageable pageable, Long idUtente);
 
     // All products in a category
     Page<ProductInfo> findAllInCategory(Integer categoryType, Pageable pageable);

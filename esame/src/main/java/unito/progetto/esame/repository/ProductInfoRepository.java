@@ -13,9 +13,6 @@ import java.util.List;
 public interface ProductInfoRepository extends JpaRepository<ProductInfo, String> {
 
 
-
-    Collection<ProductInfo> findAllByIdUtente(Long idUtente);
-
     ProductInfo findByProductId(String id);
 
     // onsale product

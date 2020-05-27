@@ -88,8 +88,8 @@ export class CardComponent implements OnInit, OnDestroy {
       const type = this.route.snapshot.url[1].path;
       this.productService.getCategoryInPage(+type, page, size)
         .subscribe(categoryPage => {
-          this.title = categoryPage.category;
-          this.page = categoryPage.page;
+          this.title = 'Get Whatever You Want!';
+          this.page = categoryPage;
 
           this.page.content.forEach(function(prod) {
             prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
