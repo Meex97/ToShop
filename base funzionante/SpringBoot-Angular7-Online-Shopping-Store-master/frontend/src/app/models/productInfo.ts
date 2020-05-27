@@ -16,7 +16,7 @@ export class ProductInfo {
     // if is a new product (1) or secondHand product (2)
     type: number;
 
-  productimage: any;
+    productimage: any;
 
 
 

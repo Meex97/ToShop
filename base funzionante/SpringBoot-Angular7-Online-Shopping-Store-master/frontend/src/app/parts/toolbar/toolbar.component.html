@@ -44,7 +44,7 @@
     <div fxShow="true" fxHide.lt-md="true">
       <a *ngIf="!currentUser || currentUser.role == Role.Customer "   mat-button routerLink="/customer/product"> Exchange</a>
       <a *ngIf="currentUser && currentUser.role == Role.Manager "  mat-button routerLink="/admin/list"> Evaluate</a>
-      <a *ngIf="!currentUser || currentUser.role == Role.Customer " mat-button routerLink="/cart"> <mat-icon>shopping_cart</mat-icon>  Cart</a>
+      <a *ngIf="currentUser && currentUser.role == Role.Customer " mat-button routerLink="/cart"> <mat-icon>shopping_cart</mat-icon>  Cart</a>
 
       <ng-container *ngIf="currentUser; else noUser">
         <a mat-button routerLink="/order"> Orders</a>

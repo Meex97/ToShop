@@ -77,6 +77,7 @@ export class CartService {
 
     addItem(productInOrder): Observable<boolean> {
         if (!this.currentUser) {
+
             if (this.cookieService.check('cart')) {
                 this.localMap = JSON.parse(this.cookieService.get('cart'));
             }

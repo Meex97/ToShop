@@ -6,6 +6,9 @@ import {CartService} from '../../services/cart.service';
 import {CookieService} from 'ngx-cookie-service';
 import {ProductInOrder} from '../../models/ProductInOrder';
 import {ProductInfo} from '../../models/productInfo';
+import {JwtResponse} from '../../response/JwtResponse';
+import {Subscription} from 'rxjs';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-detail',
@@ -16,12 +19,15 @@ export class DetailComponent implements OnInit {
   title: string;
   count: number;
   productInfo: ProductInfo;
+  currentUser: JwtResponse;
+  currentUserSubscription: Subscription;
 
   constructor(
       private productService: ProductService,
       private cartService: CartService,
       private cookieService: CookieService,
       private route: ActivatedRoute,
+      private userService: UserService,
       private router: Router
   ) {
   }
@@ -30,6 +36,9 @@ export class DetailComponent implements OnInit {
     this.getProduct();
     this.title = 'Product Detail';
     this.count = 1;
+    this.currentUserSubscription = this.userService.currentUser.subscribe(client => {
+      this.currentUser = client;
+    });
   }
 
   // ngOnChanges(changes: SimpleChanges): void {
