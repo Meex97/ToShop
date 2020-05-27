@@ -3,6 +3,7 @@ package unito.progetto.esame.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import unito.progetto.esame.form.ItemForm;
 import unito.progetto.esame.model.Cart;
@@ -53,12 +54,14 @@ public class CartController {
     }
 
 
+    @Transactional
     @PostMapping("/add")
     public boolean addToCart(@RequestBody ItemForm form, Principal principal) {
         //var productInfo = productService.findOne(form.getProductId());
         try {
             mergeCart(Collections.singleton(new ProductInOrder(productService.findOne(form.getProductId()), form.getQuantity())), principal);
         } catch (Exception e) {
+            System.out.println(e);
             return false;
         }
         return true;

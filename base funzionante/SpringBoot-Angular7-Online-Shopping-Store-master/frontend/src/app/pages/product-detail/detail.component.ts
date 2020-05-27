@@ -58,7 +58,7 @@ export class DetailComponent implements OnInit {
         .subscribe(
             res => {
               if (!res) {
-                console.log('Add Cart failed' + res);
+                console.log('Add Cart failed ' + res);
                 throw new Error();
               }
               this.router.navigateByUrl('/cart');

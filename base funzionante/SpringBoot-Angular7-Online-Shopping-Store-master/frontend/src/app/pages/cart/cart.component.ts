@@ -43,6 +43,10 @@ export class CartComponent implements OnInit, OnDestroy, AfterContentChecked {
         this.cartService.getCart().subscribe(prods => {
             console.log(prods);
             this.productInOrders = prods;
+
+          this.productInOrders.forEach(prod => {
+            prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
+          });
         });
 
         this.sub = this.updateTerms.pipe(
