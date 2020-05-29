@@ -25,8 +25,13 @@ a{
   white-space: normal;
 
 }
-a:hover {
-  color: inherit;
+
+a:hover{
+  text-decoration: none;
+}
+
+.yellowing:hover {
+  color: yellow;
   text-decoration: none;
 }
 
@@ -47,4 +52,22 @@ button{
 .mat-sidenav-content{
   font-size: 200%;
   text-align: center;
+}
+
+
+
+.torinocity {
+  alignment: center;
+  vertical-align: middle;
+  margin-left:  400px;
+  /*margin-bottom: 2px;*/
+  float: left;
+  width: 350px;
+  height: 70px;
+  /*border-radius: 50%;*/
+  /*display: block; */
+}
+
+mat-icon:hover{
+  color: yellow;
 }

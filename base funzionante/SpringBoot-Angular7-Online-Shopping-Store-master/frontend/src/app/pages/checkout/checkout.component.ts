@@ -88,7 +88,8 @@ export class CheckoutComponent implements OnInit {
 
   checkout() {
     this.disablePaymentButton = false;
-    /*this.cartService.checkout(this.currentUser.account).subscribe(
+
+    this.cartService.checkout(this.currentUser.account).subscribe(
       _ => {
         this.productInOrders = [];
       },
@@ -100,7 +101,6 @@ export class CheckoutComponent implements OnInit {
       this.userService.updateCredits(this.client, this.discount, this.currentUser.id).subscribe(u => {
       }, _ => {});
     }
-    */
   }
 
   confirmPayment() {

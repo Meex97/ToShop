@@ -42,9 +42,22 @@ input{
 .mat-raised-button.mat-primary{
   background: #007bff;
   color: #fff;
+
+}
+
+.mat-raised-button.mat-primary{
+  text-decoration: white;
+  font-weight: bold;
 }
 
 .mat-raised-button.mat-primary:hover{
   color: yellow;
   text-decoration: white;
+  font-weight: bold;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
