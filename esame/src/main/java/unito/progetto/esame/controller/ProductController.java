@@ -154,7 +154,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.update(product));
     }
 
-
+    @Transactional
     @DeleteMapping("/seller/product/{id}/delete")
     public ResponseEntity delete(@PathVariable("id") String productId) {
        System.out.println("prodotto da cancellare: " + productId);
