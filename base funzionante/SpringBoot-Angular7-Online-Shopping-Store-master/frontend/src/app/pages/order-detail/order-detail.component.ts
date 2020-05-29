@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
-import {OrderService} from "../../services/order.service";
-import {Order} from "../../models/Order";
-import {ActivatedRoute} from "@angular/router";
-import {JwtResponse} from "../../response/JwtResponse";
-import {UserService} from "../../services/user.service";
+import {Observable} from 'rxjs';
+import {OrderService} from '../../services/order.service';
+import {Order} from '../../models/Order';
+import {ActivatedRoute} from '@angular/router';
+import {JwtResponse} from '../../response/JwtResponse';
+import {UserService} from '../../services/user.service';
 import {Role} from '../../enum/Role';
 
 @Component({
@@ -32,6 +32,14 @@ export class OrderDetailComponent implements OnInit {
         //     switchMap((id:string) => this.orderService.show(id))
         // )
       this.order$ = this.orderService.show(this.route.snapshot.paramMap.get('id'));
+
+      /*this.order$.content.products.forEach(function(prod) {
+        prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
+      });*/
+
+      /*this.order$.forEach(prod => {
+        prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
+      });*/
     }
 
 }

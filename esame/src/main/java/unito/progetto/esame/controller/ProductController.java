@@ -186,7 +186,6 @@ public class ProductController {
 
         prod.forEach(product ->{
 
-            System.out.println(this.userService.findOneById(product.getIdUtente()));
             if (this.userService.findOneById(product.getIdUtente()).getRole().equals("ROLE_EMPLOYEE")){
                 prodSupp.add(product);
             }
