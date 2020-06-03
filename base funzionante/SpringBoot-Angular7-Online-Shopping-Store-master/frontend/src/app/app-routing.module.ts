@@ -22,6 +22,8 @@ import {NewProductsComponent} from './pages/new-products/new-products.component'
 import {SecondHandProductsComponent} from './pages/second-hand-products/second-hand-products.component';
 import {InsertProductsSupplierComponent} from './pages/insert-products-supplier/insert-products-supplier.component';
 import {InsertProductsCustomerComponent} from './pages/insert-products-customer/insert-products-customer.component';
+import {ApiComponent} from './pages/api/api.component';
+
 
 
 const routes: Routes = [
@@ -100,6 +102,10 @@ const routes: Routes = [
   {
     path: 'customer/insertProduct',
     component: InsertProductsCustomerComponent,
+  },
+  {
+    path: 'api',
+    component: ApiComponent,
   },
 
 

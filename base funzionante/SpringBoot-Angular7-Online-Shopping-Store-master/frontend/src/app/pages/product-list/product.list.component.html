@@ -20,7 +20,9 @@
     <tr *ngFor="let productInfo of page">
         <th class="align-middle" scope="row">
           <div>
-            <img height="100px" [src]="productInfo.productimage">
+           <!-- <img height="100px" [src]="productInfo.productimage">-->
+            <img height="100px" *ngIf=" !productInfo.productIcon " [src]="productInfo.productimage">
+            <img height="100px" *ngIf=" productInfo.productIcon " [src]="productInfo.productIcon">
           </div>
         </th>
         <td class="align-middle">{{productInfo.productId}}</td>

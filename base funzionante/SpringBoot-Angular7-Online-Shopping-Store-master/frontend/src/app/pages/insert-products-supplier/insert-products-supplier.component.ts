@@ -60,7 +60,8 @@ export class InsertProductsSupplierComponent implements OnInit {
     this.product.productimage = ' ';
     this.product.type = 1;
     this.productService.create(this.product).subscribe(prod => {
-        this.onUpload();
+
+      this.onUpload();
      },
       e => {});
 

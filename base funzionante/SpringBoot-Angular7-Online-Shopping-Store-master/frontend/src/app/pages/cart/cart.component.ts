@@ -45,6 +45,7 @@ export class CartComponent implements OnInit, OnDestroy, AfterContentChecked {
             this.productInOrders = prods;
 
           this.productInOrders.forEach(prod => {
+            console.log(prod.productIcon);
             prod.productimage = 'data:image/jpeg;base64,' + prod.productimage;
           });
         });

@@ -19,7 +19,9 @@
   <tr *ngFor="let productClient of page">
     <th class="align-middle" scope="row">
       <div>
-        <img height="100px" [src]="productClient.productimage">
+       <!-- <img [src]="productClient.productimage" height="100px" >-->
+        <img height="100px" *ngIf=" !productClient.productIcon " [src]="productClient.productimage">
+        <img height="100px" *ngIf=" productClient.productIcon " [src]="productClient.productIcon">
       </div>
     </th>
     <td class="align-middle">{{productClient.productId}}</td>

@@ -2,7 +2,9 @@
 <div class="row card-deck text-center">
   <div *ngFor="let productInfo of page" class="col-lg-4 ">
     <div class="card mb-4"  >
-      <img height="225px" class="card-img-top" [src]="productInfo.productimage">
+      <!--<img height="225px" class="card-img-top" [src]="productInfo.productimage">-->
+      <img height="225px" class="card-img-top" *ngIf=" !productInfo.productIcon " [src]="productInfo.productimage">
+      <img height="225px" class="card-img-top" *ngIf=" productInfo.productIcon " [src]="productInfo.productIcon">
       <div class="card-body">
         <h4 class="card-title ">{{productInfo.productName}}</h4>
         <div class="text-left">

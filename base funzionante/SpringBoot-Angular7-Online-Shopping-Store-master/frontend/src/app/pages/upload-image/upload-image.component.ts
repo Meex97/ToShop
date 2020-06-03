@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {UploadFileService} from '../../services/UploadFileService';
-import {FormBuilder, FormGroup} from '@angular/forms';
 import {ProductService} from '../../services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
@@ -62,7 +59,7 @@ export class UploadImageComponent implements  OnInit {
 
   add() {
     this.product.type = 1;
-    this.productService.create/*ProductSupplier*/(this.product).subscribe(prod => {
+    this.productService.create(this.product).subscribe(prod => {
       },
       e => {});
 
@@ -93,13 +90,6 @@ export class UploadImageComponent implements  OnInit {
           }
         }
       );
-/*
-    this.model.username = this.userService.idUtente;
-    this.model.password = this.userService.pwsUtente;
-    this.userService.login(this.model).subscribe(client => {
-      console.log(client);
-      this.router.navigate(['/seller']);
-    });*/
   }
   // Gets called when the user clicks on retieve image button to get the image from back end
   getImage() {

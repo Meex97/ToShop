@@ -42,6 +42,7 @@ import { NewProductsComponent } from './pages/new-products/new-products.componen
 import { SecondHandProductsComponent } from './pages/second-hand-products/second-hand-products.component';
 import { InsertProductsSupplierComponent } from './pages/insert-products-supplier/insert-products-supplier.component';
 import { InsertProductsCustomerComponent } from './pages/insert-products-customer/insert-products-customer.component';
+import { ApiComponent } from './pages/api/api.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { InsertProductsCustomerComponent } from './pages/insert-products-custome
     SecondHandProductsComponent,
     InsertProductsSupplierComponent,
     InsertProductsCustomerComponent,
+    ApiComponent,
 
 
 

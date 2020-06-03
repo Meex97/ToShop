@@ -12,6 +12,7 @@ import {FormsModule, NgForm} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {PaymentMethodsType} from '../../enum/PaymentMethodsType';
 import {HttpClient} from '@angular/common/http';
+import {apiUrl} from '../../../environments/environment';
 
 
 @NgModule({
@@ -111,7 +112,7 @@ export class CheckoutComponent implements OnInit {
       productInfo: this.amo,
       amount:  this.amo
     };
-    return this.http.post<any>('http://localhost:8080/api/payment/payment-details', paymentPayload).subscribe(
+    return this.http.post<any>( `${apiUrl}/payment/payment-details`, paymentPayload).subscribe(
       data => {
         console.log(data);
         this.payuform.txnid = data.txnId;
