@@ -37,10 +37,10 @@ public class ImageController {
     public BodyBuilder uplaodImage(@RequestParam("image") MultipartFile file) throws IOException {
         ImageModel img = new ImageModel(file.getOriginalFilename(), file.getContentType(),
                 compressBytes(file.getBytes()));
-        imageRepository.save(img);
+        // imageRepository.save(img);
 
         ProductInfo prod = productInfoRepository.findByProductId(img.getName());
-        System.out.println(img.getName());
+        // System.out.println(img.getName());
         prod.setProductimage(decompressBytes(compressBytes(file.getBytes())));
         productService.update(prod);
 
