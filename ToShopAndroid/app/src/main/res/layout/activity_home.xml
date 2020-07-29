@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp" app:srcCompat="@drawable/torino2" android:id="@+id/imageView4"
+            android:background="#B9DFF0"/>
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:gravity="center">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center" android:layout_weight="1">
+            <ImageView
+                    android:layout_width="71dp"
+                    android:layout_height="50dp" app:srcCompat="@drawable/avatar3"
+                    android:id="@+id/imageViewLogin"/>
+            <TextView
+                    android:text="Login now!"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:id="@+id/textWelcomeUser" android:textStyle="bold"
+                    android:gravity="center"/>
+        </LinearLayout>
+        <SearchView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/searchProducts"
+                android:queryHint="What do you want to search?"
+                android:searchIcon="@android:drawable/ic_menu_search"
+                android:goIcon="@android:drawable/ic_menu_search"
+                android:foregroundGravity="right">
+        </SearchView>
+    </LinearLayout>
+    <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/viewPagerHome">
+        <com.google.android.material.tabs.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/tabLayout">
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/tabItemFH" android:text="First Hand"
+            />
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/tabItemSH" android:text="Second Hand"/>
+        </com.google.android.material.tabs.TabLayout>
+    </androidx.viewpager.widget.ViewPager>
+</LinearLayout>

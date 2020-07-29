@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:gravity="center" android:background="#B9DFF0">
+
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    <ImageView
+            android:layout_width="259dp"
+            android:layout_height="118dp" app:srcCompat="@drawable/user" android:id="@+id/imageView2"
+            android:background="#B9DFF0" android:layout_gravity="center"/>
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Insert your credentials"
+            android:gravity="center"
+            android:background="#B9DFF0" android:textStyle="bold"/>
+    <TextView android:layout_width="match_parent" android:layout_height="20dp"></TextView>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/email"
+            android:hint="Email"
+            android:text="aaa@aaa.it"
+            android:background="@drawable/textview_rounded_corners"
+            android:textAlignment="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"/>
+    <TextView android:layout_width="match_parent" android:layout_height="10dp"></TextView>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/password" android:hint="Password" android:text="aaa"
+            android:background="@drawable/textview_rounded_corners"
+            android:textAlignment="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"/>
+    <Button
+            android:background="@drawable/button_rounded_corners"
+            android:textColor="#f0f0f0"
+            android:text="Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/buttonLogin"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="15dp"/>
+    <TextView android:layout_width="match_parent" android:layout_height="10dp"></TextView>
+    <Button
+            android:background="@drawable/button_rounded_corners"
+            android:textColor="#f0f0f0"
+            android:text="logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/buttonLogout"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"/>
+</LinearLayout>
