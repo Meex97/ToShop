@@ -17,7 +17,7 @@ public interface ApiInterface {
     @GET("product/secondhandProductList")
     Call<List<ProductClientResult>> getSHProductList();
 
-    @GET("/get/{imageName}")
+    @GET("image/get/{imageName}")
     Call<ImageModel> getProductImage(@Path("imageName") String imageName);
 
 }
