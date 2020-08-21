@@ -24,6 +24,7 @@ import com.unito.toshop.model.ProductInfoResult;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AdapterListFHProducts extends BaseAdapter {
@@ -31,9 +32,11 @@ public class AdapterListFHProducts extends BaseAdapter {
     private static final String TAG = AdapterListFHProducts.class.getSimpleName();
 
     private List<ProductInfoResult> productsList;
+    private HashMap<String, Integer> images = new HashMap<>();
 
-    public  AdapterListFHProducts(List<ProductInfoResult> productsList) {
+    public  AdapterListFHProducts(List<ProductInfoResult> productsList, HashMap<String, Integer> images) {
         this.productsList = productsList;
+        this.images = images;
     }
 
     public AdapterListFHProducts() {
@@ -57,41 +60,41 @@ public class AdapterListFHProducts extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        ViewHolder viewHolder;
+
         if (convertView == null) {
+            viewHolder = new ViewHolder();
             LayoutInflater layoutInflater = (LayoutInflater) Application.getInstance().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.row_products, null);
-        }
 
-        ImageView productImage = convertView.findViewById(R.id.productImage);
-        TextView productName = convertView.findViewById(R.id.productName);
-        TextView productPrice = convertView.findViewById(R.id.productPrice);
+            viewHolder.productImage = convertView.findViewById(R.id.productImage);
+            viewHolder.productName = convertView.findViewById(R.id.productName);
+            viewHolder.productPrice = convertView.findViewById(R.id.productPrice);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
 
         ProductInfoResult product = this.productsList.get(position);
+        String path = (String) product.getProductIcon();
+        Log.e(TAG,"Path: " + path);
 
-        productImage.setImageResource(R.drawable.missing_image); //metto l'immagine vuota intanto
-
-        //String path = (String) product.getProductIcon().subSequence(15,product.getProductIcon().length());
-        //ImageModel im = ImageManager.getInstance().getImage(path);
-        Icon icon = Icon.createWithFilePath("src/main/res/img/aspira.jpg");
-        productImage.setImageIcon(icon);
-
-/*
-        String path = (String) product.getProductIcon().subSequence(8,product.getProductIcon().length());
-        String path2 = "src/main/res/drawable/" + path;
-
-        File imgFile = new File(path2);
-        Log.e(TAG,"Image path: " + path2);
-
-        if(imgFile.exists()){
-            System.out.println("Image exists *********************************");
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            productImage.setImageBitmap(myBitmap);
+        viewHolder.productName.setText(product.getProductName());
+        viewHolder.productPrice.setText("€ " + product.getProductPrice());
+        try{
+            viewHolder.productImage.setImageResource(images.get(path));
+        } catch (Exception e) {
+            Log.e(TAG,"Errore, settata immagine di default");
+            viewHolder.productImage.setImageResource(R.drawable.missing_image);
         }
-*/
-        productName.setText(product.getProductName());
-        productPrice.setText("€ " + product.getProductPrice());
-
         return convertView;
+    }
+
+    private static class ViewHolder {
+        ImageView productImage;
+        TextView productName;
+        TextView productPrice;
     }
 
     //TODO creare async task qui

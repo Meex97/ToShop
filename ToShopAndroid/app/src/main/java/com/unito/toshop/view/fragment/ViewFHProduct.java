@@ -17,6 +17,7 @@ import com.unito.toshop.control.servercalls.ProductManager;
 import com.unito.toshop.model.ProductInfoResult;
 import com.unito.toshop.view.adapter.AdapterListFHProducts;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ViewFHProduct extends Fragment {
@@ -39,7 +40,8 @@ public class ViewFHProduct extends Fragment {
                 getResources().getColor(android.R.color.holo_red_light)
         );
         List<ProductInfoResult> list = (List<ProductInfoResult>) Application.getInstance().getModel().getBean(Constants.PRODUCT_LIST_FH);
-        AdapterListFHProducts adapterListFHProducts = new AdapterListFHProducts(list);
+        HashMap<String, Integer> images = (HashMap<String, Integer>) Application.getInstance().getModel().getBean(Constants.IMAGES);
+        AdapterListFHProducts adapterListFHProducts = new AdapterListFHProducts(list, images);
         listNewProducts.setAdapter(adapterListFHProducts);
         this.setActions();
         return view;

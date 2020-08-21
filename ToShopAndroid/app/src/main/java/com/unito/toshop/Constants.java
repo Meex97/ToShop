@@ -8,5 +8,5 @@ public class Constants {
     public static final String SELECTED_PRODUCT = "SELECTED_PRODUCT";
     public static final String PRODUCT_SEARCH_RESULT = "PRODUCT_SEARCH_RESULT";
     public static final String PRODUCT_IMAGE = "PRODUCT_IMAGE";
-
+    public static final String IMAGES = "IMAGES";
 }

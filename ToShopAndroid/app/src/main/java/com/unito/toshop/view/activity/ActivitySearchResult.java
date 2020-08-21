@@ -11,6 +11,7 @@ import com.unito.toshop.R;
 import com.unito.toshop.model.ProductInfoResult;
 import com.unito.toshop.view.adapter.AdapterListFHProducts;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ActivitySearchResult extends AppCompatActivity {
@@ -27,7 +28,8 @@ public class ActivitySearchResult extends AppCompatActivity {
 
     private void initComponents() {
         searchResult = findViewById(R.id.searchResult);
-        searchResult.setAdapter(new AdapterListFHProducts((List<ProductInfoResult>) Application.getInstance().getModel().getBean(Constants.PRODUCT_SEARCH_RESULT)));
+        HashMap<String, Integer> images = (HashMap<String, Integer>) Application.getInstance().getModel().getBean(Constants.IMAGES);
+        searchResult.setAdapter(new AdapterListFHProducts((List<ProductInfoResult>) Application.getInstance().getModel().getBean(Constants.PRODUCT_SEARCH_RESULT), images));
     }
 
     private void setActions() {

@@ -22,10 +22,7 @@ import com.unito.toshop.model.ProductInfoResult;
 
 import java.math.BigDecimal;
 import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class ActivitySplashScreen extends AppCompatActivity {
 
@@ -103,6 +100,21 @@ public class ActivitySplashScreen extends AppCompatActivity {
     private void initData() {
         ProductManager.getInstance().getProductsListFH();
         ProductManager.getInstance().getProductsListSH();
+
+        HashMap<String, Integer> images = new HashMap<>();
+        images.put("../../../assets/img/kebab.jpeg", R.drawable.kebab);
+        images.put("../../../assets/img/falafel.jpeg", R.drawable.falafel);
+        images.put("../../../assets/img/piatti.jpg", R.drawable.piatti);
+        images.put("../../../assets/img/urna.jpg", R.drawable.urna);
+        images.put("../../../assets/img/stereo.jpg", R.drawable.stereo);
+        images.put("../../../assets/img/calze1.jpg", R.drawable.calze1);
+        images.put("../../../assets/img/calze2.jpeg", R.drawable.calze2);
+        images.put("../../../assets/img/aspira.jpg", R.drawable.aspira);
+        images.put("../../../assets/img/cassetta.jpg", R.drawable.cassetta);
+
+        Application.getInstance().getModel().putBean(Constants.IMAGES, images);
+
+        //        int[] images = {R.drawable.kebab,R.drawable.falafel,R.drawable.piatti,R.drawable.urna,R.drawable.stereo,R.drawable.calze1,R.drawable.calze2};
 /*        try {
             //TODO se il server non è online crasha, controllo solo la connessione. Posso usare isOnline2() ma è da controllare
             //TODO controllo la connessione solo prima di entrare, ma se entra e la leva dopo?

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" android:gravity="center" android:background="#B9DFF0">
+              android:layout_height="match_parent" android:gravity="center" android:background="#EBF8F8">
 
     <Space
             android:layout_width="match_parent"
@@ -10,7 +10,7 @@
     <ImageView
             android:layout_width="259dp"
             android:layout_height="118dp" app:srcCompat="@drawable/user" android:id="@+id/imageView2"
-            android:background="#B9DFF0" android:layout_gravity="center"/>
+            android:background="#EBF8F8" android:layout_gravity="center"/>
     <Space
             android:layout_width="match_parent"
             android:layout_height="8dp"/>
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="Insert your credentials"
             android:gravity="center"
-            android:background="#B9DFF0" android:textStyle="bold"/>
+            android:background="#EBF8F8" android:textStyle="bold"/>
     <TextView android:layout_width="match_parent" android:layout_height="20dp"></TextView>
     <EditText
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             android:ems="10"
             android:id="@+id/email"
             android:hint="Email"
-            android:text="aaa@aaa.it"
+            android:text="pietro@gmail.com"
             android:background="@drawable/textview_rounded_corners"
             android:textAlignment="center"
             android:layout_marginLeft="30dp"
@@ -39,11 +39,11 @@
             android:layout_height="40dp"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/password" android:hint="Password" android:text="aaa"
+            android:id="@+id/password" android:hint="Password"
             android:background="@drawable/textview_rounded_corners"
             android:textAlignment="center"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            android:layout_marginRight="30dp" android:text="12345"/>
     <Button
             android:background="@drawable/button_rounded_corners"
             android:textColor="#f0f0f0"
