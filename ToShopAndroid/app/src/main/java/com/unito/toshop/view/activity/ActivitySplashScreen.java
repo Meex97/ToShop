@@ -113,30 +113,6 @@ public class ActivitySplashScreen extends AppCompatActivity {
         images.put("../../../assets/img/cassetta.jpg", R.drawable.cassetta);
 
         Application.getInstance().getModel().putBean(Constants.IMAGES, images);
-
-        //        int[] images = {R.drawable.kebab,R.drawable.falafel,R.drawable.piatti,R.drawable.urna,R.drawable.stereo,R.drawable.calze1,R.drawable.calze2};
-/*        try {
-            //TODO se il server non è online crasha, controllo solo la connessione. Posso usare isOnline2() ma è da controllare
-            //TODO controllo la connessione solo prima di entrare, ma se entra e la leva dopo?
-            // togliere/modificare il try-catch-finally
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            List<ProductInfoResult> tmp = new ArrayList();
-            ProductInfoResult p1 = new ProductInfoResult();
-            p1.setProductName("p1");
-            p1.setProductPrice(BigDecimal.valueOf(100));
-            tmp.add(p1);
-            Application.getInstance().getModel().putBean(Constants.PRODUCT_LIST_FH, tmp);
-            List<ProductInfoResult> tmp2 = new ArrayList();
-            ProductClientResult p2 = new ProductClientResult();
-            p1.setProductName("p2");
-            p1.setProductPrice(BigDecimal.valueOf(200));
-            tmp2.add(p2);
-            Application.getInstance().getModel().putBean(Constants.PRODUCT_LIST_SH, tmp2);
-        }
-
- */
     }
 
 }

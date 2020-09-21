@@ -15,7 +15,8 @@ import java.util.concurrent.TimeUnit;
 public class ApiClient {
 
 //    private static final String URL = "http://localhost:8080/api/";
-    private static final String URL = "http://10.0.2.2:8080/api/"; //we have to use this link cause of problems with localhost and emulator (it's the equivalent for localhost)
+//    private static final String URL = "http://10.0.2.2:8080/api/"; //we have to use this link cause of problems with localhost and emulator (it's the equivalent for localhost)
+    private static final String URL = "https://toshoppone.herokuapp.com/api/"; //heroku
     private static Retrofit retrofit = null;
     public static Gson gson = new GsonBuilder().create();
 

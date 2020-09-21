@@ -97,7 +97,4 @@ public class AdapterListFHProducts extends BaseAdapter {
         TextView productPrice;
     }
 
-    //TODO creare async task qui
-    // https://www.tutorialspoint.com/android-asynctask-example-and-explanation
-
 }

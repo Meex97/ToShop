@@ -54,9 +54,6 @@ public class ActivityHome extends AppCompatActivity {
     private void setActions() {
         search.setOnQueryTextListener(Application.getInstance().getHomeControl().getActionSearchProducts());
         login.setOnClickListener(Application.getInstance().getHomeControl().getActionGoToLogin());
-        //todo aggiungere azioni?
-//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-//        tabLayout.addOnTabSelectedListener(null);
     }
 
     private void refreshDataFromServer() {
