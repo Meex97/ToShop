@@ -15,15 +15,17 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
+    // metodo che permette di salvare i dettagli di pagamento nel DB
     @PostMapping(path = "/payment-details")
     public @ResponseBody
     PaymentDetail proceedPayment(@RequestBody PaymentDetail paymentDetail){
-        PaymentCallback paymentCallback = new PaymentCallback();
+       // PaymentCallback paymentCallback = new PaymentCallback();
         //paymentCallback.setMihpayid("4934545");
         //paymentCallback.setMode(PaymentMode.CC);
         return paymentService.proceedPayment(paymentDetail);
     }
 
+    //meotodo di callback eseguito nel caso di pagamento avvenuto con successo o fallito
     @RequestMapping(path = "/payment-response", method = RequestMethod.POST)
     public @ResponseBody
     String payuCallback(@RequestParam String mihpayid, @RequestParam String status, @RequestParam PaymentMode mode, @RequestParam String txnid, @RequestParam String hash){

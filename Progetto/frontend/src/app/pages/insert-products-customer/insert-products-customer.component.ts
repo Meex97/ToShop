@@ -41,6 +41,7 @@ export class InsertProductsCustomerComponent implements OnInit {
 
   productId: string;
 
+  // vegono recuperati l'id e il nome dell'utente autenticato
   ngOnInit() {
 
     this.userService.currentUser.subscribe(client => {

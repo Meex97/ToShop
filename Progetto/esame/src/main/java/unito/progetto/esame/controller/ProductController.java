@@ -286,13 +286,14 @@ public class ProductController {
         client.setName("Giuseppe");
         client.setAddress("via turati");
         client.setSurname("Villacapo");
+        client.setCredits(610);
         client.setPassword("12345");
         client.setPhone("39394737347");
         client.setRole("ROLE_CUSTOMER");
         client.setActive(true);
         Client client_service = userService.saveClient(client);
 
-        //////////////////// Creazione Client Laura ///////////////////
+        //////////////////// Creazione Supplier Laura ///////////////////
         Supplier supplier4 = new Supplier();
         supplier4.setEmail("laura@gmail.com");
         supplier4.setName("Piedi Pazzi");
@@ -334,7 +335,7 @@ public class ProductController {
         supplier2.setActive(true);
         User supplier2_service = userService.save(supplier2);
 
-        //////////////////// Creazione Suppliere Pietro ///////////////////
+        //////////////////// Creazione Supplier Pietro ///////////////////
         Supplier supplier3 = new Supplier();
         supplier3.setEmail("pietro@gmail.com");
         supplier3.setName("Pielettro");
@@ -349,7 +350,7 @@ public class ProductController {
         User supplier3_service = userService.save(supplier3);
 
 
-        //////////////////// Creazione Suppliere manager ///////////////////
+        //////////////////// Creazione Supplier manager ///////////////////
         User admin = new User();
         admin.setEmail("admin@gmail.com");
         admin.setName("Admin");

@@ -3,6 +3,7 @@ package unito.progetto.esame.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import unito.progetto.esame.enums.PaymentMode;
 import unito.progetto.esame.enums.PaymentStatus;
 import unito.progetto.esame.model.Payment;
 import unito.progetto.esame.model.PaymentCallback;
@@ -55,10 +56,13 @@ public class PaymentServiceImpl implements PaymentService {
         payment.setEmail(paymentDetail.getEmail());
         payment.setName(paymentDetail.getName());
         payment.setPaymentDate(new Date());
+        //payment.setPaymentStatus(PaymentStatus.Success);
         payment.setPaymentStatus(PaymentStatus.Pending);
         payment.setPhone(paymentDetail.getPhone());
         payment.setProductInfo(paymentDetail.getProductInfo());
         payment.setTxnId(paymentDetail.getTxnId());
+        payment.setMihpayId("4934580");
+        payment.setMode(PaymentMode.CC);
         paymentRepository.save(payment);
     }
 

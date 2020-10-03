@@ -82,7 +82,6 @@ import { ApiComponent } from './pages/api/api.component';
     HttpClientModule,
     ReactiveFormsModule,
     FileUploadModule,
-
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
@@ -95,6 +94,9 @@ import { ApiComponent } from './pages/api/api.component';
     MatInputModule,
     MatCardModule,
     MatCheckboxModule,
+    RouterModule.forRoot([
+      {path: '', component: CheckoutComponent}
+    ])
 
   ],
   providers: [CookieService,
